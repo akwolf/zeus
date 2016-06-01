@@ -1,0 +1,22 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head lang="zh-cn">
+	<meta charset="UTF-8"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="renderer" content="webkit"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+	<meta http-equiv="Cache-Control" content="no-siteapp" />
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<title>绑定公众号</title>
+</head>
+<body>
+<form action="https://mp.weixin.qq.com/cgi-bin/componentloginpage" id="bind_form">
+	<input type="hidden" name="component_appid" th:value="${weixinLoginBean.appid}"/>
+	<input type="hidden" name="pre_auth_code" th:value="${weixinLoginBean.preAuthCode}"/>
+	<input type="hidden" name="redirect_uri" th:value="${weixinLoginBean.redirectUri}"/>
+</form>
+<script type="text/javascript">
+	document.getElementById("bind_form").submit();
+</script>
+</body>
+</html>
