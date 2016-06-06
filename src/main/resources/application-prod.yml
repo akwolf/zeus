@@ -45,5 +45,5 @@ druid:
 static:
     image:
         download:
-            path: /var/zeus/static/upload
+            path: /var/zeus/upload
         url: http://zeus-static.zunpeng.org/
