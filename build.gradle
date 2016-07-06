@@ -1,8 +1,6 @@
 buildscript {
 	ext {
-		generatedSourcesDir = file("generated-sources/java")
-		springBootVersion = '1.3.3.RELEASE'
-		querydslVersion = '3.7.2'
+		springBootVersion = '1.3.5.RELEASE'
 		shiroVersion = '1.2.4'
 	}
 	repositories {
@@ -15,8 +13,6 @@ buildscript {
 }
 
 apply plugin: 'application'
-apply plugin: 'java'
-apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'war'
 apply plugin: 'spring-boot' 
@@ -34,21 +30,12 @@ war {
 
 mainClassName = "org.zunpeng.ZeusApplication"
 
-sourceCompatibility = 1.7
-targetCompatibility = 1.7
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 repositories {
 	mavenCentral()
 	jcenter()
-}
-
-sourceSets {
-	main {
-		java {
-			srcDir "src/main/java"
-			srcDir generatedSourcesDir
-		}
-	}
 }
 
 if(zeusEnv == 'prod'){
@@ -56,28 +43,8 @@ if(zeusEnv == 'prod'){
 }
 
 configurations {
-	querydslapt
 	providedRuntime
 	provided
-}
-
-task generateQueryDSL(type: JavaCompile, group: 'build', description: 'Generates the QueryDSL query types') {
-	source = sourceSets.main.java
-	classpath = configurations.compile + configurations.querydslapt
-	options.compilerArgs = [
-			"-proc:only",
-			"-processor", "com.mysema.query.apt.jpa.JPAAnnotationProcessor"
-	]
-	destinationDir = generatedSourcesDir
-}
-
-compileJava {
-	doFirst {
-		generatedSourcesDir.mkdirs();
-	}
-	options.compilerArgs += ['-s', generatedSourcesDir]
-
-	dependsOn generateQueryDSL
 }
 
 bootRun {
@@ -88,17 +55,15 @@ dependencies {
 	compile("org.springframework.boot:spring-boot-starter")
 	compile("org.springframework.boot:spring-boot-starter-thymeleaf")
     compile("org.springframework.boot:spring-boot-starter-data-rest")
-    compile("org.springframework.boot:spring-boot-starter-data-jpa")
-    compile("org.springframework.boot:spring-boot-starter-jdbc")
+	compile("org.springframework.boot:spring-boot-starter-jdbc")
     compile("org.springframework.boot:spring-boot-starter-aop")
 	compile("org.springframework.boot:spring-boot-starter-redis")
     compile("org.springframework.boot:spring-boot-devtools")
 	providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
 
-	compile("com.mysema.querydsl:querydsl-core:$querydslVersion")
-	compile("com.mysema.querydsl:querydsl-jpa:$querydslVersion")
-	querydslapt("com.mysema.querydsl:querydsl-apt:$querydslVersion")
-	compile("mysql:mysql-connector-java:5.1.38")
+	compile("mysql:mysql-connector-java:5.1.39")
+	compile("org.mybatis:mybatis:3.4.1")
+	compile("org.mybatis:mybatis-spring:1.3.0")
 
 	compile("org.apache.shiro:shiro-core:$shiroVersion")
 	compile("org.apache.shiro:shiro-web:$shiroVersion")
@@ -129,14 +94,6 @@ dependencies {
 
 	testCompile("org.springframework.boot:spring-boot-starter-test")
 	testCompile("com.squareup.okhttp3:mockwebserver:3.0.1")
-}
-
-
-eclipse {
-	classpath {
-		 containers.remove('org.eclipse.jdt.launching.JRE_CONTAINER')
-		 containers 'org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7'
-	}
 }
 
 task wrapper(type: Wrapper) {

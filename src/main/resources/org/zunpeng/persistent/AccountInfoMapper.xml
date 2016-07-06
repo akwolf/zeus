@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.zunpeng.mapper.AccountInfoMapper">
+	<resultMap id="baseResultMap" type="org.zunpeng.domain.AccountInfo">
+		<id property="id" column="id" jdbcType="BIGINT"/>
+		<result property="slug" jdbcType="VARCHAR" column="slug"/>
+		<result property="openId" jdbcType="VARCHAR" column="open_id"/>
+		<result property="username" jdbcType="VARCHAR" column="username"/>
+		<result property="password" jdbcType="VARCHAR" column="passwd"/>
+		<result property="gender" jdbcType="INTEGER" column="gender"/>
+		<result property="avatarImg" jdbcType="VARCHAR" column="avatar_img"/>
+		<result property="brief" jdbcType="VARCHAR" column="brief"/>
+
+		<result property="language" jdbcType="VARCHAR" column="language"/>
+		<result property="country" jdbcType="VARCHAR" column="country"/>
+		<result property="province" jdbcType="VARCHAR" column="province"/>
+		<result property="city" jdbcType="VARCHAR" column="city"/>
+
+		<result property="realName" jdbcType="VARCHAR" column="real_name"/>
+		<result property="mobile" jdbcType="VARCHAR" column="mobile"/>
+
+		<result property="subscribeTime" column="subscribe_time"/>
+		<result property="createTime" column="create_time"/>
+	</resultMap>
+
+	<select id="pageByCondition" resultMap="baseResultMap">
+
+	</select>
+
+	<select id="getById" resultMap="baseResultMap">
+		select * from account_info where id = #{id}
+	</select>
+</mapper>

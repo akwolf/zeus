@@ -69,8 +69,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		registration.setServlet(druidStatViewServlet);
 
 		Map<String, String> druidStatViewServletInitParameters = Maps.newHashMap();
-		druidStatViewServletInitParameters.put("loginUsername", "duobeiyunweike");
-		druidStatViewServletInitParameters.put("loginPassword", "weike2016");
+		druidStatViewServletInitParameters.put("loginUsername", "dapengzeus");
+		druidStatViewServletInitParameters.put("loginPassword", "zeus2016");
 		registration.setInitParameters(druidStatViewServletInitParameters);
 		registration.addUrlMappings("/druid", "/druid/*", "/druid/**");
 		return registration;

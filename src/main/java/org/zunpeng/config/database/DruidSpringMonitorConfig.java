@@ -24,7 +24,7 @@ public class DruidSpringMonitorConfig {
 	public JdkRegexpMethodPointcut jdkRegexpMethodPointcut(){
 		JdkRegexpMethodPointcut jdkRegexpMethodPointcut = new JdkRegexpMethodPointcut();
 
-		jdkRegexpMethodPointcut.setPatterns("com.duobeiyun.repository.*", "com.duobeiyun.service.*");
+		jdkRegexpMethodPointcut.setPatterns("org.zunpeng.mapper.*", "org.zunpeng.service.*");
 
 		return jdkRegexpMethodPointcut;
 	}

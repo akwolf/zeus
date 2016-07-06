@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.zunpeng.mapper.SlugInfoMapper">
+
+	<resultMap id="baseResultMap" type="org.zunpeng.domain.SlugInfo">
+		<id property="id" column="id" jdbcType="BIGINT"></id>
+		<result property="slug" column="slug" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<insert id="batchInsert" parameterType="java.util.Collection">
+		insert into slug_info (slug) values
+		<foreach collection="slugSet" item="slug" separator=",">
+			(#{slug})
+		</foreach>
+	</insert>
+
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="org.zunpeng.domain.SlugInfo">
+		insert into slug_info (slug) values (#{slug})
+	</insert>
+
+	<select id="getById" resultMap="baseResultMap">
+		select * from slug_info where id = #{id}
+	</select>
+
+	<sql id="baseSql">
+		from slug_info
+	</sql>
+
+	<select id="getAllLimit" resultMap="baseResultMap" parameterType="org.springframework.data.domain.Pageable">
+		select *
+		<include refid="baseSql"/>
+		limit #{offset}, #{pageSize}
+	</select>
+
+	<select id="getAllLimit2" resultMap="baseResultMap">
+		select *
+		<include refid="baseSql"/>
+		limit #{offset}, #{pageSize}
+	</select>
+
+	<select id="count" resultType="java.lang.Long">
+		select count(*)
+		<include refid="baseSql"/>
+	</select>
+
+</mapper>
