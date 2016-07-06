@@ -22,8 +22,15 @@
 		select * from slug_info where id = #{id}
 	</select>
 
+	<!--这里必须使用$-->
 	<sql id="baseSql">
 		from slug_info
+	</sql>
+
+	<!--这里必须使用$-->
+	<select id="getAllLimit" resultMap="baseResultMap" parameterType="org.springframework.data.domain.Pageable">
+		select *
+		<include refid="baseSql"/>
 		<if test="sort != null">
 			<foreach collection="sort" item="item" separator=", " index="index">
 				<if test="index == 0">
@@ -32,27 +39,12 @@
 				${item.property} ${item.direction}
 			</foreach>
 		</if>
-	</sql>
-
-	<select id="getAllLimit" resultMap="baseResultMap" parameterType="org.springframework.data.domain.Pageable">
-		select *
-		<include refid="baseSql">
-			<property name="sort" value="#{sort}"/>
-		</include>
-		limit #{offset}, #{pageSize}
-	</select>
-
-	<select id="getAllLimit2" resultMap="baseResultMap">
-		select *
-		from slug_info
 		limit #{offset}, #{pageSize}
 	</select>
 
 	<select id="count" resultType="java.lang.Long" parameterType="org.springframework.data.domain.Pageable">
 		select count(*)
-		<include refid="baseSql">
-			<property name="sort" value="#{sort}"/>
-		</include>
+		<include refid="baseSql"/>
 	</select>
 
 </mapper>

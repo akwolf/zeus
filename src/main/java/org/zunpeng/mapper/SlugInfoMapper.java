@@ -22,5 +22,4 @@ public interface SlugInfoMapper {
 
 	List<SlugInfo> getAllLimit(Pageable pageable);
 
-	List<SlugInfo> getAllLimit2(@Param("offset") int offset, @Param("pageSize") int pageSize);
 }

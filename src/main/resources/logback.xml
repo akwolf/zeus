@@ -57,6 +57,7 @@
 		<!--<appender-ref ref="alipayPayment"/>-->
 	<!--</logger>-->
 
+	<!-- TODO 输出mapper日志 -->
 	<logger name="org.zunpeng.mapper" level="debug" additivity="false">
 		<appender-ref ref="console"/>
 	</logger>
