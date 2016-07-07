@@ -1,6 +1,7 @@
 package org.zunpeng.domain;
 
 /**
+ * 解决方案
  * Created by dapeng on 6/7/16.
  */
 public class SolutionInfo extends AbstractEntity {

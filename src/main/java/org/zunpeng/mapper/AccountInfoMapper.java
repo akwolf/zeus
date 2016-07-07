@@ -1,6 +1,5 @@
 package org.zunpeng.mapper;
 
-import org.springframework.data.domain.Page;
 import org.zunpeng.domain.AccountInfo;
 
 /**
@@ -8,7 +7,12 @@ import org.zunpeng.domain.AccountInfo;
  */
 public interface AccountInfoMapper {
 
-	Page<AccountInfo> pageByCondition();
-
 	AccountInfo getById(Long id);
+
+	AccountInfo getBySlug(String slug);
+
+	void save(AccountInfo accountInfo);
+
+	void update(AccountInfo accountInfo);
+
 }

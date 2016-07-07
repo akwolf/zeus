@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.zunpeng.mapper.BannerInfoMapper">
+
+	<resultMap id="baseResultMap" type="org.zunpeng.domain.BannerInfo">
+		<id property="id" column="id" jdbcType="BIGINT"/>
+		<result property="coverImg" column="cover_img" jdbcType="VARCHAR"/>
+		<result property="deleted" column="deleted" jdbcType="INTEGER"/>
+		<result property="disabled" column="disabled" jdbcType="INTEGER"/>
+		<result property="createTime" column="create_time"/>
+		<result property="sequence" column="sequence" jdbcType="INTEGER"/>
+		<result property="recommendUrl" column="recommend_url" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<insert id="save" useGeneratedKeys="true" keyProperty="id">
+		insert into banner_info(cover_img, deleted, disabled, create_time, sequence, recommend_url)
+		values(#{coverImg}, #{deleted}, #{disabled}, #{createTime}, #{sequence}, #{recommendUrl})
+	</insert>
+
+	<update id="update">
+		update banner_inf
+		set cover_img = #{converImg}, deleted = #{deleted}, disabled = #{disabled},
+		    sequence = #{sequence}, recommend_url = #{recommendUrl}
+		where id = #{id}
+	</update>
+
+	<select id="getById" resultMap="baseResultMap">
+		select * from banner_info where id = #{id}
+	</select>
+
+</mapper>

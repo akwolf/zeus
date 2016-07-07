@@ -23,11 +23,31 @@
 		<result property="createTime" column="create_time"/>
 	</resultMap>
 
-	<select id="pageByCondition" resultMap="baseResultMap">
+	<insert id="save" useGeneratedKeys="true" keyProperty="id">
+		insert into account_info (open_id, username, passwd, gender,
+			avatar_img, brief, `language`, country, province, city, real_name,
+			mobile, subscribe_time, create_time)
+		values(#{openId}, #{username}, #{password}, #{gender},
+			#{avatarImg}, #{brief}, #{language}, #{country},
+			#{province}, #{city}, #{realName}, #{mobile},
+			#{subscribeTime}, #{createTime})
+	</insert>
 
-	</select>
+	<update id="update">
+		update account_info
+		set open_id = #{openId}, username = #{username}, passwd = #{password},
+			gender = #{gender}, avatar_img = #{avatarImg}, brief = #{brief},
+			language = #{language}, country = #{country}, province = #{province},
+			city = #{city}, real_name = #{realName}, mobile = #{mobile},
+			subscribe_time = #{subscribeTime}, slug = #{slug}
+		where id = #{id}
+	</update>
 
 	<select id="getById" resultMap="baseResultMap">
 		select * from account_info where id = #{id}
+	</select>
+
+	<select id="getBySlug" resultMap="baseResultMap">
+		select * from account_info where slug = #{slug}
 	</select>
 </mapper>

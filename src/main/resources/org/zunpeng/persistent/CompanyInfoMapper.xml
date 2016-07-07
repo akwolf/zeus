@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.zunpeng.mapper.CompanyInfoMapper">
+
+	<resultMap id="baseResultMap" type="org.zunpeng.domain.CompanyInfo">
+		<id property="id" column="id" jdbcType="BIGINT"/>
+		<result property="title" column="title" jdbcType="VARCHAR"/>
+		<result property="logoImg" column="logo_img" jdbcType="VARCHAR"/>
+		<result property="address" column="address" jdbcType="VARCHAR"/>
+		<result property="brief" column="brief" jdbcType="VARCHAR"/>
+		<result property="description" column="description" jdbcType="VARCHAR"/>
+		<result property="contact" column="contact" jdbcType="VARCHAR"/>
+		<result property="mobile" column="mobile" jdbcType="VARCHAR"/>
+		<result property="telphone" column="telphone" jdbcType="VARCHAR"/>
+		<result property="lastModifyTime" column="last_modify_time"/>
+		<result property="createTime" column="create_time"/>
+	</resultMap>
+
+	<insert id="save" useGeneratedKeys="true" keyProperty="id">
+		insert into company_info (title, logo_img, address, brief, description,
+			contact, mobile, telphone, last_modify_time, create_time)
+		values (#{title}, #{logoImg}, #{address}, #{brief}, #{description},
+			#{contact}, #{mobile}, #{telphone}, #{lasyModifyTime}, #{createTime})
+	</insert>
+
+	<update id="update">
+		update company_info
+		set title = #{title}, logo_img = #{logoImg}, address = #{address}, brief = #{brief},
+			description = #{description}, contact = #{contact}, mobile = #{mobile},
+			telphone = #{telphone}, last_modify_time = #{lastModifyTime}
+		where id = #{id}
+	</update>
+
+	<select id="getById" resultMap="baseResultMap">
+		select * from company_info where id = #{id}
+	</select>
+
+</mapper>

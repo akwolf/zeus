@@ -27,7 +27,4 @@ public class AbstractEntity implements Serializable {
 		this.createTime = createTime;
 	}
 
-	void createdAt(){
-		this.createTime = new Date();
-	}
 }
