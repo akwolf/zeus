@@ -1,50 +1,36 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="org.zunpeng.mapper.SlugInfoMapper">
+<mapper namespace="org.zunpeng.mapper.BaseMapper">
 
-	<resultMap id="baseResultMap" type="org.zunpeng.domain.SlugInfo">
-		<id property="id" column="id" jdbcType="BIGINT"></id>
-		<result property="slug" column="slug" jdbcType="VARCHAR"/>
-	</resultMap>
-
-	<insert id="batchInsert" parameterType="java.util.Collection">
-		insert into slug_info (slug) values
-		<foreach collection="slugSet" item="slug" separator=",">
-			(#{slug})
-		</foreach>
-	</insert>
-
-	<insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="org.zunpeng.domain.SlugInfo">
-		insert into slug_info (slug) values (#{slug})
-	</insert>
-
-	<select id="getById" resultMap="baseResultMap">
-		select * from slug_info where id = #{id}
-	</select>
-
-	<!--这里必须使用$-->
-	<sql id="baseSql">
-		from slug_info
+	<sql id="base_sql_condition">
+		<choose>
+			<when test="criterionList != null and criterionList.size() > 0">
+				<trim prefix="where" prefixOverrides="and">
+					<foreach collection="criterionList" separator=" " item="criterion">
+						and ${criterion.condition}
+						<choose>
+							<when test="criterion.likeValue">
+								concat("%", #{criterion.value}, "%")
+							</when>
+							<when test="criterion.singleValue">
+								#{criterion.value}
+							</when>
+							<when test="criterion.betweenValue">
+								#{criterion.value} and #{criterion.secondValue}
+							</when>
+							<when test="criterion.listValue">
+								<foreach collection="${criterion.valueList}" separator=", " open="(" close=")" item="valueItem">
+									#{valueItem}
+								</foreach>
+							</when>
+						</choose>
+					</foreach>
+				</trim>
+			</when>
+			<otherwise>
+				where 1 = 1
+			</otherwise>
+		</choose>
 	</sql>
-
-	<!--这里必须使用$-->
-	<select id="getAllLimit" resultMap="baseResultMap" parameterType="org.springframework.data.domain.Pageable">
-		select *
-		<include refid="baseSql"/>
-		<if test="sort != null">
-			<foreach collection="sort" item="item" separator=", " index="index">
-				<if test="index == 0">
-					order by
-				</if>
-				${item.property} ${item.direction}
-			</foreach>
-		</if>
-		limit #{offset}, #{pageSize}
-	</select>
-
-	<select id="count" resultType="java.lang.Long" parameterType="org.springframework.data.domain.Pageable">
-		select count(*)
-		<include refid="baseSql"/>
-	</select>
 
 </mapper>
