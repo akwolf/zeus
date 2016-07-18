@@ -3,7 +3,6 @@ package org.zunpeng.web.controller;
 import org.springframework.boot.autoconfigure.web.ErrorController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class GlobalErrorController implements ErrorController {
@@ -16,7 +15,6 @@ public class GlobalErrorController implements ErrorController {
 	}
 
 	@RequestMapping(ERROR_PATH)
-	@ResponseBody
 	public String error() {
 		return index();
 	}

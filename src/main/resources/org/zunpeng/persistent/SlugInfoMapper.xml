@@ -22,27 +22,27 @@
 		select * from slug_info where id = #{id}
 	</select>
 
-	<!--这里必须使用$-->
 	<sql id="baseSql">
 		from slug_info
+		<include refid="org.zunpeng.mapper.BaseMapper.base_sql_condition"/>
 	</sql>
 
-	<!--这里必须使用$-->
-	<select id="getAllLimit" resultMap="baseResultMap" parameterType="org.springframework.data.domain.Pageable">
+	<!--这里必须使用$不进行预编译, #进行预编译-->
+	<select id="getAllLimit" resultMap="baseResultMap">
 		select *
 		<include refid="baseSql"/>
-		<if test="sort != null">
-			<foreach collection="sort" item="item" separator=", " index="index">
+		<if test="pageable.sort != null">
+			<foreach collection="pageable.sort" item="item" separator=", " index="index">
 				<if test="index == 0">
 					order by
 				</if>
 				${item.property} ${item.direction}
 			</foreach>
 		</if>
-		limit #{offset}, #{pageSize}
+		limit #{pageable.offset}, #{pageable.pageSize}
 	</select>
 
-	<select id="count" resultType="java.lang.Long" parameterType="org.springframework.data.domain.Pageable">
+	<select id="count" resultType="java.lang.Long">
 		select count(*)
 		<include refid="baseSql"/>
 	</select>

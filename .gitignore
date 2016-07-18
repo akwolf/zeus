@@ -19,7 +19,8 @@ generated
 generated_tests
 src/main/product
 .springBeans
-.mtj.tmp/
+.mtj
+.tmp
 
 fe/dist/
 fe/node_modules/

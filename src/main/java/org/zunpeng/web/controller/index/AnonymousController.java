@@ -77,7 +77,7 @@ public class AnonymousController {
 
 	@RequestMapping("/page")
 	@ResponseBody
-	public Map<String, Object> page(@PageableDefault(size = 20, sort = "id", direction = Sort.Direction.ASC) Pageable pageable){
+	public Map<String, Object> page(@PageableDefault(size = 200, sort = "id", direction = Sort.Direction.ASC) Pageable pageable){
 		Map<String, Object> map = Maps.newHashMap();
 
 		try {

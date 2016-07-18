@@ -1,6 +1,7 @@
 package org.zunpeng.service.account;
 
 import com.alibaba.fastjson.JSONObject;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.zunpeng.core.mybatis.Criteria;
+import org.zunpeng.core.mybatis.Criterion;
 import org.zunpeng.core.page.PageWrapper;
 import org.zunpeng.core.utils.SlugGenerateUtils;
 import org.zunpeng.domain.SlugInfo;
@@ -53,10 +56,18 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 	public PageWrapper<SlugInfo> page(Pageable pageable) {
-		List<SlugInfo> items = slugInfoMapper.getAllLimit(pageable);
-//		List<SlugInfo> items = slugInfoMapper.getAllLimit2(pageable.getOffset(), pageable.getPageSize());
-		long totalCount = slugInfoMapper.count(pageable);
-		PageWrapper<SlugInfo> page = new PageWrapper<>(items, pageable, totalCount);
+		List<Criterion> criterionList = Lists.newArrayList();
+		criterionList.add(new Criterion("id", "gt", 100));
+		criterionList.add(new Criterion("id", "le", 200));
+		criterionList.add(new Criterion("slug", "like", "6"));
+		criterionList.add(new Criterion("id", "bt", 1, 150));
+		criterionList.add(new Criterion("id", "notnull"));
+
+		Criteria criteria = new Criteria(pageable, criterionList);
+
+		List<SlugInfo> items = slugInfoMapper.getAllLimit(criteria);
+		long totalCount = slugInfoMapper.count(criteria);
+		PageWrapper<SlugInfo> page = new PageWrapper<>(pageable, items, totalCount);
 		return page;
 	}
 

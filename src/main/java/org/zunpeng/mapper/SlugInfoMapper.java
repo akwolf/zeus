@@ -1,7 +1,7 @@
 package org.zunpeng.mapper;
 
 import org.apache.ibatis.annotations.Param;
-import org.springframework.data.domain.Pageable;
+import org.zunpeng.core.mybatis.Criteria;
 import org.zunpeng.domain.SlugInfo;
 
 import java.util.List;
@@ -18,8 +18,8 @@ public interface SlugInfoMapper {
 
 	void insert(SlugInfo slug);
 
-	long count(Pageable pageable);
+	long count(Criteria criteria);
 
-	List<SlugInfo> getAllLimit(Pageable pageable);
+	List<SlugInfo> getAllLimit(Criteria criteria);
 
 }

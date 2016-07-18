@@ -23,7 +23,7 @@ public class PageWrapper<T> {
 
 	private long totalPages;
 
-	public PageWrapper(List<T> items, Pageable pageable, long totalCount){
+	public PageWrapper(Pageable pageable, List<T> items, long totalCount){
 		this.items = items;
 		this.totalCount = totalCount;
 		this.pageSize = pageable.getPageSize();
