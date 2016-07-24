@@ -63,6 +63,12 @@ public class AccountServiceImpl implements AccountService {
 		criterionList.add(new Criterion("id", "bt", 1, 150));
 		criterionList.add(new Criterion("id", "notnull"));
 
+		List<Integer> list = Lists.newArrayList();
+		for(int i = 100; i < 200; i ++){
+			list.add(i);
+		}
+		criterionList.add(new Criterion("id", "in", list.toArray()));
+
 		Criteria criteria = new Criteria(pageable, criterionList);
 
 		List<SlugInfo> items = slugInfoMapper.getAllLimit(criteria);

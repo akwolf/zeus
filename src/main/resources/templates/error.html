@@ -1,35 +1,26 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
-  <title>Oops，出错了~</title>
-  <style type="text/css">
-    * {
-      margin: 0;
-      padding: 0;
-    }
-    html, body {
-      width: 100%;
-      height: 100%;
-    }
-    body {
-      background-color: #4b4b4b;
-      position: relative;
-    }
-    .error_image {
-      width: 250px;
-      max-width: 100%;
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      margin: auto;
-    }
-  </style>
-</head>
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head lang="zh-cn" th:replace="portal/include/layout :: header ('Oops，出错了~', @{/style/portal/error.less}, '404', '404')"></head>
 <body>
-  <img src="http://7xq8uh.com1.z0.glb.clouddn.com/duobeiyun-shequnpai-error-image-500-352.png" alt="" class="error_image"/>
+	<div th:replace="portal/include/layout :: menu_main(100)"></div>
+	<div class="main_content">
+		<div class="container">
+			<div class="page-404 minWP text-c">
+				<p class="error-title">
+					<i class="Hui-iconfont va-m">&#xe688;</i>
+					<span class="va-m"> 404</span>
+				</p>
+				<p class="error-description">Oops，您访问的页面不存在~</p>
+				<p class="error-info">
+					您可以：
+					<a href="javascript:;" onclick="history.go(-1)" class="c-primary">&lt; 返回上一页</a>
+					<span class="ml-20">|</span>
+					<a href="/" class="c-primary ml-20">去首页 &gt;</a>
+				</p>
+			</div>
+		</div>
+	</div>
+	<div th:replace="portal/include/layout :: footer"></div>
+
 </body>
 </html>

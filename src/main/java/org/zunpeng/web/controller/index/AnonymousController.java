@@ -28,19 +28,8 @@ public class AnonymousController {
 	private AccountService accountService;
 
 	@RequestMapping({"/", ""})
-	@ResponseBody
 	public String index(){
-		long startTimeMillis = System.currentTimeMillis();
-
-		try {
-			logger.info("result: " + accountService.test());
-		} catch(Throwable t){
-			logger.info(t.getMessage(), t);
-		}
-
-		logger.info("get times: " + (System.currentTimeMillis() - startTimeMillis));
-
-		return "hello world";
+		return "portal/index/index";
 	}
 
 	@RequestMapping({"/add"})
@@ -78,6 +67,7 @@ public class AnonymousController {
 	@RequestMapping("/page")
 	@ResponseBody
 	public Map<String, Object> page(@PageableDefault(size = 200, sort = "id", direction = Sort.Direction.ASC) Pageable pageable){
+		long startTimeMillis = System.currentTimeMillis();
 		Map<String, Object> map = Maps.newHashMap();
 
 		try {
@@ -89,6 +79,7 @@ public class AnonymousController {
 			map.put("message", t.getMessage());
 			logger.info(t.getMessage(), t);
 		}
+		logger.info("add times: " + (System.currentTimeMillis() - startTimeMillis));
 
 		return map;
 	}

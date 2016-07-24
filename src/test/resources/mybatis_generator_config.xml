@@ -48,16 +48,6 @@
 			<property name="ignoreQualifiersAtRuntime" value="false"/>
 			<property name="immutable" value="false"/>
 			<property name="modelOnly" value="false"/>
-			<property name="rootClass" value="${abstract.entity}"/>
-			<property name="selectAllOrderByClause" value="age desc,username asc"/>
-			<property name="useActualColumnNames" value="false"/>
-		</table>
-
-		<table tableName="slug_info" >
-			<property name="constructorBased" value="false"/>
-			<property name="ignoreQualifiersAtRuntime" value="false"/>
-			<property name="immutable" value="false"/>
-			<property name="modelOnly" value="false"/>
 			<property name="selectAllOrderByClause" value="id desc"/>
 			<property name="useActualColumnNames" value="false"/>
 		</table>

@@ -1,0 +1,37 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head lang="zh-cn" th:replace="portal/include/layout :: header ('首页-鑫顺门窗', @{/style/portal/error.less}, '404', '404')"></head>
+<body>
+	<div th:replace="portal/include/layout :: menu_main(1)"></div>
+	<div class="main_content">
+		<div class="container">
+			<h2>介绍</h2>
+			<div class="parallax-container" data-parallax="scroll" data-bleed="10" th:attrappend="data-image-src=@{/image/20160724-handsome-2000-1333.jpg}" data-natural-width="2000" data-natural-height="1333"></div>
+			<h2>使用方法</h2>
+			<div class="parallax-container" data-parallax="scroll" data-bleed="10" th:attrappend="data-image-src=@{/image/20160724-road-2048-1638.jpg}" data-natural-width="2048" data-natural-height="1638"></div>
+			<h2>联系方式</h2>
+			<div class="parallax-container" data-parallax="scroll" data-bleed="10" th:attrappend="data-image-src=@{/image/20160724-river-big-2048-1052.jpg}" data-natural-width="2048" data-natural-height="1052"></div>
+			<h2>关于我们</h2>
+			<div class="parallax-container" data-parallax="scroll" data-bleed="10" th:attrappend="data-image-src=@{/image/20160724-watershed-2048-1020.jpg}" data-natural-width="2048" data-natural-height="1020"></div>
+			<h2>结尾</h2>
+			<div class="parallax-container" data-parallax="scroll" data-bleed="10" th:attrappend="data-image-src=@{/image/20160724-dogs-2048-1394.jpg}" data-natural-width="2048" data-natural-height="1394"></div>
+			<h2>哈哈</h2>
+		</div>
+	</div>
+	<div th:replace="portal/include/layout :: footer"></div>
+	<!--TODO必须在引入parallax.min.js之前-->
+	<script type="text/javascript">
+		$(function(){
+			if (navigator.userAgent.match(/(iPod|iPhone|iPad|Android)/)) {
+				$('.parallax-container').height( $(window).height() * 0.5 | 0 );
+			} else {
+				$(window).resize(function(){
+					var parallaxHeight = Math.max($(window).height() * 0.7, 200) | 0;
+					$('.parallax-container').height(parallaxHeight);
+				}).trigger('resize');
+			}
+		});
+	</script>
+	<script type="text/javascript" th:src="@{/javascript/plugin/parallax/parallax.min.js}"></script>
+</body>
+</html>

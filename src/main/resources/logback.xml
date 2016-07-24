@@ -24,7 +24,7 @@
 		</encoder>
 	</appender>
 
-	<appender name="alipayPayment"
+	<!--<appender name="alipayPayment"
 			  class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<file>${log_home}/${payment_weixin_log_name}.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
@@ -37,7 +37,7 @@
 		<encoder>
 			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36}:%line - %msg%n</pattern>
 		</encoder>
-	</appender>
+	</appender>-->
 	
 	<logger name="org.springframework" level="ERROR" />
 	<logger name="org.hibernate" level="ERROR" />
@@ -60,6 +60,12 @@
 	<!-- TODO 输出mapper日志 -->
 	<logger name="org.zunpeng.mapper" level="debug" additivity="false">
 		<appender-ref ref="console"/>
+		<appender-ref ref="rollingFile"/>
+	</logger>
+
+	<logger name="com.oldpeng.core" level="ERROR,DEBUG" additivity="false">
+		<appender-ref ref="console"/>
+		<appender-ref ref="rollingFile"/>
 	</logger>
 
 </configuration>

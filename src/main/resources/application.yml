@@ -2,3 +2,5 @@ spring:
     profiles:
         active: local
 
+    messages:
+        basename: international/messages

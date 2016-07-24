@@ -1,0 +1,116 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head lang="zh-cn" th:fragment="header (title, styleLink, description, keywords)">
+	<meta charset="UTF-8"/>
+	<meta name="renderer" content="webkit"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+	<meta http-equiv="Cache-Control" content="no-siteapp" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<meta name="baidu-site-verification" content="pwWlYEzIse" />
+	<meta name="description" th:content="${description}"/>
+	<meta name="keywords" th:content="${keywords}"/>
+	<title th:text="${title}">首页</title>
+
+	<link type="text/css" rel="stylesheet" th:href="@{/javascript/plugin/hui/css/H-ui.reset.css}"/>
+	<link type="text/css" rel="stylesheet" th:href="@{/javascript/plugin/hui/css/H-ui.min.css}"  media="screen,projection"/>
+	<link type="text/css" rel="stylesheet" th:href="@{/javascript/plugin/hui-plugin/Hui-iconfont.1.0.8/iconfont.css}" media="screen,projection"/>
+
+	<link rel="stylesheet/less" type="text/css" th:if="${styleLink != ''}" th:href="${styleLink}" />
+	<script type="text/javascript" th:if="${styleLink != ''}" th:src="@{/javascript/plugin/less/less.min.js}"></script>
+</head>
+<body>
+	<div class="custom-menu-wrapper" th:fragment="menu_main (index)">
+		<div class="navbar-wrapper">
+			<div class="navbar navbar-black">
+				<div class="container cl">
+					<a class="logo navbar-logo f-l mr-10 hidden-xs" th:href="@{/}"><img th:src="@{/image/20160724-logo-640-640.jpg}" style="width: 36px"/>&nbsp;&nbsp;鑫顺门窗</a>
+					<a class="logo navbar-logo-m f-l mr-10 visible-xs" th:href="@{/}"><img th:src="@{/image/20160724-logo-640-640.jpg}" style="width: 36px"/>&nbsp;&nbsp;鑫顺门窗</a>
+					<a aria-hidden="false" class="nav-toggle Hui-iconfont visible-xs" href="javascript:;">&#xe667;</a>
+					<nav class="nav navbar-nav nav-collapse" role="navigation" id="Hui-navbar">
+						<ul class="cl">
+							<li th:classappend="${index == 1} ? 'current' : ''"><a th:href="@{/}">首页</a></li>
+							<li th:classappend="${index == 2} ? 'current' : ''"><a th:href="@{/product}">产品中心</a></li>
+							<li th:classappend="${index == 3} ? 'current' : ''"><a th:href="@{/solution}">解决方案</a></li>
+							<li th:classappend="${index == 4} ? 'current' : ''"><a th:href="@{/article}">新闻中心</a></li>
+							<li th:classappend="${index == 5} ? 'current' : ''" class="dropDown dropDown_hover"><a th:href="@{/about_us}" class="dropDown_A">关于我们<i class="Hui-iconfont">&#xe6d5;</i></a>
+								<ul class="dropDown-menu menu radius box-shadow">
+									<li><a th:href="@{/about_us}">公司概况</a></li>
+									<li><a th:href="@{/about_us}">公司理念</a></li>
+									<li><a th:href="@{/about_us}">合作伙伴</a></li>
+								</ul>
+							</li>
+							<li th:classappend="${index == 6} ? 'current' : ''"><a th:href="@{/about_us}">联系我们</a></li>
+							<li class="topRight r" shiro:guest="">
+								<a th:href="@{/login}">登录</a>
+							</li>
+							<li class="topRight r" shiro:guest="">
+								<a th:href="@{/register}">注册</a>
+							</li>
+							<li th:classappend="${index == 7} ? 'current' : ''" class="topRight r" shiro:user="">
+								<a th:href="@{/profile}">张三三</a>
+							</li>
+							<li class="topRight r" shiro:user="">
+								<a th:href="@{/admin}" shiro:hasAnyRoles="SUPER_ADMIN">进入管理后台</a>
+							</li>
+							<li class="topRight r" shiro:user="">
+								<a th:href="@{logout}">退出</a>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+
+		<div class="navbar navbar-black">
+			<div class="container cl">
+				<nav class="nav navbar-nav" role="navigation" id="navbar_mobile" style="display: none">
+					<ul class="cl">
+						<li th:classappend="${index == 1} ? 'current' : ''"><a th:href="@{/}">首页</a></li>
+						<li th:classappend="${index == 2} ? 'current' : ''"><a th:href="@{/product}">产品中心</a></li>
+						<li th:classappend="${index == 3} ? 'current' : ''"><a th:href="@{/solution}">解决方案</a></li>
+						<li th:classappend="${index == 4} ? 'current' : ''"><a th:href="@{/article}">新闻中心</a></li>
+						<li th:classappend="${index == 5} ? 'current' : ''"><a th:href="@{/about_us}">关于我们</a></li>
+						<li th:classappend="${index == 6} ? 'current' : ''"><a th:href="@{/about_us}">联系我们</a></li>
+						<li shiro:guest=""><a th:href="@{/login}">登录</a></li>
+						<li shiro:guest=""><a th:href="@{/register}">注册</a></li>
+						<li th:classappend="${index == 7} ? 'current' : ''" shiro:user=""><a th:href="@{/profile}">张三三</a></li>
+						<li shiro:user=""><a th:href="@{/admin}" shiro:hasAnyRoles="SUPER_ADMIN">进入管理后台</a></li>
+						<li shiro:user=""><a th:href="@{logout}">退出</a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+
+	<div class="footer" th:fragment="footer">
+		<div class="container footer_wrapper">
+			<nav>
+				<a href="#" target="_blank">关于我们</a>
+				<span class="pipe">|</span>
+				<a href="#" target="_blank">联系我们</a>
+				<span class="pipe">|</span>
+				<a href="#" target="_blank">法律声明</a>
+			</nav>
+			<p>
+				Copyright &copy;2016 XinShun All Rights Reserved.
+				<br/>
+				<a href="http://www.miitbeian.gov.cn/" target="_blank" rel="nofollow">京ICP备1000000号</a>
+				<br/>
+			</p>
+		</div>
+		<script type="text/javascript" th:src="@{/javascript/plugin/hui-plugin/jquery/1.9.1/jquery.min.js}"></script>
+		<script type="text/javascript" th:src="@{/javascript/plugin/hui/js/H-ui.js}"></script>
+
+		<script type="text/javascript">
+			$(function(){
+				$(window).on("scroll",$backToTopFun);$backToTopFun();
+				$(".nav-toggle").click(function(){
+					$("#navbar_mobile").slideToggle();
+				});
+			});
+		</script>
+	</div>
+
+</body>
+</html>

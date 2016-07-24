@@ -19,7 +19,7 @@
 								#{criterion.value} and #{criterion.secondValue}
 							</when>
 							<when test="criterion.listValue">
-								<foreach collection="${criterion.valueList}" separator=", " open="(" close=")" item="valueItem">
+								<foreach collection="criterion.valueList" separator=", " open="(" close=")" item="valueItem">
 									#{valueItem}
 								</foreach>
 							</when>
@@ -27,9 +27,6 @@
 					</foreach>
 				</trim>
 			</when>
-			<otherwise>
-				where 1 = 1
-			</otherwise>
 		</choose>
 	</sql>
 
