@@ -290,6 +290,12 @@ gulp.task("deployResourcesToBoot", function(cb){
 		});
 });
 
+gulp.task("deployResourcesFromBoot", function(cb){
+	del.sync("src/main/product/static/**/*", {force: true});
+	console.log("delete product static successfully");
+	cb();
+});
+
 
 /**deploy static**/
 gulp.task("deployResourceToCDN", function(cb){
@@ -303,4 +309,4 @@ gulp.task("deployResourceToCDN", function(cb){
 
 gulp.task("test", gulpsync.sync(["del", "processJs", "processLess", "copyImage", "copyHtml", "updateHtml"]));
 //gulp.task("deploy", gulpsync.sync(["del", "processJs", "processLess", "copyImage", "copyHtml", "updateHtml", "copyResourcesToProduct", "deployTemplatesToBoot", "deployResourcesToBoot", "deployResourceToCDN"]));
-gulp.task("deploy", gulpsync.sync(["del", "processJs", "processLess", "copyImage", "copyHtml", "updateHtml", "copyResourcesToProduct", "deployTemplatesToBoot", "deployResourceToCDN"]));
+gulp.task("deploy", gulpsync.sync(["del", "processJs", "processLess", "copyImage", "copyHtml", "updateHtml", "copyResourcesToProduct", "deployTemplatesToBoot", "deployResourcesFromBoot", "deployResourceToCDN"]));
