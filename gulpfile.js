@@ -15,7 +15,7 @@ var	del = require("del"),
 
 var tomcatTemplatePath = "src/main/product/";
 var staticPath = "/var/zeus/static/";
-var staticUrl = "http://zeus-static.zunpeng.org/";
+var staticUrl = "http://zeus-static-plain.zunpeng.org/";
 
 
 gulp.task("default", function(cb){

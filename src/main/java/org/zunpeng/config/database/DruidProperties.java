@@ -52,6 +52,8 @@ public class DruidProperties implements Serializable {
 
 	private String filters = "config,stat,log4j,wall";
 
+	private String publicKey;
+
 	public String getUsername() {
 		return username;
 	}
@@ -210,5 +212,13 @@ public class DruidProperties implements Serializable {
 
 	public void setFilters(String filters) {
 		this.filters = filters;
+	}
+
+	public String getPublicKey() {
+		return publicKey;
+	}
+
+	public void setPublicKey(String publicKey) {
+		this.publicKey = publicKey;
 	}
 }

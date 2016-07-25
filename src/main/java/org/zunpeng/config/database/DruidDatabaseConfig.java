@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import javax.sql.DataSource;
+import java.sql.SQLException;
 
 /**
  * Created by dapeng on 4/21/16.
@@ -30,6 +31,12 @@ public class DruidDatabaseConfig {
 		druidDataSource.setPassword(properties.getPassword());
 		druidDataSource.setDriverClassName(properties.getDriverClassName());
 
+		try {
+			druidDataSource.setFilters(properties.getFilters());
+		} catch (SQLException e) {
+			logger.info(e.getMessage(), e);
+		}
+		druidDataSource.setConnectionProperties("config.decrypt=true;config.decrypt.key=" + properties.getPublicKey());
 		druidDataSource.setMaxActive(properties.getMaxActive());
 		druidDataSource.setInitialSize(properties.getInitialSize());
 		druidDataSource.setMaxWait(properties.getMaxWait());
