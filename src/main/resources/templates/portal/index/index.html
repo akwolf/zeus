@@ -1,11 +1,22 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head lang="zh-cn" th:replace="portal/include/layout :: header ('首页-鑫顺门窗', @{/style/portal/error.less}, '404', '404')"></head>
+<head lang="zh-cn" th:replace="portal/include/layout :: header ('首页-鑫顺门窗', @{/style/portal/index.less}, '404', '404')"></head>
 <body>
+	<link type="text/css" rel="stylesheet" th:href="@{/javascript/plugin/unslider/css/unslider.css}"/>
+	<link type="text/css" rel="stylesheet" th:href="@{/javascript/plugin/unslider/css/unslider-dots.css}"/>
 	<div th:replace="portal/include/layout :: menu_main(1)"></div>
 	<div class="main_content">
 		<div class="container">
+			<div class="my-slider">
+				<ul>
+					<li><img th:src="@{/image/20160724-tower-sea-2048-1365.jpg}"/></li>
+					<li><img th:src="@{/image/20160724-faces-2048-1363.jpg}"/></li>
+					<li><img th:src="@{/image/20160724-wind-2048-1367.jpg}"/></li>
+				</ul>
+			</div>
+			<h1>新疆乌鲁木齐鑫顺门窗有限公司</h1>
 			<h2>介绍</h2>
+			<p>乌鲁木齐鑫顺门窗有限公司是主营新型中高档隐形纱窗 儿童防护纱窗 金刚网防盗纱窗 高级PVC软门帘 办公室窗帘 快速门及海关物流装卸平台的研发、设计、生产、销售于一体的门窗企业。多样化的产品结构，人性化的产品设计，始终如一地坚持高品质的品牌专卖的发展思路，赢得了客户的广泛认可与赞誉。鑫顺门窗有限公司作为乌鲁木齐门窗领域的开拓者，全面采用现代节能建筑设计，拥有一批高级专业人才，在营销、技术、管理、产品、服务等方面独具风格，是国内品种齐全的隐形纱窗知名品牌。</p>
 			<div class="parallax-container" data-parallax="scroll" data-bleed="10" th:attrappend="data-image-src=@{/image/20160724-handsome-2000-1333.jpg}" data-natural-width="2000" data-natural-height="1333"></div>
 			<h2>使用方法</h2>
 			<div class="parallax-container" data-parallax="scroll" data-bleed="10" th:attrappend="data-image-src=@{/image/20160724-road-2048-1638.jpg}" data-natural-width="2048" data-natural-height="1638"></div>
@@ -18,11 +29,15 @@
 			<h2>哈哈</h2>
 		</div>
 	</div>
+
 	<div th:replace="portal/include/layout :: footer"></div>
-	<!--TODO必须在引入parallax.min.js之前-->
+
+	<script type="text/javascript" th:src="@{/javascript/plugin/parallax.min.js}"></script>
+	<script type="text/javascript" th:src="@{/javascript/plugin/unslider/js/unslider-min.js}"></script>
 	<script type="text/javascript">
 		$(function(){
 			if (navigator.userAgent.match(/(iPod|iPhone|iPad|Android)/)) {
+				$('#ios-notice').removeClass('hidden');
 				$('.parallax-container').height( $(window).height() * 0.5 | 0 );
 			} else {
 				$(window).resize(function(){
@@ -30,8 +45,12 @@
 					$('.parallax-container').height(parallaxHeight);
 				}).trigger('resize');
 			}
+
+			$('.my-slider').unslider({
+				autoplay: true,
+				arrows: true
+			});
 		});
 	</script>
-	<script type="text/javascript" th:src="@{/javascript/plugin/parallax/parallax.min.js}"></script>
 </body>
 </html>
