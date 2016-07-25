@@ -292,6 +292,7 @@ gulp.task("deployResourcesToBoot", function(cb){
 
 gulp.task("deployResourcesFromBoot", function(cb){
 	del.sync("src/main/product/static/**/*", {force: true});
+	del.sync("build/**/*", {force: true});
 	console.log("delete product static successfully");
 	cb();
 });
