@@ -165,10 +165,12 @@ gulp.task("updateHtml", function(cb){
 			htmlContent = htmlContent.replace(/rel="stylesheet\/less"/, "rel=\"stylesheet\"");
 			var styleOptions = htmlContent.match(/@\{\/style\/([\w\._-]*)\.less\}/g);
 			var styleAdminOptions = htmlContent.match(/@\{\/style\/admin\/([\w\._-]*)\.less\}/g);
+			var stylePortalOptions = htmlContent.match(/@\{\/style\/portal\/([\w\._-]*)\.less\}/g);
 			var stylePluginOptions = htmlContent.match(/@\{\/style\/plugin\/([\/\w\._-]*)\}/g);
 			var jsOptions = htmlContent.match(/@\{\/javascript\/([\w\._-]*)\.js\}/g);
 			var jsPluginOptions = htmlContent.match(/@\{\/javascript\/plugin\/([\/\w\._-]*)\}/g);
 			var jsAdminOptions = htmlContent.match(/@\{\/javascript\/admin\/([\w\._-]*)\.js\}/g);
+			var jsPortalOptions = htmlContent.match(/@\{\/javascript\/portal\/([\w\._-]*)\.js\}/g);
 			var imageOptions = htmlContent.match(/@\{\/image\/([\/\w\._-]*)\}/g);
 
 			//删除less.min.js
@@ -197,6 +199,13 @@ gulp.task("updateHtml", function(cb){
 				var reg = new RegExp("@{/style/admin/" + opts[1] + ".less}", "g");
 				htmlContent = htmlContent.replace(reg, "'" + staticUrl + "style/" + lessMappingJson["admin/" + opts[1] + ".css"] + "'");
 			}
+			//替换portal的less
+			for(var option in stylePortalOptions){
+				var opts = styleAdminOptions[option].match(/@\{\/style\/portal\/([\w\._-]*)\.less\}/);
+
+				var reg = new RegExp("@{/style/portal/" + opts[1] + ".less}", "g");
+				htmlContent = htmlContent.replace(reg, "'" + staticUrl + "style/" + lessMappingJson["portal/" + opts[1] + ".css"] + "'");
+			}
 
 			//替换js
 			for(var option in jsOptions){
@@ -217,6 +226,13 @@ gulp.task("updateHtml", function(cb){
 
 				var reg = new RegExp("@{/javascript/admin/" + opts[1] + ".js}", "g");
 				htmlContent = htmlContent.replace(reg, "'" + staticUrl + "javascript/" + jsMappingJson["admin/" + opts[1] + ".js"] + "'");
+			}
+			//替换portal的js
+			for(var option in jsAdminOptions){
+				var opts = jsAdminOptions[option].match(/@\{\/javascript\/portal\/([\w\._-]*)\.js\}/);
+
+				var reg = new RegExp("@{/javascript/portal/" + opts[1] + ".js}", "g");
+				htmlContent = htmlContent.replace(reg, "'" + staticUrl + "javascript/" + jsMappingJson["portal/" + opts[1] + ".js"] + "'");
 			}
 
 
