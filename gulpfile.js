@@ -201,7 +201,7 @@ gulp.task("updateHtml", function(cb){
 			}
 			//替换portal的less
 			for(var option in stylePortalOptions){
-				var opts = styleAdminOptions[option].match(/@\{\/style\/portal\/([\w\._-]*)\.less\}/);
+				var opts = stylePortalOptions[option].match(/@\{\/style\/portal\/([\w\._-]*)\.less\}/);
 
 				var reg = new RegExp("@{/style/portal/" + opts[1] + ".less}", "g");
 				htmlContent = htmlContent.replace(reg, "'" + staticUrl + "style/" + lessMappingJson["portal/" + opts[1] + ".css"] + "'");
@@ -228,8 +228,8 @@ gulp.task("updateHtml", function(cb){
 				htmlContent = htmlContent.replace(reg, "'" + staticUrl + "javascript/" + jsMappingJson["admin/" + opts[1] + ".js"] + "'");
 			}
 			//替换portal的js
-			for(var option in jsAdminOptions){
-				var opts = jsAdminOptions[option].match(/@\{\/javascript\/portal\/([\w\._-]*)\.js\}/);
+			for(var option in jsPortalOptions){
+				var opts = jsPortalOptions[option].match(/@\{\/javascript\/portal\/([\w\._-]*)\.js\}/);
 
 				var reg = new RegExp("@{/javascript/portal/" + opts[1] + ".js}", "g");
 				htmlContent = htmlContent.replace(reg, "'" + staticUrl + "javascript/" + jsMappingJson["portal/" + opts[1] + ".js"] + "'");
