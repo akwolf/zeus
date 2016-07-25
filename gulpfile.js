@@ -37,7 +37,9 @@ gulp.task("del", function(cb){
 /**处理js*************************/
 
 gulp.task("processCustomJs", function(cb){
-	gulp.src(["src/main/resources/static/javascript/*.js", "src/main/resources/static/javascript/admin/*.js"])
+	gulp.src(["src/main/resources/static/javascript/*.js",
+				"src/main/resources/static/javascript/admin/*.js",
+				"src/main/resources/static/javascript/portal/*.js"])
 		.pipe(es.map(function(file, cb){
 			console.log(file.path);
 			return cb(null, file);
@@ -74,7 +76,9 @@ gulp.task("processJs", gulpsync.sync(["processCustomJs", "processPluginJs"]));
 /**处理less和css*************************/
 
 gulp.task("processCustomLess", function(cb){
-	gulp.src("src/main/resources/static/style/*.less")
+	gulp.src(["src/main/resources/static/style/*.less",
+				"src/main/resources/static/style/portal/*.less",
+				"src/main/resources/static/style/admin/*.less"])
 		.pipe(es.map(function(file, cb){
 			console.log(file.path);
 			return cb(null, file);
