@@ -15,8 +15,8 @@ spring:
 druid:
     datasource:
         username: root
-        password: J19CF6QtHohBhY5ijyaVUntwKJz1D77J6qMiIZ3HdEyBMjH3+d7bEtbXcvooO9VcWcNt1ppgyKPQHtFFgfnolw==
-        publicKey: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAILLPxAPUNWlTKrEURBW/yrZ8d2JNWSm0fCjNf49nj9g8VCw+O4Jw/ets6QukXm8wkgt9mckwRQU5j35we/wgyMCAwEAAQ==
+        password: 9C969pwuyKZFbUi880FegRy/+SVQlpa/WK3q8neI5OBK6l4+TRHky+Eo+iLjy0jH4+7cKkRKkva7Co1xvhm81Q==
+        publicKey: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAP4ZfyQztPVjWSLaQI2qrBqRjhPRLsn0d5IUvfxqMMVfwwoj+dBFtrT71L1NXbuIjPAHZhy39/uw0+7bAsbwmA8CAwEAAQ==
         url: jdbc:mysql://127.0.0.1:3306/zeus?useUnicode=true&characterEncoding=UTF-8
         driverClassName: com.mysql.jdbc.Driver
 

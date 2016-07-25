@@ -10,17 +10,18 @@ spring:
 
     redis:
         host: 127.0.0.1
-        port: 6479
+        port: 6489
 
 druid:
     datasource:
         username: root
-        password: root^&*(
+        password: aJkwuS9yx9CqjsZe7/PM4jc72tmu5iiwtZ1nEXnq8lWnH2+xIznm62hB/Xq4tL/HuZG/KMAMyHyRNDW5SXn+uA==
+        publicKey: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBALKsZhsZokFTeyf7KpE939J5KtGs52bj2v7Ojex/UMEowvr639I7y2/ORM0VwMbgr3w0i+TEwUE0WrxbwRnVUf0CAwEAAQ==
         url: jdbc:mysql://127.0.0.1:3306/zeus?useUnicode=true&characterEncoding=UTF-8
         driverClassName: com.mysql.jdbc.Driver
 
 static:
     image:
         download:
-            path: /var/zeus/upload
-        url: http://zeus-static.zunpeng.org/
+            path: /var/zeus/static/upload
+        url: http://zeus-static-plain.zunpeng.org/
