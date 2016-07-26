@@ -50,6 +50,9 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
 	@Value("${spring.profiles.active}")
 	private String profile;
 
+	@Value("${thymeleaf.cache}")
+	private boolean thymeleafCache;
+
 	private ApplicationContext applicationContext;
 
 	public WebConfig() {
@@ -115,7 +118,7 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
 		templateResolver.setSuffix(".html");
 		templateResolver.setPrefix("/WEB-INF/templates/");
 		templateResolver.setTemplateMode(TemplateMode.HTML);
-		templateResolver.setCacheable(true);
+		templateResolver.setCacheable(thymeleafCache);
 		templateResolver.setOrder(1);
 		templateResolver.setCharacterEncoding("UTF-8");
 		return templateResolver;

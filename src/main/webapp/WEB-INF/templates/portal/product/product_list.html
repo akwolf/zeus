@@ -1,11 +1,74 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head lang="zh-cn" th:replace="portal/include/layout :: header ('产品中心-鑫顺门窗', @{/style/portal/error.less}, '404', '404')"></head>
+<head lang="zh-cn" th:replace="portal/include/layout :: header ('产品中心-鑫顺门窗', @{/style/portal/product_list.less}, '404', '404')"></head>
 <body>
 	<div th:replace="portal/include/layout :: menu_main(2)"></div>
 	<div class="main_content">
 		<div class="container">
-
+			<div class="product_list_wrapper">
+				<div class="row">
+					<div class="col-sm-6 col-md-4 col-lg-3 ">
+						<div class="thumbnail">
+							<img th:src="@{/image/20160724-city-2048-1365.jpg}" class="img_cover_product"/>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-4 col-lg-3 ">
+						<div class="thumbnail">
+							<img th:src="@{/image/20160724-country-2048-1367.jpg}" class="img_cover_product"/>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-4 col-lg-3 ">
+						<div class="thumbnail">
+							<img th:src="@{/image/20160724-flower-605-400.jpg}" class="img_cover_product"/>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-4 col-lg-3 ">
+						<div class="thumbnail">
+							<img th:src="@{/image/20160724-happy-2048-1365.jpg}" class="img_cover_product"/>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-4 col-lg-3 ">
+						<div class="thumbnail">
+							<img th:src="@{/image/20160724-city-2048-1365.jpg}" class="img_cover_product"/>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-4 col-lg-3 ">
+						<div class="thumbnail">
+							<img th:src="@{/image/20160724-country-2048-1367.jpg}" class="img_cover_product"/>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-4 col-lg-3 ">
+						<div class="thumbnail">
+							<img th:src="@{/image/20160724-flower-605-400.jpg}" class="img_cover_product"/>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-4 col-lg-3 ">
+						<div class="thumbnail">
+							<img th:src="@{/image/20160724-happy-2048-1365.jpg}" class="img_cover_product"/>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-4 col-lg-3 ">
+						<div class="thumbnail">
+							<img th:src="@{/image/20160724-city-2048-1365.jpg}" class="img_cover_product"/>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-4 col-lg-3 ">
+						<div class="thumbnail">
+							<img th:src="@{/image/20160724-country-2048-1367.jpg}" class="img_cover_product"/>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-4 col-lg-3 ">
+						<div class="thumbnail">
+							<img th:src="@{/image/20160724-flower-605-400.jpg}" class="img_cover_product"/>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-4 col-lg-3 ">
+						<div class="thumbnail">
+							<img th:src="@{/image/20160724-happy-2048-1365.jpg}" class="img_cover_product"/>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 	<div th:replace="portal/include/layout :: footer"></div>

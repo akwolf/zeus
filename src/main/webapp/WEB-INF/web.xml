@@ -15,4 +15,8 @@
         <error-code>504</error-code>
         <location>/error</location>
     </error-page>
+
+    <session-config>
+        <tracking-mode>COOKIE</tracking-mode>
+    </session-config>
 </web-app>

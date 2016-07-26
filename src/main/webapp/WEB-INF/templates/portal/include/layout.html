@@ -20,7 +20,7 @@
 	<script type="text/javascript" th:if="${styleLink != ''}" th:src="@{/javascript/plugin/less.min.js}"></script>
 </head>
 <body>
-	<div class="custom-menu-wrapper" th:fragment="menu_main (index)">
+	<div class="custom-menu-wrapper" th:fragment="menu_main (index)" id="top">
 		<nav class="navbar navbar-default">
 			<div class="container">
 				<!-- Brand and toggle get grouped for better mobile display -->
@@ -87,8 +87,27 @@
 				<br/>
 			</p>
 		</div>
+		<a id="scrollUp" href="#top"><i class="fa fa-angle-up"></i></a>
 		<script type="text/javascript" th:src="@{/javascript/plugin/jquery-1.11.3.min.js}"></script>
 		<script type="text/javascript" th:src="@{/javascript/plugin/bootstrap/js/bootstrap.min.js}"></script>
+		<script type="text/javascript">
+			$(function(){
+				var $backToTopEle=$('<a href="javascript:void(0)" class="Hui-iconfont toTop" title="返回顶部" alt="返回顶部" style="display:none">&#xe684;</a>').appendTo($("body")).click(function(){
+					$("html, body").animate({ scrollTop: 0 }, 120);
+				});
+				var $backToTopFun = function() {
+					var st = $(document).scrollTop(), winh = $(window).height();
+					(st > 0)? $backToTopEle.show(): $backToTopEle.hide();
+					/*IE6下的定位*/
+					if(!window.XMLHttpRequest){
+						$backToTopEle.css("top", st + winh - 166);
+					}
+				};
+				$(window).on("scroll",$backToTopFun);$backToTopFun();
+			});
+		</script>
+
+		<script src="https://qiyukf.com/script/97b10588fc8add841c53992c1a89c885.js" defer async></script>
 	</div>
 
 </body>
