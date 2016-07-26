@@ -10,7 +10,7 @@ if [ ! -x "./gradlew" ]; then
     chmod +x ./gradlew
 fi
 
-./gradlew bootRepackage
+./gradlew war
 
 /etc/init.d/zeusd stop
 
