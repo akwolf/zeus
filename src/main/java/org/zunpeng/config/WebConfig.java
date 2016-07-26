@@ -13,11 +13,14 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
+import org.springframework.data.web.SortHandlerMethodArgumentResolver;
 import org.springframework.format.support.FormattingConversionServiceFactoryBean;
 import org.springframework.http.MediaType;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.ViewResolver;
@@ -80,6 +83,17 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
 		registry.addResourceHandler("/javascript/**").addResourceLocations("/static/javascript/").setCachePeriod(0);
 		registry.addResourceHandler("/flash/**").addResourceLocations("/static/flash/").setCachePeriod(0);
 		super.addResourceHandlers(registry);
+	}
+
+	/**
+	 * 请求参数处理
+	 * @param argumentResolvers
+	 */
+	@Override
+	public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
+		argumentResolvers.add(pageableHandlerMethodArgumentResolver());
+		argumentResolvers.add(sortHandlerMethodArgumentResolver());
+		super.addArgumentResolvers(argumentResolvers);
 	}
 
 	@Override
@@ -178,6 +192,20 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
 		commonsMultipartResolver.setDefaultEncoding("utf-8");
 		commonsMultipartResolver.setMaxUploadSize(50 * 1024 * 1024);
 		return commonsMultipartResolver;
+	}
+
+	/**
+	 * 分页相关的参数处理
+	 * @return
+	 */
+	@Bean
+	public SortHandlerMethodArgumentResolver sortHandlerMethodArgumentResolver(){
+		return new SortHandlerMethodArgumentResolver();
+	}
+
+	@Bean
+	public PageableHandlerMethodArgumentResolver pageableHandlerMethodArgumentResolver(){
+		return new PageableHandlerMethodArgumentResolver();
 	}
 
 }
