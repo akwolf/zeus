@@ -37,9 +37,9 @@ gulp.task("del", function(cb){
 /**处理js*************************/
 
 gulp.task("processCustomJs", function(cb){
-	gulp.src(["src/main/resources/static/javascript/*.js",
-				"src/main/resources/static/javascript/admin/*.js",
-				"src/main/resources/static/javascript/portal/*.js"])
+	gulp.src(["src/main/webapp/static/javascript/*.js",
+				"src/main/webapp/static/javascript/admin/*.js",
+				"src/main/webapp/static/javascript/portal/*.js"])
 		.pipe(es.map(function(file, cb){
 			console.log(file.path);
 			return cb(null, file);
@@ -56,7 +56,7 @@ gulp.task("processCustomJs", function(cb){
 });
 
 gulp.task("processPluginJs", function(cb){
-	gulp.src("src/main/resources/static/javascript/plugin/**/*")
+	gulp.src("src/main/webapp/static/javascript/plugin/**/*")
 		.pipe(es.map(function (file, cb) {
 			console.log(file.path);
 			return cb(null, file);
@@ -76,9 +76,9 @@ gulp.task("processJs", gulpsync.sync(["processCustomJs", "processPluginJs"]));
 /**处理less和css*************************/
 
 gulp.task("processCustomLess", function(cb){
-	gulp.src(["src/main/resources/static/style/*.less",
-				"src/main/resources/static/style/portal/*.less",
-				"src/main/resources/static/style/admin/*.less"])
+	gulp.src(["src/main/webapp/static/style/*.less",
+				"src/main/webapp/static/style/portal/*.less",
+				"src/main/webapp/static/style/admin/*.less"])
 		.pipe(es.map(function(file, cb){
 			console.log(file.path);
 			return cb(null, file);
@@ -96,7 +96,7 @@ gulp.task("processCustomLess", function(cb){
 });
 
 gulp.task("processPluginCss", function(cb){
-	gulp.src("src/main/resources/static/style/plugin/**/*")
+	gulp.src("src/main/webapp/static/style/plugin/**/*")
 		.pipe(es.map(function(file, cb){
 			console.log(file.path);
 			return cb(null, file);
@@ -116,7 +116,7 @@ gulp.task("processLess", gulpsync.sync(["processCustomLess", "processPluginCss"]
 
 /**copy image *************************/
 gulp.task("copyImage", function(cb){
-	gulp.src("src/main/resources/static/image/**/*")
+	gulp.src("src/main/webapp/static/image/**/*")
 		.pipe(es.map(function(file, cb){
 			console.log(file.path);
 			return cb(null, file);
@@ -138,7 +138,7 @@ gulp.task("copyImage", function(cb){
 
 /**copy thymeleaf html**/
 gulp.task("copyHtml", function(cb){
-	gulp.src("src/main/resources/templates/**/*")
+	gulp.src("src/main/webapp/WEB-INF/templates/**/*")
 		.pipe(es.map(function(file, cb){
 			console.log(file.path);
 			return cb(null, file);
@@ -257,10 +257,10 @@ gulp.task("updateHtml", function(cb){
 /**copy src/main/resources to src/main/product**/
 gulp.task("copyResourcesToProduct", function(cb){
 	del.sync(tomcatTemplatePath, {force: true});
-	gulp.src("src/main/resources/**/*")
+	gulp.src("src/main/webapp/**/*")
 		.pipe(gulp.dest(tomcatTemplatePath))
 		.on("end", function(){
-			console.log("copy src/main/resources to src/main/product");
+			console.log("copy src/main/webapp to src/main/product");
 			cb();
 		});
 	del.sync(tomcatTemplatePath + "static", {force: true});
@@ -271,7 +271,7 @@ gulp.task("copyResourcesToProduct", function(cb){
 gulp.task("deployTemplatesToBoot", function(cb){
 	del.sync(tomcatTemplatePath + "templates", {force: true});
 	gulp.src("build/process/html/**/*")
-		.pipe(gulp.dest(tomcatTemplatePath + "templates"))
+		.pipe(gulp.dest(tomcatTemplatePath + "WEB-INF/templates"))
 		.on("end", function(){
 			console.log("deploy html to tomcat successfully");
 			cb();

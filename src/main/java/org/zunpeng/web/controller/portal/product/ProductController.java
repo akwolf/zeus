@@ -1,4 +1,4 @@
-package org.zunpeng.web.controller.aboutus;
+package org.zunpeng.web.controller.portal.product;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * Created by dapeng on 16/7/24.
  */
 @Controller
-public class AboutUsController {
+public class ProductController {
 
-	@RequestMapping("/about_us")
+	@RequestMapping("/product")
 	public String index(){
 
-		return "portal/about_us/about_us";
+		return "portal/product/product_list";
 	}
 }

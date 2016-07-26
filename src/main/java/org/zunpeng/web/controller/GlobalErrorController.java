@@ -1,27 +1,16 @@
 package org.zunpeng.web.controller;
 
-import org.springframework.boot.autoconfigure.web.ErrorController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+/**
+ * Created by dapeng on 16/7/26.
+ */
 @Controller
-public class GlobalErrorController implements ErrorController {
+public class GlobalErrorController {
 
-	private static final String ERROR_PATH = "/error";
-
-	@RequestMapping(value = {"/404", "/500", "/data/404", "/data/500"})
-	public String index() {
+	@RequestMapping("/error")
+	public String index(){
 		return "error";
 	}
-
-	@RequestMapping(ERROR_PATH)
-	public String error() {
-		return index();
-	}
-
-	@Override
-	public String getErrorPath() {
-		return ERROR_PATH;
-	}
 }
-
