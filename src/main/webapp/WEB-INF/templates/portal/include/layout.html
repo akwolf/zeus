@@ -1,6 +1,6 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
-<head lang="zh-cn" th:fragment="header (title, styleLink, description, keywords)">
+<head lang="zh-cn" th:fragment="common_head (title, metas, links)">
 	<meta charset="UTF-8"/>
 	<meta name="renderer" content="webkit"/>
 	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
@@ -8,18 +8,20 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1"/>
 	<meta name="baidu-site-verification" content="pwWlYEzIse" />
-	<meta name="description" th:content="${description}"/>
-	<meta name="keywords" th:content="${keywords}"/>
-	<title th:text="${title}">首页</title>
+
+	<th:block th:replace="${metas}"></th:block>
+
+	<title th:replace="${title}">首页</title>
 
 	<link type="text/css" rel="stylesheet" th:href="@{/javascript/plugin/bootstrap/css/bootstrap.min.css}"/>
 	<link type="text/css" rel="stylesheet" th:href="@{/javascript/plugin/bootstrap/css/bootstrap-theme.min.css}"/>
 	<link type="text/css" rel="stylesheet" th:href="@{/javascript/plugin/Hui-iconfont.1.0.8/iconfont.css}" media="screen,projection"/>
 
-	<link rel="stylesheet/less" type="text/css" th:if="${styleLink != ''}" th:href="${styleLink}" />
-	<script type="text/javascript" th:if="${styleLink != ''}" th:src="@{/javascript/plugin/less.min.js}"></script>
+	<th:block th:replace="${links}"></th:block>
+
+	<script type="text/javascript" th:src="@{/javascript/plugin/less.min.js}"></script>
 </head>
-<body>
+<body th:fragment="common_body (index, divs, scripts)">
 	<div class="custom-menu-wrapper" th:fragment="menu_main (index)" id="top">
 		<nav class="navbar navbar-default">
 			<div class="container">
@@ -71,6 +73,8 @@
 		</nav>
 	</div>
 
+	<th:block th:replace="${divs}"></th:block>
+
 	<div class="footer" th:fragment="footer">
 		<div class="container footer_wrapper">
 			<div>
@@ -87,28 +91,30 @@
 				<br/>
 			</p>
 		</div>
-		<a id="scrollUp" href="#top"><i class="fa fa-angle-up"></i></a>
-		<script type="text/javascript" th:src="@{/javascript/plugin/jquery-1.11.3.min.js}"></script>
-		<script type="text/javascript" th:src="@{/javascript/plugin/bootstrap/js/bootstrap.min.js}"></script>
-		<script type="text/javascript">
-			$(function(){
-				var $backToTopEle=$('<a href="javascript:void(0)" class="Hui-iconfont toTop" title="返回顶部" alt="返回顶部" style="display:none">&#xe684;</a>').appendTo($("body")).click(function(){
-					$("html, body").animate({ scrollTop: 0 }, 120);
-				});
-				var $backToTopFun = function() {
-					var st = $(document).scrollTop(), winh = $(window).height();
-					(st > 0)? $backToTopEle.show(): $backToTopEle.hide();
-					/*IE6下的定位*/
-					if(!window.XMLHttpRequest){
-						$backToTopEle.css("top", st + winh - 166);
-					}
-				};
-				$(window).on("scroll",$backToTopFun);$backToTopFun();
-			});
-		</script>
-
-		<script src="https://qiyukf.com/script/97b10588fc8add841c53992c1a89c885.js" defer async></script>
 	</div>
 
+	<a id="scrollUp" href="#top"><i class="fa fa-angle-up"></i></a>
+	<script type="text/javascript" th:src="@{/javascript/plugin/jquery-1.11.3.min.js}"></script>
+	<script type="text/javascript" th:src="@{/javascript/plugin/bootstrap/js/bootstrap.min.js}"></script>
+	<script type="text/javascript">
+		$(function(){
+			var $backToTopEle=$('<a href="javascript:void(0)" class="Hui-iconfont toTop" title="返回顶部" alt="返回顶部" style="display:none">&#xe684;</a>').appendTo($("body")).click(function(){
+				$("html, body").animate({ scrollTop: 0 }, 120);
+			});
+			var $backToTopFun = function() {
+				var st = $(document).scrollTop(), winh = $(window).height();
+				(st > 0)? $backToTopEle.show(): $backToTopEle.hide();
+				/*IE6下的定位*/
+				if(!window.XMLHttpRequest){
+					$backToTopEle.css("top", st + winh - 166);
+				}
+			};
+			$(window).on("scroll",$backToTopFun);$backToTopFun();
+		});
+	</script>
+
+	<script src="https://qiyukf.com/script/97b10588fc8add841c53992c1a89c885.js" defer async></script>
+
+	<th:block th:replace="${scripts}"></th:block>
 </body>
 </html>
