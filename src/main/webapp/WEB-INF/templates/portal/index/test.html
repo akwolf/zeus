@@ -1,0 +1,49 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head lang="zh-cn" th:replace="portal/include/layout :: common_head (~{::title}, ~{::meta}, ~{::link})">
+	<meta name="keywords" content="首页">
+	<meta name="description" content="新疆乌鲁木齐鑫顺门窗有限公司">
+	<title>测试</title>
+	<link rel="stylesheet/less" type="text/css" th:href="@{/style/portal/index.less}" />
+	<link type="text/css" rel="stylesheet" th:href="@{/javascript/plugin/unslider/css/unslider.css}"/>
+	<link type="text/css" rel="stylesheet" th:href="@{/javascript/plugin/unslider/css/unslider-dots.css}"/>
+	<link type="text/css" rel="stylesheet" th:href="@{/javascript/plugin/videojs/video-js.min.css}">
+</head>
+<body th:replace="portal/include/layout :: common_body (1, ~{::div}, ~{::script})">
+	<div class="main_content">
+		<style type="text/css">
+			#my-video {
+				width: 100%;
+			}
+		</style>
+		<div class="container">
+			<video id="my-video" class="video-js" controls preload="auto" data-setup="{}"
+			       webkit-playsinline="">
+				<!--<source th:src="${url}" type='application/x-mpegURL'>-->
+				<source src="http://zeus-video.zunpeng.org/94485420ba524bfe97ce23bb23e9708e.m3u8?pm3u8/0/deadline/1470563511&e=1470539511&token=HLSXTk-f9pJDJhDFX-a6gcVcxuKDKvqaUmmhkQwE:UMFeRltkEb9Q7ISbAN3-vcOn950=" type='application/x-mpegURL'>
+			</video>
+			<input type="hidden" id="swf_url" th:value="@{/javascript/plugin/videojs/video-js.swf}">
+		</div>
+	</div>
+
+	<script type="text/javascript" th:src="@{/javascript/plugin/swfobject.min.js}"></script>
+	<script type="text/javascript" th:src="@{/javascript/plugin/videojs/video.min.js}"></script>
+	<script type="text/javascript" th:src="@{/javascript/plugin/videojs/videojs-contrib-hls.min.js}"></script>
+	<script type="text/javascript" th:src="@{/javascript/plugin/videojs/videojs.hotkeys.min.js}"></script>
+	<script type="text/javascript" th:inline="javascript">
+		/*<![CDATA[*/
+		$(function(){
+			videojs.options.flash.swf = $("#swf_url").val();
+			videojs("my-video", {
+				techOrder: ["flash", "html5"]
+			}).ready(function(){
+				this.hotkeys({
+					volumeStep: 0.1,
+					seekStep: 5
+				});
+			});
+		});
+		/*]]>*/
+	</script>
+</body>
+</html>
