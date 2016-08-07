@@ -26,4 +26,5 @@ fe/dist/
 fe/node_modules/
 npm-debug.log
 
-src/main/resources/templates/course.html
+src/main/resources/application-local.properties
+src/main/resources/application-prod.properties
