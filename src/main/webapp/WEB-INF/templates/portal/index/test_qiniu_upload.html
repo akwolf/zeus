@@ -18,10 +18,10 @@
 
 	<script type="text/javascript" th:src="@{/javascript/plugin/plupload/js/plupload.full.min.js}"></script>
 	<script type="text/javascript" th:src="@{/javascript/plugin/qiniu/qiniu.min.js}"></script>
-	<script type="text/javascript" th:src="@{/javascript/portal/upload_qiniu.js}"></script>
+	<script type="text/javascript" th:src="@{/javascript/portal/juqery.upload_qiniu.js}"></script>
 	<script type="text/javascript">
 		$(function(){
-			$("body").zeusQiniuUpload($("#btn_upload"), $("#url_uptoken").val());
+			$.zeusQiniuUpload($("#btn_upload"), $("#url_uptoken").val());
 		})
 	</script>
 </body>

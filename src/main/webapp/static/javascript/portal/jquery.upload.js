@@ -44,12 +44,9 @@
 		});
 	};
 
-	$.fn.extend({
-		"zeusUpload": function($buttonEle, uploadUrl){
-			console.log("zeus upload")
-			var uploader = getUploaderInstance($buttonEle[0], $("body")[0], uploadUrl);
-			uploader.init();
-			return this;
-		}
-	});
+	$.zeusUpload = function($buttonEle, uploadUrl){
+		var uploader = getUploaderInstance($buttonEle[0], $("body")[0], uploadUrl);
+		uploader.init();
+		return this;
+	};
 })(jQuery);

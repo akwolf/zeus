@@ -18,10 +18,10 @@
 	</div>
 
 	<script type="text/javascript" th:src="@{/javascript/plugin/plupload/js/plupload.full.min.js}"></script>
-	<script type="text/javascript" th:src="@{/javascript/portal/upload.js}"></script>
+	<script type="text/javascript" th:src="@{/javascript/portal/jquery.upload.js}"></script>
 	<script type="text/javascript">
 		$(function(){
-			$("body").zeusUpload($("#btn_upload"), $("#url_upload").val());
+			$.zeusUpload($("#btn_upload"), $("#url_upload").val());
 		})
 	</script>
 </body>

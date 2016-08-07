@@ -45,10 +45,8 @@
 		});
 	};
 
-	$.fn.extend({
-		"zeusQiniuUpload": function($buttonEle, uptokenUrl){
-			console.log("zeus upload")
-			getUploaderInstance($buttonEle[0], $("body")[0], uptokenUrl);
-		}
-	});
+	$.zeusQiniuUpload = function($buttonEle, uptokenUrl){
+		console.log("zeus upload")
+		getUploaderInstance($buttonEle[0], $("body")[0], uptokenUrl);
+	};
 })(jQuery);
