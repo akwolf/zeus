@@ -95,4 +95,16 @@ public class AnonymousController {
 		model.addAttribute("url", "http://zeus-video.zunpeng.org/5da6854c6d7f42c5829aa1717a5fe07a.m3u8?pm3u8/0/deadline/1470562186&e=1470538186&token=HLSXTk-f9pJDJhDFX-a6gcVcxuKDKvqaUmmhkQwE:d9HeNu6J6HBiZost6qE79KSTN7c=");
 		return "portal/index/test";
 	}
+
+	@RequestMapping("/test_upload")
+	public String uploadTest(){
+
+		return "portal/index/test_upload";
+	}
+
+	@RequestMapping("/test_qiniu_upload")
+	public String uploadQiniuTest(){
+
+		return "portal/index/test_qiniu_upload";
+	}
 }

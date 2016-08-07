@@ -22,7 +22,7 @@ public class UploadServiceImpl implements UploadService {
 	public SimpleUploadFileInfo upload(MultipartFile uploadFile) throws IOException {
 		SimpleUploadFileInfo simpleUploadFileInfo = new SimpleUploadFileInfo();
 		simpleUploadFileInfo.setOriginalFileName(uploadFile.getOriginalFilename());
-		simpleUploadFileInfo.setFileName(UuidUtils.generate() + FilenameUtils.getExtension(simpleUploadFileInfo.getOriginalFileName()));
+		simpleUploadFileInfo.setFileName(UuidUtils.generate() + "." + FilenameUtils.getExtension(simpleUploadFileInfo.getOriginalFileName()));
 		simpleUploadFileInfo.setSize(uploadFile.getSize());
 		simpleUploadFileInfo.setUrl(buildUrl(simpleUploadFileInfo.getFileName()));
 

@@ -1,0 +1,28 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head lang="zh-cn" th:replace="portal/include/layout :: common_head (~{::title}, ~{::meta}, ~{::link})">
+	<meta name="keywords" content="首页">
+	<meta name="description" content="新疆乌鲁木齐鑫顺门窗有限公司">
+	<title>测试文件上传</title>
+	<link rel="stylesheet/less" type="text/css" th:href="@{/style/portal/index.less}" />
+	<link type="text/css" rel="stylesheet" th:href="@{/javascript/plugin/unslider/css/unslider.css}"/>
+	<link type="text/css" rel="stylesheet" th:href="@{/javascript/plugin/unslider/css/unslider-dots.css}"/>
+	<link type="text/css" rel="stylesheet" th:href="@{/javascript/plugin/videojs/video-js.min.css}">
+</head>
+<body th:replace="portal/include/layout :: common_body (1, ~{::div}, ~{::script})">
+	<div class="main_content">
+		<div class="container">
+			<input type="button" id="btn_upload" value="上传">
+			<input type="hidden" id="url_upload" th:value="@{/common/upload}">
+		</div>
+	</div>
+
+	<script type="text/javascript" th:src="@{/javascript/plugin/plupload/js/plupload.full.min.js}"></script>
+	<script type="text/javascript" th:src="@{/javascript/portal/upload.js}"></script>
+	<script type="text/javascript">
+		$(function(){
+			$("body").zeusUpload($("#btn_upload"), $("#url_upload").val());
+		})
+	</script>
+</body>
+</html>

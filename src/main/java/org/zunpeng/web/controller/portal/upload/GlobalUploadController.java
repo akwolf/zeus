@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.zunpeng.service.upload.SimpleUploadFileInfo;
 import org.zunpeng.service.upload.UploadService;
@@ -25,6 +26,7 @@ public class GlobalUploadController {
 	private UploadService uploadService;
 
 	@RequestMapping("/common/upload")
+	@ResponseBody
 	public Map<String, Object> index(@RequestPart("uploadFile") MultipartFile uploadFile){
 		Map<String, Object> map = Maps.newHashMap();
 
