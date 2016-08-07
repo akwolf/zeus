@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.zunpeng.service.qiniu.QiniuService;
 import org.zunpeng.service.qiniu.QiniuUploadFormBean;
@@ -28,14 +27,14 @@ public class QiniuController {
 	@Autowired
 	private QiniuService qiniuService;
 
-	@RequestMapping(value = "/qn/token", method = RequestMethod.POST)
+	@RequestMapping(value = "/qn/token")
 	public Map<String, Object> token(){
 		Map<String, Object> map = Maps.newHashMap();
 
 		try {
 			String token = qiniuService.generateToken();
 			map.put("success", true);
-			map.put("token", token);
+			map.put("uptoken", token);
 		} catch(Throwable t){
 			logger.info(t.getMessage(), t);
 			map.put("success", false);

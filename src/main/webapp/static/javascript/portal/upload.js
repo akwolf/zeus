@@ -1,6 +1,5 @@
 ;(function($){
 	var getUploaderInstance = function(buttonEle, domContainer, uploadUrl){
-		console.log(buttonEle + "\t" + domContainer + "\t" + uploadUrl);
 		return new plupload.Uploader({
 			runtimes : 'html5,flash,silverlight,html4',
 			browse_button : buttonEle, // you can pass an id...
@@ -8,7 +7,7 @@
 			url : uploadUrl,
 			flash_swf_url : '../plugin/plupload/js/Moxie.swf',
 			silverlight_xap_url : '../plugin/plupload/js/Moxie.xap',
-			max_retries: 5,
+			max_retries: 3,
 			//chunk_size: "500kb",
 			multi_selection: false,
 			file_data_name: "uploadFile",
@@ -43,7 +42,7 @@
 				}
 			}
 		});
-	}
+	};
 
 	$.fn.extend({
 		"zeusUpload": function($buttonEle, uploadUrl){
@@ -52,5 +51,5 @@
 			uploader.init();
 			return this;
 		}
-	})
+	});
 })(jQuery);
