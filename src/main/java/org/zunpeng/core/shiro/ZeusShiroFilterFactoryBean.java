@@ -46,4 +46,9 @@ public class ZeusShiroFilterFactoryBean extends ShiroFilterFactoryBean {
 		//injection of the SecurityManager and FilterChainResolver:
 		return new ZeusShiroFilter((WebSecurityManager) securityManager, chainResolver);
 	}
+
+	@Override
+	public Class getObjectType() {
+		return ZeusShiroFilter.class;
+	}
 }
