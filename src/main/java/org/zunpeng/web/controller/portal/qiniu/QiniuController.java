@@ -1,5 +1,6 @@
 package org.zunpeng.web.controller.portal.qiniu;
 
+import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Maps;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
@@ -48,6 +49,7 @@ public class QiniuController {
 	public String fopsCallback(HttpServletRequest request){
 		try {
 			String qiniuRequestBody = IOUtils.toString(request.getInputStream(), "UTF-8");
+			logger.info("-------------------- qiniu fops callback : " + qiniuRequestBody);
 			qiniuService.fopsCallback(qiniuRequestBody, false);
 			return "success";
 		} catch(Throwable t){
@@ -60,6 +62,7 @@ public class QiniuController {
 	public String fopsMobileCallback(HttpServletRequest request){
 		try {
 			String qiniuRequestBody = IOUtils.toString(request.getInputStream(), "UTF-8");
+			logger.info("-------------------- qiniu mobile fops callback : " + qiniuRequestBody);
 			qiniuService.fopsCallback(qiniuRequestBody, true);
 			return "success";
 		} catch(Throwable t){
@@ -72,6 +75,7 @@ public class QiniuController {
 	public String vframeCallback(HttpServletRequest request){
 		try {
 			String qiniuRequestBody = IOUtils.toString(request.getInputStream(), "UTF-8");
+			logger.info("-------------------- get video cover img : " + qiniuRequestBody);
 			qiniuService.vframeCallback(qiniuRequestBody);
 			return "success";
 		} catch(Throwable t){
@@ -85,6 +89,7 @@ public class QiniuController {
 		Map<String, Object> map = Maps.newHashMap();
 
 		try {
+			logger.info("-------------------- upload callback : " + JSONObject.toJSONString(formBean));
 			SimpleQiniuFileInfo simpleQiniuFileInfo = qiniuService.uploadCallback(formBean);
 			map.put("success", true);
 			map.put("fileInfo", simpleQiniuFileInfo);
