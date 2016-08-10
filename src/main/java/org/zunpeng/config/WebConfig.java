@@ -1,6 +1,5 @@
 package org.zunpeng.config;
 
-import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
@@ -130,7 +129,7 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
 		SpringTemplateEngine templateEngine = new SpringTemplateEngine();
 		templateEngine.setTemplateResolver(templateResolver());
 		templateEngine.setEnableSpringELCompiler(true);
-		templateEngine.addDialect("shiro", new ShiroDialect());
+//		templateEngine.addDialect("shiro", new ShiroDialect());
 		return templateEngine;
 	}
 
