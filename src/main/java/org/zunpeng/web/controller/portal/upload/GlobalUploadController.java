@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.zunpeng.service.upload.SimpleUploadFileInfo;
-import org.zunpeng.service.upload.UploadService;
+import org.zunpeng.service.upload.ImageService;
 
 import java.util.Map;
 
@@ -23,7 +23,7 @@ public class GlobalUploadController {
 	private static Logger logger = LoggerFactory.getLogger(GlobalUploadController.class);
 
 	@Autowired
-	private UploadService uploadService;
+	private ImageService imageService;
 
 	@RequestMapping("/common/upload")
 	@ResponseBody
@@ -31,7 +31,7 @@ public class GlobalUploadController {
 		Map<String, Object> map = Maps.newHashMap();
 
 		try {
-			SimpleUploadFileInfo simpleUploadFileInfo = uploadService.upload(uploadFile);
+			SimpleUploadFileInfo simpleUploadFileInfo = imageService.upload(uploadFile);
 			map.put("success", true);
 			map.put("fileInfo", simpleUploadFileInfo);
 		} catch(Throwable t){

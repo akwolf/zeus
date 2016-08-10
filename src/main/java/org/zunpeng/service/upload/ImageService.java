@@ -7,7 +7,7 @@ import java.io.IOException;
 /**
  * Created by dapeng on 16/8/6.
  */
-public interface UploadService {
+public interface ImageService {
 
 	SimpleUploadFileInfo upload(MultipartFile uploadFile) throws IOException;
 

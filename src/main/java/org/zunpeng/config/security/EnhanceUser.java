@@ -8,25 +8,11 @@ public class EnhanceUser implements Serializable {
 
 	private Long accountId;
 
-	private String openId;
-
-	private String appid;
-
 	private String slug;
 
-	public EnhanceUser(Long accountId, String appid, String openId, String slug){
+	public EnhanceUser(Long accountId, String slug){
 		this.accountId = accountId;
-		this.openId = openId;
-		this.appid = appid;
 		this.slug = slug;
-	}
-
-	public String getOpenId() {
-		return openId;
-	}
-
-	public void setOpenId(String openId) {
-		this.openId = openId;
 	}
 
 	public Long getAccountId() {
@@ -35,14 +21,6 @@ public class EnhanceUser implements Serializable {
 
 	public void setAccountId(Long accountId) {
 		this.accountId = accountId;
-	}
-
-	public String getAppid() {
-		return appid;
-	}
-
-	public void setAppid(String appid) {
-		this.appid = appid;
 	}
 
 	public String getSlug() {

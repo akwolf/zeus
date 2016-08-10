@@ -10,6 +10,7 @@ import com.qiniu.storage.BucketManager;
 import com.qiniu.util.Auth;
 import com.qiniu.util.StringMap;
 import com.qiniu.util.UrlSafeBase64;
+import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -187,6 +188,12 @@ public class QiniuServiceImpl implements QiniuService {
 			lessonVideoInfo.setCoverImg(coverKey);
 			lessonVideoInfoMapper.update(lessonVideoInfo);
 		}
+	}
+
+	@Override
+	public String generateHlsUrl(String m3u8Key, DateTime deadlineTime, long expires) {
+		String m3u8Url = videoDomain + m3u8Key + "?pm3u8/0/deadline/" + (deadlineTime.toDate().getTime() / 1000);
+		return auth.privateDownloadUrl(m3u8Url, expires);
 	}
 
 	@Override

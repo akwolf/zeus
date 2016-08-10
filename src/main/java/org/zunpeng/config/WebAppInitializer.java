@@ -6,13 +6,12 @@ import com.google.common.collect.Maps;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.filter.CharacterEncodingFilter;
+import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+import org.zunpeng.config.security.SecurityConfig;
 
-import javax.servlet.FilterRegistration;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRegistration;
+import javax.servlet.*;
 import java.util.Map;
 
 /**
@@ -24,7 +23,7 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class<?>[]{AppConfig.class};
+		return new Class<?>[]{AppConfig.class, SecurityConfig.class};
 	}
 
 	@Override
@@ -77,5 +76,13 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
 		druidStatViewServletInitParameters.put("loginPassword", "zeus2016");
 		druidStatViewServletDynamic.setInitParameters(druidStatViewServletInitParameters);
 		druidStatViewServletDynamic.addMapping("/druid", "/druid/*", "/druid/**");
+	}
+
+	@Override
+	protected Filter[] getServletFilters() {
+		logger.info("配置Shiro权限控制");
+		DelegatingFilterProxy delegatingFilterProxy = new DelegatingFilterProxy("shiroFilter");
+		delegatingFilterProxy.setTargetFilterLifecycle(true);
+		return new Filter[]{delegatingFilterProxy};
 	}
 }

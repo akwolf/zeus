@@ -1,0 +1,89 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head lang="zh-cn" th:fragment="common_head (title, links)">
+	<meta charset="UTF-8"/>
+	<meta name="renderer" content="webkit"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+	<meta http-equiv="Cache-Control" content="no-siteapp" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<meta name="baidu-site-verification" content="pwWlYEzIse" />
+
+	<title th:replace="${title}">首页</title>
+
+	<link type="text/css" rel="stylesheet" th:href="@{/javascript/plugin/bootstrap/css/bootstrap.min.css}"/>
+	<link type="text/css" rel="stylesheet" th:href="@{/javascript/plugin/bootstrap/css/bootstrap-theme.min.css}"/>
+	<link type="text/css" rel="stylesheet" th:href="@{/javascript/plugin/Hui-iconfont.1.0.8/iconfont.css}" media="screen,projection"/>
+
+	<th:block th:replace="${links}"></th:block>
+
+	<script type="text/javascript" th:src="@{/javascript/plugin/less.min.js}"></script>
+</head>
+<body th:fragment="common_body (index, divs, scripts)">
+	<div class="custom-menu-wrapper" th:fragment="menu_main (index)" id="top">
+		<nav class="navbar navbar-inverse">
+			<div class="container">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<!--<img th:src="@{/image/20160724-logo-640-640.jpg}" style="width: 36px"/>&nbsp;&nbsp;-->
+					<a class="navbar-brand" href="#">鑫顺门窗</a>
+				</div>
+
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li th:classappend="${index == 5} ? 'active' : ''"><a th:href="@{/admin/product}">首页</a></li>
+						<li th:classappend="${index == 1} ? 'active' : ''"><a th:href="@{/admin/product}">产品中心</a></li>
+						<li th:classappend="${index == 2} ? 'active' : ''"><a th:href="@{/admin/solution}">解决方案</a></li>
+						<li th:classappend="${index == 3} ? 'active' : ''"><a th:href="@{/admin/article}">新闻中心</a></li>
+						<li th:classappend="${index == 4} ? 'active' : ''"><a th:href="@{/admin/about_us}">关于我们</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a th:href="@{/}">返回网站</a></li>
+						<li class="dropdown">
+							<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">张三三 <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a th:href="@{/profile}">个人中心</a></li>
+								<li><a th:href="@{logout}">退出</a></li>
+								<li><a th:href="@{/}">返回网站</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</div>
+
+	<th:block th:replace="${divs}"></th:block>
+
+	<input type="hidden" id="videojs_swf_url" th:value="@{/javascript/plugin/videojs/video-js.swf}">
+	<input type="hidden" id="uploader_swf_url" th:value="@{/javascript/plugin/plupload/js/Moxie.swf}">
+
+	<a id="scrollUp" href="#top"><i class="fa fa-angle-up"></i></a>
+	<script type="text/javascript" th:src="@{/javascript/plugin/jquery-1.11.3.min.js}"></script>
+	<script type="text/javascript" th:src="@{/javascript/plugin/bootstrap/js/bootstrap.min.js}"></script>
+	<script type="text/javascript">
+		$(function(){
+			var $backToTopEle=$('<a href="javascript:void(0)" class="Hui-iconfont toTop" title="返回顶部" alt="返回顶部" style="display:none">&#xe684;</a>').appendTo($("body")).click(function(){
+				$("html, body").animate({ scrollTop: 0 }, 120);
+			});
+			var $backToTopFun = function() {
+				var st = $(document).scrollTop(), winh = $(window).height();
+				(st > 0)? $backToTopEle.show(): $backToTopEle.hide();
+				/*IE6下的定位*/
+				if(!window.XMLHttpRequest){
+					$backToTopEle.css("top", st + winh - 166);
+				}
+			};
+			$(window).on("scroll",$backToTopFun);$backToTopFun();
+		});
+	</script>
+
+	<th:block th:replace="${scripts}"></th:block>
+</body>
+</html>

@@ -20,9 +20,8 @@
 			<video id="my-video" class="video-js" controls preload="auto" data-setup="{}"
 			       webkit-playsinline="">
 				<!--<source th:src="${url}" type='application/x-mpegURL'>-->
-				<source src="http://zeus-video.zunpeng.org/94485420ba524bfe97ce23bb23e9708e.m3u8?pm3u8/0/deadline/1470581319&e=1470557319&token=HLSXTk-f9pJDJhDFX-a6gcVcxuKDKvqaUmmhkQwE:Z5HopB-nAY0S1Gwbk4QLMhynQMc=" type='application/x-mpegURL'>
+				<source src="http://zeus-video.zunpeng.org/94485420ba524bfe97ce23bb23e9708e.m3u8?pm3u8/0/deadline/1470594649&e=1470570649&token=HLSXTk-f9pJDJhDFX-a6gcVcxuKDKvqaUmmhkQwE:YPdwGpn0QKfpNhYW_R6ATus_V6Q=" type='application/x-mpegURL'>
 			</video>
-			<input type="hidden" id="swf_url" th:value="@{/javascript/plugin/videojs/video-js.swf}">
 		</div>
 	</div>
 
@@ -37,7 +36,7 @@
 			if($.isMobileBrowser()){
 				$.initMobilePlayer($("#my-video"));
 			} else {
-				$.initPCPlayer($("#my-video"), $("#swf_url").val());
+				$.initPCPlayer($("#my-video"));
 			}
 		});
 		/*]]>*/

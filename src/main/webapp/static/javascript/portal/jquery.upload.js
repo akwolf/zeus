@@ -1,12 +1,11 @@
 ;(function($){
-	var getUploaderInstance = function(buttonEle, domContainer, uploadUrl){
+	var getUploaderInstance = function(buttonEle, domContainer, uploadUrl, uploaderSwfUrl){
 		return new plupload.Uploader({
-			runtimes : 'html5,flash,silverlight,html4',
+			runtimes : 'html5,flash,html4',
 			browse_button : buttonEle, // you can pass an id...
 			container: domContainer, // ... or DOM Element itself
 			url : uploadUrl,
-			flash_swf_url : '../plugin/plupload/js/Moxie.swf',
-			silverlight_xap_url : '../plugin/plupload/js/Moxie.xap',
+			flash_swf_url : uploaderSwfUrl,
 			max_retries: 3,
 			//chunk_size: "500kb",
 			multi_selection: false,
@@ -45,7 +44,7 @@
 	};
 
 	$.zeusUpload = function($buttonEle, uploadUrl){
-		var uploader = getUploaderInstance($buttonEle[0], $("body")[0], uploadUrl);
+		var uploader = getUploaderInstance($buttonEle[0], $("body")[0], uploadUrl, $("#uploader_swf_url").val());
 		uploader.init();
 		return this;
 	};

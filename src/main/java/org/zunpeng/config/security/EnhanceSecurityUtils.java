@@ -18,4 +18,8 @@ public class EnhanceSecurityUtils extends SecurityUtils {
 		return new NullEnhanceUser();
 	}
 
+	public static boolean judgeLogin(){
+		return retrieveEnhanceUser().getAccountId() > 0;
+	}
+
 }

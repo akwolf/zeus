@@ -3,10 +3,10 @@
 		return (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
 	}
 
-	var initPCPlayer = function($myVideo, swfUrl){
-		videojs.options.flash.swf = swfUrl,
+	var initPCPlayer = function($myVideo){
+		videojs.options.flash.swf = $("#videojs_swf_url").val(),
 		videojs($myVideo[0], {
-			techOrder: ["flash", "html5"]
+			techOrder: ["html5", "flash"]
 		}).ready(function(){
 			this.hotkeys({
 				volumeStep: 0.1,

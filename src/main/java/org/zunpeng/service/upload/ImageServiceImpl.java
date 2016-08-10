@@ -13,7 +13,7 @@ import java.io.IOException;
  * Created by dapeng on 16/8/6.
  */
 @Service
-public class UploadServiceImpl implements UploadService {
+public class ImageServiceImpl implements ImageService {
 
 	@Autowired
 	private StaticBasicConfig staticBasicConfig;
