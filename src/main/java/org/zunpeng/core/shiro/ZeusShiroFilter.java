@@ -30,7 +30,7 @@ public class ZeusShiroFilter extends AbstractShiroFilter {
 
 	@Override
 	protected ServletResponse wrapServletResponse(HttpServletResponse response, ShiroHttpServletRequest request) {
-		logger.info("------------------------ zeus shiro filter");
+//		logger.info("------------------------ zeus shiro filter");
 		return new ZeusShiroHttpServletResponse(response, getServletContext(), request);
 	}
 
