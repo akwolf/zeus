@@ -23,6 +23,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.zunpeng.core.shiro.ZeusShiroFilterFactoryBean;
 
 import java.util.Map;
 
@@ -97,7 +98,7 @@ public class SecurityConfig {
 	@Bean
 	@Autowired
 	public ShiroFilterFactoryBean shiroFilter(WebSecurityManager securityManager){
-		ShiroFilterFactoryBean shiroFilter = new ShiroFilterFactoryBean();
+		ShiroFilterFactoryBean shiroFilter = new ZeusShiroFilterFactoryBean();
 		shiroFilter.setLoginUrl("/login");
 		shiroFilter.setUnauthorizedUrl("/login");
 		shiroFilter.setSuccessUrl("/admin");
