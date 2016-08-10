@@ -19,9 +19,9 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Controller("adminUEditorController")
 @RequestMapping("/admin")
-public class UEditorControllerm {
+public class UEditorController {
 
-	private static Logger logger = LoggerFactory.getLogger(UEditorControllerm.class);
+	private static Logger logger = LoggerFactory.getLogger(UEditorController.class);
 
 	@Autowired
 	private ImageService imageService;
