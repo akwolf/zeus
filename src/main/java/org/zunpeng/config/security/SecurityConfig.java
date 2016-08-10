@@ -24,7 +24,10 @@ import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.zunpeng.core.shiro.ZeusShiroFilterFactoryBean;
+import org.zunpeng.core.shiro.other.AnyOfRolesAuthorizationFilter;
 
+import javax.servlet.Filter;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 @Configuration
@@ -102,6 +105,10 @@ public class SecurityConfig {
 		shiroFilter.setLoginUrl("/login");
 		shiroFilter.setUnauthorizedUrl("/login");
 		shiroFilter.setSuccessUrl("/admin");
+
+		Map<String, Filter> filterMap = new LinkedHashMap<>();
+		filterMap.put("anyRoles", new AnyOfRolesAuthorizationFilter());
+		shiroFilter.setFilters(filterMap);
 
 		shiroFilter.setSecurityManager(securityManager);
 
