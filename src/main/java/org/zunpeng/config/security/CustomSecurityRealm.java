@@ -12,12 +12,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.zunpeng.domain.AccountInfo;
 import org.zunpeng.mapper.AccountInfoMapper;
 
 @Component
-@Transactional
 public class CustomSecurityRealm extends AuthorizingRealm {
 
 	private static Logger logger = LoggerFactory.getLogger(CustomSecurityRealm.class);
@@ -29,13 +29,14 @@ public class CustomSecurityRealm extends AuthorizingRealm {
 	 * 授权查询回调函数, 进行鉴权但缓存中无用户的授权信息时调用.
 	 */
 	@Override
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 //		logger.info("authorization: 授权回调函数 " + principals.getRealmNames());
 
 		EnhanceUser enhanceUser = (EnhanceUser) principals.fromRealm(getName()).iterator().next();
 		SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
 
-		AccountInfo accountInfo = accountInfoMapper.getBySlug(enhanceUser.getSlug());
+		AccountInfo accountInfo = accountInfoMapper.getById(enhanceUser.getAccountId());
 		if(accountInfo == null){
 			return null;
 		}
@@ -47,15 +48,18 @@ public class CustomSecurityRealm extends AuthorizingRealm {
 	 * 认证回调函数, 登录时调用.
 	 */
 	@Override
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 //		logger.info("authentication: 认证回调函数");
 
 		UsernamePasswordToken usernamePasswordToken = (UsernamePasswordToken) token;
 
-		AccountInfo accountInfo = accountInfoMapper.getBySlug(usernamePasswordToken.getUsername());
+		AccountInfo accountInfo = accountInfoMapper.getByUsername(usernamePasswordToken.getUsername());
 		if(accountInfo == null){
 			throw new AuthenticationException("Invalid username/password combination!");
 		}
+		accountInfo.setBrief("hello world");
+		accountInfoMapper.update(accountInfo);
 
 		return new SimpleAuthenticationInfo(new EnhanceUser(accountInfo.getId(), accountInfo.getSlug()), accountInfo.getPassword(), getName());
 	}

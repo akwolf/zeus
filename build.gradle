@@ -1,6 +1,6 @@
 ext {
 	springVersion = '4.3.2.RELEASE'
-	shiroVersion = '1.2.4'
+	shiroVersion = '1.3.0'
 	thymeleafVersion = '3.0.1.RELEASE'
 }
 
@@ -55,9 +55,9 @@ dependencies {
 	compile("org.apache.shiro:shiro-ehcache:$shiroVersion")
 	compile("org.apache.shiro:shiro-spring:$shiroVersion")
 
-	compile("org.mindrot:jbcrypt:0.3m")
+	compile("org.zunpeng:thymeleaf3-shiro:0.0.1")
 
-	compile("com.github.theborakompanioni:thymeleaf-extras-shiro:1.2.1")
+	compile("org.mindrot:jbcrypt:0.3m")
 
 	compile("com.alibaba:fastjson:1.2.7")
 	compile("com.thoughtworks.xstream:xstream:1.4.8")

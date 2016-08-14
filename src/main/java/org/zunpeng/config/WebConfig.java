@@ -31,6 +31,7 @@ import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
+import org.zunpeng.thymeleaf.shiro.dialect.ShiroDialect;
 
 import java.util.List;
 import java.util.Map;
@@ -129,7 +130,7 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
 		SpringTemplateEngine templateEngine = new SpringTemplateEngine();
 		templateEngine.setTemplateResolver(templateResolver());
 		templateEngine.setEnableSpringELCompiler(true);
-//		templateEngine.addDialect("shiro", new ShiroDialect());
+		templateEngine.addDialect("shiro", new ShiroDialect());
 		return templateEngine;
 	}
 

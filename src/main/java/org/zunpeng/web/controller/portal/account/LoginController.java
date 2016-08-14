@@ -1,5 +1,6 @@
 package org.zunpeng.web.controller.portal.account;
 
+import com.alibaba.fastjson.JSONObject;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.slf4j.Logger;
@@ -31,6 +32,7 @@ public class LoginController {
 	public String login(@ModelAttribute @Valid LoginFormBean formBean, BindingResult result, Model model){
 
 		if(result.hasErrors()){
+			logger.info(JSONObject.toJSONString(result.getAllErrors()));
 			model.addAttribute("account", formBean);
 			return "portal/account/login";
 		}

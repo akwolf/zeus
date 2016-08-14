@@ -53,7 +53,7 @@
 						</li>
 						<li th:classappend="${index == 6} ? 'am-active' : ''"><a th:href="@{/about_us}">联系我们</a></li>
 					</ul>
-					<ul class="nav navbar-nav navbar-right">
+					<ul class="nav navbar-nav navbar-right" shiro:user="">
 						<li class="dropdown">
 							<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">张三三 <span class="caret"></span></a>
 							<ul class="dropdown-menu">
@@ -64,7 +64,7 @@
 							</ul>
 						</li>
 					</ul>
-					<ul class="nav navbar-nav navbar-right">
+					<ul class="nav navbar-nav navbar-right" shiro:guest="">
 						<li><a th:href="@{/login}">登录</a></li>
 						<li><a th:href="@{/login}">注册</a></li>
 					</ul>

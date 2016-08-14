@@ -50,4 +50,8 @@
 	<select id="getBySlug" resultMap="baseResultMap">
 		select * from account_info where slug = #{slug}
 	</select>
+
+	<select id="getByUsername" resultMap="baseResultMap">
+		select * from account_info where username = #{username}
+	</select>
 </mapper>

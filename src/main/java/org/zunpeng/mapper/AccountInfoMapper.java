@@ -15,4 +15,5 @@ public interface AccountInfoMapper {
 
 	void update(AccountInfo accountInfo);
 
+	AccountInfo getByUsername(String username);
 }

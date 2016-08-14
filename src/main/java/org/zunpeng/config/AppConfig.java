@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.zunpeng.config.database.DruidDatabaseConfig;
 import org.zunpeng.config.database.DruidSpringMonitorConfig;
 import org.zunpeng.config.mybatis.MybatisConfig;
+import org.zunpeng.config.redis.RedisConfig;
 
 @Configuration
 @EnableTransactionManagement
@@ -19,7 +20,7 @@ import org.zunpeng.config.mybatis.MybatisConfig;
 @ComponentScan(basePackages = "org.zunpeng", excludeFilters = {@ComponentScan.Filter(Configuration.class),
 		@ComponentScan.Filter(Controller.class),
 		@ComponentScan.Filter(ControllerAdvice.class)})
-@Import({DruidDatabaseConfig.class, MybatisConfig.class, DruidSpringMonitorConfig.class})
+@Import({DruidDatabaseConfig.class, MybatisConfig.class, DruidSpringMonitorConfig.class, RedisConfig.class})
 @PropertySources({@PropertySource("classpath:application-${zeus.env}.properties")})
 public class AppConfig {
 

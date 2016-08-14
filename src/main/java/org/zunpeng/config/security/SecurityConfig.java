@@ -25,6 +25,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.zunpeng.core.shiro.ZeusShiroFilterFactoryBean;
 import org.zunpeng.core.shiro.other.AnyOfRolesAuthorizationFilter;
+import org.zunpeng.core.shiro.session.Rediss.RedisSessionDAO;
 
 import javax.servlet.Filter;
 import java.util.LinkedHashMap;
@@ -153,6 +154,7 @@ public class SecurityConfig {
 		sessionManager.setGlobalSessionTimeout(1000 * 60 * 60 * 24 * 7);
 		sessionManager.setDeleteInvalidSessions(true);
 		sessionManager.setSessionValidationSchedulerEnabled(true);
+		sessionManager.setSessionDAO(redisSessionDAO());
 //		sessionManager.setSessionDAO(redisSessionDAO);
 		return sessionManager;
 	}
@@ -177,24 +179,13 @@ public class SecurityConfig {
 		return simpleCookie;
 	}
 
-//	@Bean
-//	@Autowired
-//	public ShiroRedisSessionDAO redisSessionDAO(RedisTemplate redisTemplateBean){
-//		ShiroRedisSessionDAO shiroRedisSessionDAO = new ShiroRedisSessionDAO();
-//		shiroRedisSessionDAO.setRedisTemplate(redisTemplateBean);
-//		return shiroRedisSessionDAO;
-//	}
+	@Bean
+	public RedisTemplateBean redisTemplateBean(){
+		return new RedisTemplateBean();
+	}
 
-//	@Bean
-//	@Autowired
-//	public RedisTemplate redisTemplateBean(RedisTemplate redisTemplate){
-//		JdkSerializationRedisSerializer jdkSerializationRedisSerializer = new JdkSerializationRedisSerializer();
-//		StringRedisSerializer stringRedisSerializer = new StringRedisSerializer();
-//		redisTemplate.setKeySerializer(stringRedisSerializer);
-//		redisTemplate.setHashKeySerializer(stringRedisSerializer);
-//		redisTemplate.setValueSerializer(jdkSerializationRedisSerializer);
-//		redisTemplate.setHashValueSerializer(stringRedisSerializer);
-//		redisTemplate.setEnableTransactionSupport(true);
-//		return redisTemplate;
-//	}
+	@Bean
+	public RedisSessionDAO redisSessionDAO(){
+		return new RedisSessionDAO(redisTemplateBean().getRedisTemplate());
+	}
 }
