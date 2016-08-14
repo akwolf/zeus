@@ -24,8 +24,10 @@ import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.zunpeng.core.shiro.ZeusShiroFilterFactoryBean;
+import org.zunpeng.core.shiro.config.CustomSecurityRealm;
 import org.zunpeng.core.shiro.other.AnyOfRolesAuthorizationFilter;
-import org.zunpeng.core.shiro.session.Rediss.RedisSessionDAO;
+import org.zunpeng.core.shiro.session.redis.RedisSessionDAO;
+import org.zunpeng.core.shiro.redis.RedisTemplateBean;
 
 import javax.servlet.Filter;
 import java.util.LinkedHashMap;

@@ -1,4 +1,4 @@
-package org.zunpeng.config.security;
+package org.zunpeng.core.shiro.redis;
 
 import org.springframework.data.redis.core.RedisTemplate;
 

@@ -39,6 +39,7 @@ public class LoginController {
 
 		try {
 			UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(formBean.getMobile(), formBean.getPassword());
+			usernamePasswordToken.setRememberMe(true);
 			SecurityUtils.getSubject().login(usernamePasswordToken);
 			return "redirect:/admin";
 		} catch(Throwable t){

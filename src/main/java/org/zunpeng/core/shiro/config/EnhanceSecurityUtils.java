@@ -1,4 +1,4 @@
-package org.zunpeng.config.security;
+package org.zunpeng.core.shiro.config;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;

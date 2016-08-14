@@ -68,4 +68,9 @@
 		<appender-ref ref="rollingFile"/>
 	</logger>
 
+	<logger name="org.zunpeng.core.shiro.session.redis" level="ERROR,DEBUG" additivity="false">
+		<appender-ref ref="console"/>
+		<appender-ref ref="rollingFile"/>
+	</logger>
+
 </configuration>
