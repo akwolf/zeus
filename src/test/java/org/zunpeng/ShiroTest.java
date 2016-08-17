@@ -13,6 +13,6 @@ public class ShiroTest {
 		System.out.println(BCrypt.hashpw("hello", BCrypt.gensalt()));
 	}
 	/*
-	insert into account_info (username, passwd) values ("zhangsan", "$2a$10$JA5HGWu46xOq5uMphenUce1B/DBQIiYstGpU2eKempixHXwtcpH0u");
+	insert into account_info (username, passwd) values ("13260091590", "$2a$10$JA5HGWu46xOq5uMphenUce1B/DBQIiYstGpU2eKempixHXwtcpH0u");
 	 */
 }

@@ -157,7 +157,6 @@ public class SecurityConfig {
 		sessionManager.setDeleteInvalidSessions(true);
 		sessionManager.setSessionValidationSchedulerEnabled(true);
 		sessionManager.setSessionDAO(redisSessionDAO());
-//		sessionManager.setSessionDAO(redisSessionDAO);
 		return sessionManager;
 	}
 
