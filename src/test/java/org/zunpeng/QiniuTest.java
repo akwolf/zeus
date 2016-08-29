@@ -53,7 +53,7 @@ public class QiniuTest {
 	@Test
 	public void demo3(){
 		//http://zeus-video.zunpeng.org/5da6854c6d7f42c5829aa1717a5fe07a.m3u8
-		System.out.println(auth.privateDownloadUrl("http://zeus-video.zunpeng.org/94485420ba524bfe97ce23bb23e9708e.m3u8" + "?pm3u8/0/deadline/" + (new DateTime().plusHours(10).toDate().getTime() / 1000), 12000));
+		System.out.println(auth.privateDownloadUrl("http://zeus-video.zunpeng.org/94485420ba524bfe97ce23bb23e9708e.m3u8" + "?pm3u8/0/deadline/" + (new DateTime().plusHours(100).toDate().getTime() / 1000), 120000));
 	}
 
 	@Test
