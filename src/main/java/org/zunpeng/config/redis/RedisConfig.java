@@ -59,7 +59,7 @@ public class RedisConfig {
 		stringRedisTemplate.setConnectionFactory(jedisConnectionFactory());
 		stringRedisTemplate.setKeySerializer(stringRedisSerializer());
 		stringRedisTemplate.setHashKeySerializer(stringRedisSerializer());
-		stringRedisTemplate.setValueSerializer(jdkSerializationRedisSerializer());
+		stringRedisTemplate.setValueSerializer(stringRedisSerializer());
 		stringRedisTemplate.setHashKeySerializer(stringRedisSerializer());
 		return stringRedisTemplate;
 	}
