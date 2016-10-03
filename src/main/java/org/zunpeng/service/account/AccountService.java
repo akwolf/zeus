@@ -16,4 +16,10 @@ public interface AccountService {
 	void testAddOne();
 
 	PageWrapper<SlugInfo> page(Pageable pageable);
+
+	void testFind(Long id);
+
+	void testFindBySlug(String slug);
+
+	void updateSlug();
 }

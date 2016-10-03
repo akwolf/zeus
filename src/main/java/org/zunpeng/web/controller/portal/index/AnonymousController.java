@@ -10,6 +10,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.zunpeng.core.page.PageWrapper;
 import org.zunpeng.domain.SlugInfo;
@@ -106,5 +107,26 @@ public class AnonymousController {
 	public String uploadQiniuTest(){
 
 		return "portal/index/test_qiniu_upload";
+	}
+
+	@RequestMapping("/id")
+	@ResponseBody
+	public String testFind(@RequestParam(required = false, value = "id") Long id){
+		accountService.testFind(id);
+		return "test find by id";
+	}
+
+	@RequestMapping("/slug")
+	@ResponseBody
+	public String testFindBySlug(@RequestParam(required = false, value = "slug") String slug){
+		accountService.testFindBySlug(slug);
+		return "test find by slug";
+	}
+
+	@RequestMapping("/id/update")
+	@ResponseBody
+	public String updateSlug(){
+		accountService.updateSlug();
+		return "test update slug";
 	}
 }

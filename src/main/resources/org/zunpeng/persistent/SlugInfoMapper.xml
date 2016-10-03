@@ -22,6 +22,14 @@
 		select * from slug_info where id = #{id}
 	</select>
 
+	<select id="getBySlug" resultMap="baseResultMap">
+		select * from slug_info where slug = #{slug}
+	</select>
+
+	<update id="update">
+		update slug_info set slug = #{slug} where id = #{id}
+	</update>
+
 	<sql id="baseSql">
 		from slug_info
 		<include refid="org.zunpeng.mapper.BaseMapper.base_sql_condition"/>

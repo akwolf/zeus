@@ -80,7 +80,7 @@ dependencies {
 	compile("org.apache.httpcomponents:httpmime:4.4")
 
 	compile("com.google.zxing:core:3.2.1")
-	compile("com.oldpeng.weixin:weixin_sdk:2.3.5")
+	compile("com.oldpeng.weixin:weixin_sdk:2.3.6")
 
 	compile("com.qiniu:qiniu-java-sdk:7.1.2")
 

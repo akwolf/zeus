@@ -13,16 +13,22 @@ import java.util.Set;
  */
 public interface SlugInfoMapper {
 
+	@Caching(operator = Caching.OperatorType.GET_SINGLE)
 	SlugInfo getById(Long id);
 
-	@Caching(Caching.CacheType.REMOVE)
+	@Caching(operator = Caching.OperatorType.CLEAR)
 	void batchInsert(@Param("slugSet") Set<String> slugSet);
 
-	@Caching(Caching.CacheType.REMOVE)
+	@Caching(operator = Caching.OperatorType.SAVE)
 	void insert(SlugInfo slug);
 
 	long count(Criteria criteria);
 
 	List<SlugInfo> getAllLimit(Criteria criteria);
 
+	@Caching(operator = Caching.OperatorType.GET_SINGLE)
+	SlugInfo getBySlug(String slug);
+
+	@Caching(operator = Caching.OperatorType.UPDATE)
+	void update(SlugInfo slugInfo);
 }

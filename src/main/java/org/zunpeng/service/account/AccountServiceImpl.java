@@ -77,4 +77,25 @@ public class AccountServiceImpl implements AccountService {
 		return page;
 	}
 
+	@Override
+	public void testFind(Long id) {
+		id = (id == null ? 5041L : id);
+		SlugInfo slugInfo = slugInfoMapper.getById(id);
+		logger.info("slugInfo: " + JSONObject.toJSONString(slugInfo));
+	}
+
+	@Override
+	public void testFindBySlug(String slug) {
+		slug = (slug == null ? "88d95a5ca5fe453b8eee4a9929721242" : slug);
+		SlugInfo slugInfo = slugInfoMapper.getBySlug(slug);
+		logger.info("slugInfo: " + JSONObject.toJSONString(slugInfo));
+	}
+
+	@Override
+	public void updateSlug() {
+		SlugInfo slugInfo = slugInfoMapper.getById(5041L);
+		slugInfo.setSlug("wangzhan");
+		slugInfoMapper.update(slugInfo);
+	}
+
 }
