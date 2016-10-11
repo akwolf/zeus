@@ -16,7 +16,7 @@ public interface SlugInfoMapper {
 	@Caching(operator = Caching.OperatorType.GET_SINGLE)
 	SlugInfo getById(Long id);
 
-	@Caching(operator = Caching.OperatorType.CLEAR)
+	@Caching(operator = Caching.OperatorType.SAVE)
 	void batchInsert(@Param("slugSet") Set<String> slugSet);
 
 	@Caching(operator = Caching.OperatorType.SAVE)
