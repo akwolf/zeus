@@ -7,13 +7,13 @@ public class RoleInfo extends AbstractEntity {
 
 	private static final long serialVersionUID = 7394728212789682047L;
 
-	private int role;
+	private String role;
 
-	public int getRole() {
+	public String getRole() {
 		return role;
 	}
 
-	public void setRole(int role) {
+	public void setRole(String role) {
 		this.role = role;
 	}
 }

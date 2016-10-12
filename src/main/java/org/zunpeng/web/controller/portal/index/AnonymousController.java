@@ -93,7 +93,13 @@ public class AnonymousController {
 
 	@RequestMapping("/test")
 	public String test(Model model){
-		model.addAttribute("url", "http://zeus-video.zunpeng.org/5da6854c6d7f42c5829aa1717a5fe07a.m3u8?pm3u8/0/deadline/1470562186&e=1470538186&token=HLSXTk-f9pJDJhDFX-a6gcVcxuKDKvqaUmmhkQwE:d9HeNu6J6HBiZost6qE79KSTN7c=");
+		model.addAttribute("url", "http://dby-vod-src.duobeiyun.com/7f91631893354479ae74290f3fb22dd1.m3u8");
+		return "portal/index/test";
+	}
+
+	@RequestMapping("/fd5c69055541424cad5925ef3c1c58ec")
+	public String test2(Model model){
+		model.addAttribute("url", "http://zeus-video.zunpeng.org/bea6b4ef365c4eaead113a24a7794376.m3u8?pm3u8/0/deadline/1476322942&e=1476298943&token=HLSXTk-f9pJDJhDFX-a6gcVcxuKDKvqaUmmhkQwE:nvt7wVqqZmu5jfW1_xXoV6VCmbs=");
 		return "portal/index/test";
 	}
 

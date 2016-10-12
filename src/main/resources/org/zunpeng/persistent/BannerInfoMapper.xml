@@ -12,13 +12,18 @@
 		<result property="recommendUrl" column="recommend_url" jdbcType="VARCHAR"/>
 	</resultMap>
 
+	<sql id="baseSql">
+		from banner_info
+		<include refid="org.zunpeng.mapper.BaseMapper.base_sql_condition"/>
+	</sql>
+
 	<insert id="save" useGeneratedKeys="true" keyProperty="id">
 		insert into banner_info(cover_img, deleted, disabled, create_time, sequence, recommend_url)
 		values(#{coverImg}, #{deleted}, #{disabled}, #{createTime}, #{sequence}, #{recommendUrl})
 	</insert>
 
 	<update id="update">
-		update banner_inf
+		update banner_info
 		set cover_img = #{converImg}, deleted = #{deleted}, disabled = #{disabled},
 		    sequence = #{sequence}, recommend_url = #{recommendUrl}
 		where id = #{id}
@@ -26,6 +31,17 @@
 
 	<select id="getById" resultMap="baseResultMap">
 		select * from banner_info where id = #{id}
+	</select>
+
+	<select id="getAllLimit" resultMap="baseResultMap">
+		select *
+		<include refid="baseSql"/>
+		<include refid="org.zunpeng.mapper.BaseMapper.base_sql_order_by_and_limit"/>
+	</select>
+
+	<select id="count" resultType="java.lang.Long">
+		select count(*)
+		<include refid="baseSql"/>
 	</select>
 
 </mapper>

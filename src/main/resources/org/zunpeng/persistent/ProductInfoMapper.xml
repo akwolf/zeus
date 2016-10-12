@@ -13,6 +13,11 @@
 		<result property="amount" column="amount" jdbcType="BIGINT"/>
 	</resultMap>
 
+	<sql id="baseSql">
+		from product_info
+		<include refid="org.zunpeng.mapper.BaseMapper.base_sql_condition"/>
+	</sql>
+
 	<insert id="save" useGeneratedKeys="true" keyProperty="id">
 		insert into product_info(name, brief, description, create_time, last_modify_time, amount)
 		values(#{name}, #{brief}, #{description}, #{createTime}, #{lastModifyTime}, #{amount})
@@ -31,6 +36,17 @@
 
 	<select id="getBySlug" resultMap="baseResultMap">
 		select * from product_info where slug = #{slug}
+	</select>
+
+	<select id="getAllLimit" resultMap="baseResultMap">
+		select *
+		<include refid="baseSql"/>
+		<include refid="org.zunpeng.mapper.BaseMapper.base_sql_order_by_and_limit"/>
+	</select>
+
+	<select id="count" resultType="java.lang.Long">
+		select count(*)
+		<include refid="baseSql"/>
 	</select>
 
 </mapper>

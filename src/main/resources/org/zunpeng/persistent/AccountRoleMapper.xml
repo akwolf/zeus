@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.zunpeng.mapper.AccountRoleMapper">
+	<resultMap id="baseResultMap" type="org.zunpeng.domain.AccountRole">
+		<id property="id" column="id" jdbcType="BIGINT"/>
+		<result property="accountId" column="account_id" jdbcType="BIGINT"/>
+		<result property="roleId" column="role_id" jdbcType="BIGINT"/>
+		<result property="disabled" column="disabled" jdbcType="INTEGER"/>
+
+		<result property="createTime" column="create_time"/>
+		<result property="lastModifyTime" column="last_modify_time"/>
+	</resultMap>
+
+	<resultMap id="accountRoleBean" type="org.zunpeng.mapper.result.AccountRoleBean">
+		<result property="id" column="id" jdbcType="BIGINT"/>
+		<result property="roleId" column="role_id" jdbcType="BIGINT"/>
+		<result property="role" column="role" jdbcType="VARCHAR"/>
+		<result property="deleted" column="deleted" jdbcType="INTEGER"/>
+		<result property="createTime" column="create_time"/>
+	</resultMap>
+
+	<sql id="baseSql">
+		from account_role
+		<include refid="org.zunpeng.mapper.BaseMapper.base_sql_condition"/>
+	</sql>
+
+	<insert id="save" useGeneratedKeys="true" keyProperty="id">
+		insert into account_role (account_id, role_id, disabled, create_time, last_modify_time)
+		values(#{accountId}, #{roleId}, #{disabled}, #{createTime}, #{lastModifyTime})
+	</insert>
+
+	<update id="update">
+		update account_role
+		set disabled = #{disabled}, last_modify_time = #{lastModifyTime}
+		where id = #{id}
+	</update>
+
+	<select id="getById" resultMap="baseResultMap">
+		select * from account_role where id = #{id}
+	</select>
+
+	<select id="getAllLimit" resultMap="baseResultMap">
+		select *
+		<include refid="baseSql"/>
+		<include refid="org.zunpeng.mapper.BaseMapper.base_sql_order_by_and_limit"/>
+	</select>
+
+	<select id="count" resultType="java.lang.Long">
+		select count(*)
+		<include refid="baseSql"/>
+	</select>
+
+	<select id="getAllByAccountId" resultMap="accountRoleBean">
+		select ar.id as id, ar.role_id as role_id, ar.deleted as deleted,
+		ar.create_time as create_time, ri.role as role from account_role ar
+		inner join role_info ri where ar.role_id = ri.id
+		where ar.account_id = #{accountId}
+	</select>
+</mapper>

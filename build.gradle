@@ -72,7 +72,7 @@ dependencies {
 	compile("org.jsoup:jsoup:1.8.3")
 	compile("redis.clients:jedis:2.6.3")
 
-	compile("com.alibaba:druid:1.0.18")
+	compile("com.alibaba:druid:1.0.26")
 
 	compile("com.fasterxml.jackson.core:jackson-databind:2.8.1")
 

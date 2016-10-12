@@ -3,31 +3,49 @@
 <mapper namespace="org.zunpeng.mapper.BaseMapper">
 
 	<sql id="base_sql_condition">
-		<choose>
-			<when test="criterionList != null and criterionList.size() > 0">
-				<trim prefix="where" prefixOverrides="and">
-					<foreach collection="criterionList" separator=" " item="criterion">
-						and ${criterion.condition}
-						<choose>
-							<when test="criterion.likeValue">
-								concat("%", #{criterion.value}, "%")
-							</when>
-							<when test="criterion.singleValue">
-								#{criterion.value}
-							</when>
-							<when test="criterion.betweenValue">
-								#{criterion.value} and #{criterion.secondValue}
-							</when>
-							<when test="criterion.listValue">
-								<foreach collection="criterion.valueList" separator=", " open="(" close=")" item="valueItem">
-									#{valueItem}
-								</foreach>
-							</when>
-						</choose>
-					</foreach>
-				</trim>
-			</when>
-		</choose>
+		<if test="criterionList != null and criterionList.size() > 0">
+			<trim prefix="where" prefixOverrides="and">
+				<foreach collection="criterionList" separator=" " item="criterion">
+					and ${criterion.condition}
+					<choose>
+						<when test="criterion.likeValue">
+							concat("%", #{criterion.value}, "%")
+						</when>
+						<when test="criterion.singleValue">
+							#{criterion.value}
+						</when>
+						<when test="criterion.betweenValue">
+							#{criterion.value} and #{criterion.secondValue}
+						</when>
+						<when test="criterion.listValue">
+							<foreach collection="criterion.valueList" separator=", " open="(" close=")" item="valueItem">
+								#{valueItem}
+							</foreach>
+						</when>
+					</choose>
+				</foreach>
+			</trim>
+		</if>
+	</sql>
+
+	<sql id="base_sql_order_by">
+		<if test="pageable.sort != null">
+			<foreach collection="pageable.sort" item="item" separator=", " index="index">
+				<if test="index == 0">
+					order by
+				</if>
+				${item.property} ${item.direction}
+			</foreach>
+		</if>
+	</sql>
+
+	<sql id="base_sql_limit">
+		limit #{pageable.offset}, #{pageable.pageSize}
+	</sql>
+
+	<sql id="base_sql_order_by_and_limit">
+		<include refid="base_sql_order_by"/>
+		<include refid="base_sql_limit"/>
 	</sql>
 
 </mapper>

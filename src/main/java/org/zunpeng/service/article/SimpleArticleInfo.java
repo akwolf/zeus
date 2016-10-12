@@ -1,9 +1,11 @@
-package org.zunpeng.web.controller.admin.article;
+package org.zunpeng.service.article;
+
+import java.util.Date;
 
 /**
- * Created by dapeng on 16/8/7.
+ * Created by dapeng on 2016/10/12.
  */
-public class ArticleFormBean {
+public class SimpleArticleInfo {
 
 	private String slug;
 
@@ -13,9 +15,13 @@ public class ArticleFormBean {
 
 	private String content;
 
+	private Date lastModifyTime;
+
 	private boolean disabled = false;
 
 	private boolean deleted = false;
+
+	private Date createTime;
 
 	public String getSlug() {
 		return slug;
@@ -49,6 +55,14 @@ public class ArticleFormBean {
 		this.content = content;
 	}
 
+	public Date getLastModifyTime() {
+		return lastModifyTime;
+	}
+
+	public void setLastModifyTime(Date lastModifyTime) {
+		this.lastModifyTime = lastModifyTime;
+	}
+
 	public boolean isDisabled() {
 		return disabled;
 	}
@@ -63,5 +77,13 @@ public class ArticleFormBean {
 
 	public void setDeleted(boolean deleted) {
 		this.deleted = deleted;
+	}
+
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
 	}
 }

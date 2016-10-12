@@ -14,6 +14,11 @@
 		<result property="lastModifyTime" column="last_modify_time"/>
 	</resultMap>
 
+	<sql id="baseSql">
+		from article_info
+		<include refid="org.zunpeng.mapper.BaseMapper.base_sql_condition"/>
+	</sql>
+
 	<insert id="save" useGeneratedKeys="true" keyProperty="id">
 		insert into article_info(title, description, content, deleted, disabled, create_time, last_modify_time)
 		values(#{title}, #{description}, #{content}, #{deleted}, #{disabled}, #{createTime}, #{lastModifyTime})
@@ -32,6 +37,17 @@
 
 	<select id="getBySlug" resultMap="baseResultMap">
 		select * from article_info where slug = #{slug}
+	</select>
+
+	<select id="getAllLimit" resultMap="baseResultMap">
+		select *
+		<include refid="baseSql"/>
+		<include refid="org.zunpeng.mapper.BaseMapper.base_sql_order_by_and_limit"/>
+	</select>
+
+	<select id="count" resultType="java.lang.Long">
+		select count(*)
+		<include refid="baseSql"/>
 	</select>
 
 </mapper>

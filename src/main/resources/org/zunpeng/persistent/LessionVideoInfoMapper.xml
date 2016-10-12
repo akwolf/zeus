@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.zunpeng.mapper.LessonVideoInfoMapper">
+	<resultMap id="baseResultMap" type="org.zunpeng.domain.LessonVideoInfo">
+		<id property="id" column="id" jdbcType="BIGINT"/>
+		<result property="fkey" column="fkey" jdbcType="VARCHAR"/>
+		<result property="originalFileName" column="original_file_name" jdbcType="VARCHAR"/>
+		<result property="hash" column="hash" jdbcType="VARCHAR"/>
+		<result property="duration" column="duration" jdbcType="BIGINT"/>
+		<result property="size" column="size" jdbcType="BIGINT"/>
+		<result property="status" column="status" jdbcType="INTEGER"/>
+
+		<result property="coverImg" column="cover_img" jdbcType="VARCHAR"/>
+		<result property="m3u8Key" column="m3u8_key" jdbcType="VARCHAR"/>
+		<result property="mobileM3u8Key" column="mobile_m3u8_key" jdbcType="VARCHAR"/>
+
+		<result property="createTime" column="create_time"/>
+		<result property="lastModifyTime" column="last_modify_time"/>
+	</resultMap>
+
+	<sql id="baseSql">
+		from lesson_video_info
+		<include refid="org.zunpeng.mapper.BaseMapper.base_sql_condition"/>
+	</sql>
+
+	<insert id="save" useGeneratedKeys="true" keyProperty="id">
+		insert into lesson_video_info (fkey, original_file_name, hash, duration, size,
+					status, cover_img, m3u8_key, mobile_m3u8_key, create_time, last_modify_time)
+		values(#{fkey}, #{originalFileName}, #{hash}, #{duration}, #{size},
+					#{status}, #{coverImg}, #{m3u8Key}, #{mobileM3u8Key},
+					#{createTime}, #{lastModifyTime})
+	</insert>
+
+	<update id="update">
+		update lesson_video_info
+		set duration = #{duration}, size = #{size}, status = #{status},
+			cover_img = #{coverImg}, m3u8_key = #{m3u8Key}, mobile_m3u8_key = #{mobileM3u8Key},
+			last_modify_time = #{lastModifyTime}
+		where id = #{id}
+	</update>
+
+	<select id="getById" resultMap="baseResultMap">
+		select * from lesson_video_info where id = #{id}
+	</select>
+
+	<select id="getByFkey" resultMap="baseResultMap">
+		select * from lesson_video_info where id = #{id}
+	</select>
+
+	<select id="getAllLimit" resultMap="baseResultMap">
+		select *
+		<include refid="baseSql"/>
+		<include refid="org.zunpeng.mapper.BaseMapper.base_sql_order_by_and_limit"/>
+	</select>
+
+	<select id="count" resultType="java.lang.Long">
+		select count(*)
+		<include refid="baseSql"/>
+	</select>
+
+</mapper>

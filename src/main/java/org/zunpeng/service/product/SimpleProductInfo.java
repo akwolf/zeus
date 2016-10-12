@@ -1,14 +1,14 @@
-package org.zunpeng.domain;
+package org.zunpeng.service.product;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 产品
- * Created by dapeng on 6/7/16.
+ * Created by dapeng on 2016/10/12.
  */
-public class ProductInfo extends AbstractEntity {
+public class SimpleProductInfo implements Serializable {
 
-	private static final long serialVersionUID = -6921862457432765953L;
+	private static final long serialVersionUID = 5710601228864463093L;
 
 	private String slug;
 
@@ -18,11 +18,19 @@ public class ProductInfo extends AbstractEntity {
 
 	private String description;
 
-	private String coverImg;
-
-	private long amount = 0;
+	private double price;
 
 	private Date lastModifyTime;
+
+	private Date createTime;
+
+	public String getSlug() {
+		return slug;
+	}
+
+	public void setSlug(String slug) {
+		this.slug = slug;
+	}
 
 	public String getName() {
 		return name;
@@ -48,12 +56,12 @@ public class ProductInfo extends AbstractEntity {
 		this.description = description;
 	}
 
-	public long getAmount() {
-		return amount;
+	public double getPrice() {
+		return price;
 	}
 
-	public void setAmount(long amount) {
-		this.amount = amount;
+	public void setPrice(double price) {
+		this.price = price;
 	}
 
 	public Date getLastModifyTime() {
@@ -64,19 +72,11 @@ public class ProductInfo extends AbstractEntity {
 		this.lastModifyTime = lastModifyTime;
 	}
 
-	public String getSlug() {
-		return slug;
+	public Date getCreateTime() {
+		return createTime;
 	}
 
-	public void setSlug(String slug) {
-		this.slug = slug;
-	}
-
-	public String getCoverImg() {
-		return coverImg;
-	}
-
-	public void setCoverImg(String coverImg) {
-		this.coverImg = coverImg;
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
 	}
 }

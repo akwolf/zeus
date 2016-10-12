@@ -159,7 +159,8 @@ public class RedisCachingAspect {
 		try {
 			for(Method method : methods){
 				String methodName = method.getName();
-				if(methodName.equals("getId") || methodName.equals("getSlug")){
+				if(methodName.equals("getId") || methodName.equals("getSlug")
+						|| method.equals("getUsername") || method.equals("getFkey")){
 					Object result = method.invoke(parameter);
 					if(result == null){
 						continue;

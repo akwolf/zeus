@@ -14,7 +14,7 @@ public @interface Caching {
 	 * 执行的操作是什么 插入还是删除
 	 * @return
 	 */
-	OperatorType operator();
+	OperatorType operator() default OperatorType.VIEW;
 
 	/**
 	 * 依赖的类其他Mapper类型
@@ -42,7 +42,12 @@ public @interface Caching {
 		/**
 		 * getById or getBySlug 方法上使用
 		 */
-		GET_SINGLE(4);
+		GET_SINGLE(4),
+
+		/**
+		 * 查询数据
+		 */
+		VIEW(5);
 
 		private int id;
 

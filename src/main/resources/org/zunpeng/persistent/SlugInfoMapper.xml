@@ -39,15 +39,7 @@
 	<select id="getAllLimit" resultMap="baseResultMap">
 		select *
 		<include refid="baseSql"/>
-		<if test="pageable.sort != null">
-			<foreach collection="pageable.sort" item="item" separator=", " index="index">
-				<if test="index == 0">
-					order by
-				</if>
-				${item.property} ${item.direction}
-			</foreach>
-		</if>
-		limit #{pageable.offset}, #{pageable.pageSize}
+		<include refid="org.zunpeng.mapper.BaseMapper.base_sql_order_by_and_limit"/>
 	</select>
 
 	<select id="count" resultType="java.lang.Long">
