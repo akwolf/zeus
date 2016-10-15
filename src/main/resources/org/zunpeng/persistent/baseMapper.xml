@@ -44,8 +44,8 @@
 	</sql>
 
 	<sql id="base_sql_order_by_and_limit">
-		<include refid="base_sql_order_by"/>
-		<include refid="base_sql_limit"/>
+		<include refid="org.zunpeng.mapper.BaseMapper.base_sql_order_by"/>
+		<include refid="org.zunpeng.mapper.BaseMapper.base_sql_limit"/>
 	</sql>
 
 </mapper>

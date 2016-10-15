@@ -1,29 +1,27 @@
 package org.zunpeng.core.shiro.config;
 
-import org.apache.shiro.authc.*;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.AuthenticationInfo;
+import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.credential.CredentialsMatcher;
 import org.apache.shiro.authz.AuthorizationInfo;
-import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.cache.Cache;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.SimplePrincipalCollection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import org.zunpeng.domain.AccountInfo;
-import org.zunpeng.mapper.AccountInfoMapper;
 
 @Component
 public class CustomSecurityRealm extends AuthorizingRealm {
 
 	private static Logger logger = LoggerFactory.getLogger(CustomSecurityRealm.class);
 
-	@Autowired
-	private AccountInfoMapper accountInfoMapper;
+//	@Autowired
+//	private AccountInfoMapper accountInfoMapper;
 
 	/**
 	 * 授权查询回调函数, 进行鉴权但缓存中无用户的授权信息时调用.
@@ -33,7 +31,7 @@ public class CustomSecurityRealm extends AuthorizingRealm {
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 //		logger.info("authorization: 授权回调函数 " + principals.getRealmNames());
 
-		EnhanceUser enhanceUser = (EnhanceUser) principals.fromRealm(getName()).iterator().next();
+		/*EnhanceUser enhanceUser = (EnhanceUser) principals.fromRealm(getName()).iterator().next();
 		SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
 
 		AccountInfo accountInfo = accountInfoMapper.getById(enhanceUser.getAccountId());
@@ -41,7 +39,8 @@ public class CustomSecurityRealm extends AuthorizingRealm {
 			return null;
 		}
 
-		return simpleAuthorizationInfo;
+		return simpleAuthorizationInfo;*/
+		return null;
 	}
 
 	/**
@@ -52,7 +51,7 @@ public class CustomSecurityRealm extends AuthorizingRealm {
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 //		logger.info("authentication: 认证回调函数");
 
-		UsernamePasswordToken usernamePasswordToken = (UsernamePasswordToken) token;
+		/*UsernamePasswordToken usernamePasswordToken = (UsernamePasswordToken) token;
 
 		AccountInfo accountInfo = accountInfoMapper.getByUsername(usernamePasswordToken.getUsername());
 		if(accountInfo == null){
@@ -61,7 +60,8 @@ public class CustomSecurityRealm extends AuthorizingRealm {
 		accountInfo.setBrief("hello world");
 		accountInfoMapper.update(accountInfo);
 
-		return new SimpleAuthenticationInfo(new EnhanceUser(accountInfo.getId(), accountInfo.getSlug()), accountInfo.getPassword(), getName());
+		return new SimpleAuthenticationInfo(new EnhanceUser(accountInfo.getId(), accountInfo.getSlug()), accountInfo.getPassword(), getName());*/
+		return null;
 	}
 
 	@Override

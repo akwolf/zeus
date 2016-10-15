@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.BoundValueOperations;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 import org.zunpeng.core.annotation.Caching;
 
 import java.lang.reflect.Method;
@@ -27,7 +26,6 @@ import java.util.concurrent.TimeUnit;
  */
 @Component
 @Aspect
-@Transactional
 public class RedisCachingAspect {
 
 	private static Logger logger = LoggerFactory.getLogger(RedisCachingAspect.class);

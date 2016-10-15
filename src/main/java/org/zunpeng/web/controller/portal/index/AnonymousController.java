@@ -51,7 +51,7 @@ public class AnonymousController {
 
 	@RequestMapping("/fd5c69055541424cad5925ef3c1c58ec")
 	public String test2(Model model){
-		model.addAttribute("url", "http://zeus-video.zunpeng.org/bea6b4ef365c4eaead113a24a7794376.m3u8?pm3u8/0/deadline/1476457965&e=1476433965&token=HLSXTk-f9pJDJhDFX-a6gcVcxuKDKvqaUmmhkQwE:7bnd5uooC61ZzBT6hM3oBK8UbCw=");
+		model.addAttribute("url", "http://zeus-video.zunpeng.org/bea6b4ef365c4eaead113a24a7794376.m3u8?pm3u8/0/deadline/1476563206&e=1476539206&token=HLSXTk-f9pJDJhDFX-a6gcVcxuKDKvqaUmmhkQwE:DNGxqhI7N5dOskizbCjqsOzY1_8=");
 		return "portal/index/test";
 	}
 
