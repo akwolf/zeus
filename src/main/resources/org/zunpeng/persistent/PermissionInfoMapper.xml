@@ -3,7 +3,7 @@
 <mapper namespace="org.zunpeng.mapper.PermissionInfoMapper">
 	<resultMap id="baseResultMap" type="org.zunpeng.domain.PermissionInfo">
 		<id property="id" column="id" jdbcType="BIGINT"/>
-		<result property="permission" column="" jdbcType="VARCHAR"/>
+		<result property="permission" column="permission" jdbcType="VARCHAR"/>
 
 		<result property="createTime" column="create_time"/>
 	</resultMap>

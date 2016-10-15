@@ -6,11 +6,14 @@
 		<id property="id" column="id" jdbcType="BIGINT"/>
 		<result property="slug" column="slug" jdbcType="VARCHAR"/>
 		<result property="name" column="name" jdbcType="VARCHAR"/>
+		<result property="coverImg" column="cover_img" jdbcType="VARCHAR"/>
 		<result property="brief" column="brief" jdbcType="VARCHAR"/>
 		<result property="description" column="description" jdbcType="VARCHAR"/>
 		<result property="createTime" column="create_time"/>
 		<result property="lastModifyTime" column="last_modify_time"/>
 		<result property="amount" column="amount" jdbcType="BIGINT"/>
+		<result property="deleted" column="deleted" jdbcType="INTEGER"/>
+		<result property="published" column="published" jdbcType="INTEGER"/>
 	</resultMap>
 
 	<sql id="baseSql">
@@ -19,14 +22,15 @@
 	</sql>
 
 	<insert id="save" useGeneratedKeys="true" keyProperty="id">
-		insert into product_info(name, brief, description, create_time, last_modify_time, amount)
-		values(#{name}, #{brief}, #{description}, #{createTime}, #{lastModifyTime}, #{amount})
+		insert into product_info(name, brief, deleted, published, cover_img, description, create_time, last_modify_time, amount)
+		values(#{name}, #{brief}, #{deleted}, #{published}, #{coverImg} #{description}, #{createTime}, #{lastModifyTime}, #{amount})
 	</insert>
 
 	<update id="update">
 		update product_info
 		set slug = #{slug}, name = #{name}, brief = #{brief}, description = #{description},
-		    last_modify_time = #{lastModifyTime}, amount = #{amount}
+		    last_modify_time = #{lastModifyTime}, amount = #{amount}, deleted = #{deleted},
+		    published = #{published}, cover_img = #{coverImg}
 		where id = #{id}
 	</update>
 

@@ -1,13 +1,11 @@
-package org.zunpeng.web.controller.admin.solution;
-
-import org.springframework.web.multipart.MultipartFile;
+package org.zunpeng.service.solution;
 
 import java.util.Date;
 
 /**
- * Created by dapeng on 16/8/7.
+ * Created by dapeng on 2016/10/14.
  */
-public class SolutionFormBean {
+public class SimpleSolutionInfo {
 
 	private String slug;
 
@@ -19,13 +17,19 @@ public class SolutionFormBean {
 
 	private Date lastModifyTime;
 
-	private boolean published = false;
+	private boolean disabled = false;
 
 	private boolean deleted = false;
 
 	private String technology;
 
-	private MultipartFile upload;
+	public String getSlug() {
+		return slug;
+	}
+
+	public void setSlug(String slug) {
+		this.slug = slug;
+	}
 
 	public String getTitle() {
 		return title;
@@ -59,6 +63,14 @@ public class SolutionFormBean {
 		this.lastModifyTime = lastModifyTime;
 	}
 
+	public boolean isDisabled() {
+		return disabled;
+	}
+
+	public void setDisabled(boolean disabled) {
+		this.disabled = disabled;
+	}
+
 	public boolean isDeleted() {
 		return deleted;
 	}
@@ -73,29 +85,5 @@ public class SolutionFormBean {
 
 	public void setTechnology(String technology) {
 		this.technology = technology;
-	}
-
-	public String getSlug() {
-		return slug;
-	}
-
-	public void setSlug(String slug) {
-		this.slug = slug;
-	}
-
-	public boolean isPublished() {
-		return published;
-	}
-
-	public void setPublished(boolean published) {
-		this.published = published;
-	}
-
-	public MultipartFile getUpload() {
-		return upload;
-	}
-
-	public void setUpload(MultipartFile upload) {
-		this.upload = upload;
 	}
 }

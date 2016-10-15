@@ -1,44 +1,45 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="org.zunpeng.mapper.ArticleInfoMapper">
+<mapper namespace="org.zunpeng.mapper.SolutionInfoMapper">
 
-	<resultMap id="baseResultMap" type="org.zunpeng.domain.ArticleInfo">
+	<resultMap id="baseResultMap" type="org.zunpeng.domain.SolutionInfo">
 		<id property="id" column="id" jdbcType="BIGINT"/>
 		<result property="slug" column="slug" jdbcType="VARCHAR"/>
 		<result property="title" column="title" jdbcType="VARCHAR"/>
-		<result property="coverImg" column="cover_img" jdbcType="VARCHAR"/>
 		<result property="description" column="description" jdbcType="VARCHAR"/>
+		<result property="coverImg" column="cover_img" jdbcType="VARCHAR"/>
 		<result property="content" column="content" jdbcType="VARCHAR"/>
 		<result property="deleted" column="deleted" jdbcType="INTEGER"/>
 		<result property="published" column="published" jdbcType="INTEGER"/>
+		<result property="technology" column="technology" jdbcType="VARCHAR"/>
 		<result property="createTime" column="create_time"/>
 		<result property="lastModifyTime" column="last_modify_time"/>
 	</resultMap>
 
 	<sql id="baseSql">
-		from article_info
+		from solution_info
 		<include refid="org.zunpeng.mapper.BaseMapper.base_sql_condition"/>
 	</sql>
 
 	<insert id="save" useGeneratedKeys="true" keyProperty="id">
-		insert into article_info(title, description, cover_img, content, deleted, published, create_time, last_modify_time)
-		values(#{title}, #{description}, #{coverImg}, #{content}, #{deleted}, #{published}, #{createTime}, #{lastModifyTime})
+		insert into solution_info(title, cover_img, description, content, deleted, published, technology, create_time, last_modify_time)
+		values(#{title}, #{coverImg}, #{description}, #{content}, #{deleted}, #{published}, #{technology}, #{createTime}, #{lastModifyTime})
 	</insert>
 
 	<update id="update">
-		update article_info
+		update solution_info
 		set slug = #{slug}, title = #{title}, description = #{description}, content = #{content},
-			deleted = #{deleted}, published = #{published}, last_modify_time = #{lastModifyTime},
+			technology = #{technology} , deleted = #{deleted}, published= #{published}, last_modify_time = #{lastModifyTime},
 			cover_img = #{coverImg}
 		where id = #{id}
 	</update>
 
 	<select id="getById" resultMap="baseResultMap">
-		select * from article_info where id = #{id}
+		select * from solution_info where id = #{id}
 	</select>
 
 	<select id="getBySlug" resultMap="baseResultMap">
-		select * from article_info where slug = #{slug}
+		select * from solution_info where slug = #{slug}
 	</select>
 
 	<select id="getAllLimit" resultMap="baseResultMap">

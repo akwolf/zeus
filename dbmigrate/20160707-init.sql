@@ -3,10 +3,11 @@ create table article_info (
 	slug varchar(20),
 	title varchar(500),
 	description varchar(1000),
+	cover_img varchar(200),
 	content text,
 	create_time datetime,
 	last_modify_time datetime,
-	disabled tinyint(4) default 0,
+	published tinyint(4) default 0,
 	deleted tinyint(4) default 0
 );
 
@@ -30,6 +31,36 @@ create table account_info (
 	subscribe_time datetime
 );
 
+create table account_permission (
+	id bigint(20) primary key auto_increment,
+	account_id bigint(20),
+	permission_id bigint(20),
+	disabled tinyint(4) default 0,
+	create_time datetime,
+	last_modify_time datetime
+);
+
+create table permission_info (
+	id bigint(20) primary key auto_increment,
+	permission varchar(200),
+	create_time datetime
+);
+
+create table account_role (
+	id bigint(20) primary key auto_increment,
+	account_id bigint(20),
+	role_id bigint(20),
+	disabled tinyint(4) default 0,
+	create_time datetime,
+	last_modify_time datetime
+);
+
+create table role_info (
+	id bigint(20) primary key auto_increment,
+	role varchar(200),
+	create_time datetime
+);
+
 
 create table banner_info (
 	id bigint(20) primary key auto_increment,
@@ -50,7 +81,9 @@ create table company_info (
 	brief varchar(500),
 	description text,
 	logo_img varchar(500),
-	contact varchar(200)
+	contact varchar(200),
+	create_time datetime,
+	last_modify_time datetime
 );
 
 create table product_info (
@@ -58,10 +91,46 @@ create table product_info (
 	slug varchar(20),
 	name varchar(500),
 	brief varchar(500),
-	description text,
+	description longtext,
+	cover_img varchar(200),
 	amount bigint(20) default 0,
+	deleted tinyint(4) default 0,
+	published tinyint(4) default 0,
 	create_time datetime,
 	last_modify_time datetime
 );
 
+create table lesson_video_info (
+	id bigint(20) primary key auto_increment,
+	fkey varchar(200),
+	original_file_name varchar(500),
+	hash varchar(200),
+	duration bigint(20) default 0,
+	size bigint(20) default 0,
+	status tinyint(4) default 0,
+	cover_img varchar(255),
+	m3u8_key varchar(200),
+	mobile_m3u8_key varchar(200),
+	create_time datetime,
+	last_modify_time datetime
+);
+
+create table solution_info (
+	id bigint(20) primary key auto_increment,
+	slug varchar(20),
+	title varchar(255),
+	description longtext,
+	cover_img varchar(200),
+	content longtext,
+	technology longtext,
+	deleted tinyint(4) default 0,
+	published tinyint(4) default 0,
+	create_time datetime,
+	last_modify_time datetime
+);
+
+create table slug_info (
+	id bigint(20) primary key auto_increment,
+	slug varchar(20)
+);
 

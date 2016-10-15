@@ -19,6 +19,10 @@ public class ProductFormBean {
 
 	private MultipartFile upload;
 
+	private boolean deleted;
+
+	private boolean published;
+
 	public String getSlug() {
 		return slug;
 	}
@@ -65,5 +69,21 @@ public class ProductFormBean {
 
 	public void setUpload(MultipartFile upload) {
 		this.upload = upload;
+	}
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
+	}
+
+	public boolean isPublished() {
+		return published;
+	}
+
+	public void setPublished(boolean published) {
+		this.published = published;
 	}
 }

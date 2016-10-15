@@ -20,9 +20,11 @@ public class ArticleInfo extends AbstractEntity {
 
 	private Date lastModifyTime;
 
-	private boolean disabled = false;
+	private boolean published = false;
 
 	private boolean deleted = false;
+
+	private String coverImg;
 
 	public String getSlug() {
 		return slug;
@@ -56,14 +58,6 @@ public class ArticleInfo extends AbstractEntity {
 		this.lastModifyTime = lastModifyTime;
 	}
 
-	public boolean isDisabled() {
-		return disabled;
-	}
-
-	public void setDisabled(boolean disabled) {
-		this.disabled = disabled;
-	}
-
 	public boolean isDeleted() {
 		return deleted;
 	}
@@ -78,5 +72,21 @@ public class ArticleInfo extends AbstractEntity {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public boolean isPublished() {
+		return published;
+	}
+
+	public void setPublished(boolean published) {
+		this.published = published;
+	}
+
+	public String getCoverImg() {
+		return coverImg;
+	}
+
+	public void setCoverImg(String coverImg) {
+		this.coverImg = coverImg;
 	}
 }

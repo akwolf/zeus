@@ -1,5 +1,6 @@
 package org.zunpeng.web.controller.admin.solution;
 
+import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Maps;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,11 +9,11 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.zunpeng.core.page.PageWrapper;
+import org.zunpeng.service.solution.SimpleSolutionInfo;
+import org.zunpeng.service.solution.SolutionService;
 
 import javax.validation.Valid;
 import java.util.Map;
@@ -26,9 +27,12 @@ public class SolutionController {
 
 	private static Logger logger = LoggerFactory.getLogger(SolutionController.class);
 
+	private SolutionService solutionService;
+
 	@RequestMapping("/solution")
 	public String index(@PageableDefault(size = 20) Pageable pageable, Model model){
-
+		PageWrapper<SimpleSolutionInfo> page = solutionService.page(pageable);
+		model.addAttribute("page", page);
 		return "admin/solution/solution_list";
 	}
 
@@ -39,31 +43,65 @@ public class SolutionController {
 	}
 
 	@RequestMapping(value = "/solution/add", method = RequestMethod.POST)
-	public String add(@ModelAttribute @Valid SolutionFormBean formBean, BindingResult result, RedirectAttributes redirectAttributes){
+	public String add(@ModelAttribute @Valid SolutionFormBean formBean, BindingResult result, RedirectAttributes redirectAttributes, Model model){
+		if(result.hasErrors()){
+			logger.info(JSONObject.toJSONString(result.getAllErrors()));
+			model.addAttribute("solutionInfo", formBean);
+			return "admin/solution/solution_detail";
+		}
 
-		return "redirect:/admin/solution/edit";
+		try {
+			SimpleSolutionInfo simpleSolutionInfo = solutionService.add(formBean);
+			redirectAttributes.addAttribute("slug", simpleSolutionInfo.getSlug());
+			return "redirect:/admin/solution/edit";
+		} catch(Throwable t){
+			logger.info(t.getMessage(), t);
+			model.addAttribute("solutionInfo", formBean);
+			return "admin/solution/solution_detail";
+		}
 	}
 
 	@RequestMapping(value = "/solution/edit", method = RequestMethod.GET)
-	public String edit(Model model){
-
+	public String edit(@RequestParam String slug, Model model){
+		SimpleSolutionInfo simpleSolutionInfo = solutionService.getBySlug(slug);
+		model.addAttribute("solutionInfo", simpleSolutionInfo);
 		return "admin/solution/solution_detail";
 	}
 
 	@RequestMapping(value = "/solution/edit", method = RequestMethod.POST)
-	public String update(@ModelAttribute @Valid SolutionFormBean formBean, BindingResult result, RedirectAttributes redirectAttributes){
+	public String update(@ModelAttribute @Valid SolutionFormBean formBean, BindingResult result, RedirectAttributes redirectAttributes, Model model){
+		if(result.hasErrors()){
+			logger.info(JSONObject.toJSONString(result.getAllErrors()));
+			model.addAttribute("solutionInfo", formBean);
+			return "admin/solution/solution_detail";
+		}
 
-		return "redirect:/admin/solution/edit";
+		try {
+			SimpleSolutionInfo simpleSolutionInfo = solutionService.edit(formBean);
+			redirectAttributes.addAttribute("slug", simpleSolutionInfo.getSlug());
+			return "redirect:/admin/solution/edit";
+		} catch(Throwable t){
+			logger.info(t.getMessage(), t);
+			model.addAttribute("solutionInfo", formBean);
+			return "admin/solution/solution_detail";
+		}
 	}
 
 	@RequestMapping(value = "/ajax/solution/edit", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> ajaxUpdate(@ModelAttribute SolutionFormBean formBean){
+	public Map<String, Object> ajaxUpdate(@ModelAttribute @Valid SolutionFormBean formBean, BindingResult result){
 		Map<String, Object> map = Maps.newHashMap();
 
-		try {
+		if(result.hasErrors()){
+			logger.info(JSONObject.toJSONString(result.getAllErrors()));
+			map.put("success", false);
+			return map;
+		}
 
+		try {
+			SimpleSolutionInfo simpleSolutionInfo = solutionService.edit(formBean);
 			map.put("success", true);
+			map.put("solutionInfo", simpleSolutionInfo);
 		} catch(Throwable t){
 			logger.info(t.getMessage(), t);
 			map.put("success", false);

@@ -37,6 +37,8 @@ public class RedisCachingAspect {
 	
 	private String redisDbPrefix = "redis_database:";
 
+	private String nullFlag = "5a8a151bff5e4964b55aa6d4f9108335";
+
 	@Around("execution(* org.zunpeng.mapper.*.*(..))")
 	public Object readCache(ProceedingJoinPoint joinPoint) throws Throwable {
 		MethodSignature joinPointObject = (MethodSignature) joinPoint.getSignature();
@@ -122,12 +124,18 @@ public class RedisCachingAspect {
 			String value = boundValueOperations.get();
 
 			if(stringRedisTemplate.hasKey(key)){
+				if(nullFlag.equals(value)){
+					return null;
+				}
 				return JSONObject.parseObject(value, returnType);
 			} else {
 				Object returnObject = joinPoint.proceed();
 
 				if(returnObject != null){
 					boundValueOperations.set(JSONObject.toJSONString(returnObject));
+					boundValueOperations.expire(1, TimeUnit.DAYS);
+				} else {
+					boundValueOperations.set(nullFlag);
 					boundValueOperations.expire(1, TimeUnit.DAYS);
 				}
 

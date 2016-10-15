@@ -1,24 +1,11 @@
 package org.zunpeng.service.account;
 
-import com.alibaba.fastjson.JSONObject;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.oldpeng.core.utils.BeanCopyUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.zunpeng.core.mybatis.Criteria;
-import org.zunpeng.core.mybatis.Criterion;
-import org.zunpeng.core.page.PageWrapper;
-import org.zunpeng.core.utils.SlugGenerateUtils;
-import org.zunpeng.domain.SlugInfo;
-import org.zunpeng.mapper.SlugInfoMapper;
-
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
+import org.zunpeng.domain.AccountInfo;
+import org.zunpeng.mapper.AccountInfoMapper;
 
 /**
  * Created by dapeng on 7/4/16.
@@ -27,75 +14,29 @@ import java.util.UUID;
 @Transactional
 public class AccountServiceImpl implements AccountService {
 
-	private static Logger logger = LoggerFactory.getLogger(AccountServiceImpl.class);
-
 	@Autowired
-	private SlugInfoMapper slugInfoMapper;
+	private AccountInfoMapper accountInfoMapper;
 
 	@Override
-	public Object test() {
-		return slugInfoMapper.getById(2L);
+	public SimpleAccountInfo getById(Long id) {
+		return trans2SimpleAccountInfo(accountInfoMapper.getById(id));
 	}
 
 	@Override
-	public void testAdd() {
-		Set<String> set = Sets.newHashSet();
-		for(int i = 0; i < 100; i ++){
-			set.add(SlugGenerateUtils.generate(6));
+	public SimpleAccountInfo getByUsername(String username) {
+		return trans2SimpleAccountInfo(accountInfoMapper.getByUsername(username));
+	}
+
+	@Override
+	public SimpleAccountInfo getBySlug(String slug) {
+		return trans2SimpleAccountInfo(accountInfoMapper.getBySlug(slug));
+	}
+
+	private SimpleAccountInfo trans2SimpleAccountInfo(AccountInfo accountInfo){
+		if(accountInfo == null){
+			return null;
 		}
-		slugInfoMapper.batchInsert(set);
+
+		return BeanCopyUtils.copy(accountInfo, SimpleAccountInfo.class);
 	}
-
-	@Override
-	public void testAddOne() {
-		SlugInfo slugInfo = new SlugInfo();
-		slugInfo.setSlug(UUID.randomUUID().toString().replace("-", ""));
-		slugInfoMapper.insert(slugInfo);
-		logger.info("slugInfo: " + JSONObject.toJSONString(slugInfo));
-	}
-
-	@Override
-	public PageWrapper<SlugInfo> page(Pageable pageable) {
-		List<Criterion> criterionList = Lists.newArrayList();
-		criterionList.add(new Criterion("id", "gt", 100));
-		criterionList.add(new Criterion("id", "le", 200));
-		criterionList.add(new Criterion("slug", "like", "6"));
-		criterionList.add(new Criterion("id", "bt", 1, 150));
-		criterionList.add(new Criterion("id", "notnull"));
-
-		List<Integer> list = Lists.newArrayList();
-		for(int i = 100; i < 200; i ++){
-			list.add(i);
-		}
-		criterionList.add(new Criterion("id", "in", list.toArray()));
-
-		Criteria criteria = new Criteria(pageable, criterionList);
-
-		List<SlugInfo> items = slugInfoMapper.getAllLimit(criteria);
-		long totalCount = slugInfoMapper.count(criteria);
-		PageWrapper<SlugInfo> page = new PageWrapper<>(pageable, items, totalCount);
-		return page;
-	}
-
-	@Override
-	public void testFind(Long id) {
-		id = (id == null ? 5041L : id);
-		SlugInfo slugInfo = slugInfoMapper.getById(id);
-		logger.info("slugInfo: " + JSONObject.toJSONString(slugInfo));
-	}
-
-	@Override
-	public void testFindBySlug(String slug) {
-		slug = (slug == null ? "88d95a5ca5fe453b8eee4a9929721242" : slug);
-		SlugInfo slugInfo = slugInfoMapper.getBySlug(slug);
-		logger.info("slugInfo: " + JSONObject.toJSONString(slugInfo));
-	}
-
-	@Override
-	public void updateSlug() {
-		SlugInfo slugInfo = slugInfoMapper.getById(5041L);
-		slugInfo.setSlug("wangzhan");
-		slugInfoMapper.update(slugInfo);
-	}
-
 }

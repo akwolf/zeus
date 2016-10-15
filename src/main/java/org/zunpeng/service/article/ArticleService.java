@@ -4,6 +4,9 @@ import org.springframework.data.domain.Pageable;
 import org.zunpeng.core.page.PageWrapper;
 import org.zunpeng.web.controller.admin.article.ArticleFormBean;
 
+import java.io.IOException;
+import java.util.List;
+
 /**
  * Created by dapeng on 2016/10/12.
  */
@@ -13,7 +16,9 @@ public interface ArticleService {
 
 	SimpleArticleInfo getBySlug(String slug);
 
-	SimpleArticleInfo add(ArticleFormBean formBean);
+	SimpleArticleInfo add(ArticleFormBean formBean) throws IOException;
 
-	SimpleArticleInfo edit(ArticleFormBean formBean);
+	SimpleArticleInfo edit(ArticleFormBean formBean) throws IOException;
+
+	List<SimpleArticleInfo> getAllRecommend();
 }

@@ -24,6 +24,10 @@ public class ProductInfo extends AbstractEntity {
 
 	private Date lastModifyTime;
 
+	private boolean deleted = false;
+
+	private boolean published = false;
+
 	public String getName() {
 		return name;
 	}
@@ -78,5 +82,21 @@ public class ProductInfo extends AbstractEntity {
 
 	public void setCoverImg(String coverImg) {
 		this.coverImg = coverImg;
+	}
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
+	}
+
+	public boolean isPublished() {
+		return published;
+	}
+
+	public void setPublished(boolean published) {
+		this.published = published;
 	}
 }

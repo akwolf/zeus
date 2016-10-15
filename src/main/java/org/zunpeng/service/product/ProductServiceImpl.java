@@ -5,11 +5,14 @@ import com.oldpeng.core.utils.BeanCopyUtils;
 import com.oldpeng.core.utils.MathUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import org.zunpeng.core.mybatis.Criteria;
+import org.zunpeng.core.mybatis.Criterion;
 import org.zunpeng.core.page.PageWrapper;
 import org.zunpeng.core.utils.CleanContentUtils;
 import org.zunpeng.domain.ProductInfo;
@@ -68,6 +71,8 @@ public class ProductServiceImpl implements ProductService {
 		productInfo.setName(CleanContentUtils.clean(formBean.getName()));
 		productInfo.setLastModifyTime(new Date());
 		productInfo.setCreateTime(new Date());
+		productInfo.setPublished(formBean.isPublished());
+		productInfo.setDeleted(formBean.isDeleted());
 
 		MultipartFile uploadFile = formBean.getUpload();
 		if(uploadFile != null && !uploadFile.isEmpty()){
@@ -112,7 +117,25 @@ public class ProductServiceImpl implements ProductService {
 		return trans2SimpleProductInfo(productInfo);
 	}
 
+	@Override
+	public List<SimpleProductInfo> getAllRecommend() {
+		PageRequest pageRequest = new PageRequest(0, 10, Sort.Direction.ASC, "id");
+		List<Criterion> criterionList = Lists.newArrayList();
+
+		criterionList.add(new Criterion("deleted", "eq", false));
+		criterionList.add(new Criterion("published", "eq", true));
+
+		Criteria criteria = new Criteria(pageRequest, criterionList);
+
+		List<ProductInfo> productInfoList = productInfoMapper.getAllLimit(criteria);
+		return productInfoList.stream().map(this::trans2SimpleProductInfo).collect(Collectors.toList());
+	}
+
 	private SimpleProductInfo trans2SimpleProductInfo(ProductInfo productInfo) {
+		if(productInfo == null){
+			return null;
+		}
+
 		SimpleProductInfo simpleProductInfo = BeanCopyUtils.copy(productInfo, SimpleProductInfo.class);
 		simpleProductInfo.setPrice(MathUtils.convert2Dollar(productInfo.getAmount()));
 		return simpleProductInfo;

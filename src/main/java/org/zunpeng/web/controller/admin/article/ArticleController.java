@@ -55,10 +55,16 @@ public class ArticleController {
 			return "admin/article/article_edit";
 		}
 
-		SimpleArticleInfo simpleArticleInfo = articleService.add(formBean);
-		redirectAttributes.addAttribute("slug", simpleArticleInfo.getSlug());
+		try {
+			SimpleArticleInfo simpleArticleInfo = articleService.add(formBean);
+			redirectAttributes.addAttribute("slug", simpleArticleInfo.getSlug());
 
-		return "redirect:/admin/article/edit";
+			return "redirect:/admin/article/edit";
+		} catch(Throwable t){
+			logger.info(t.getMessage(), t);
+			model.addAttribute("articleInfo", formBean);
+			return "admin/article/article_edit";
+		}
 	}
 
 	@RequestMapping(value = "/article/edit", method = RequestMethod.GET)
@@ -76,9 +82,15 @@ public class ArticleController {
 			return "admin/article/article_edit";
 		}
 
-		SimpleArticleInfo simpleArticleInfo = articleService.edit(formBean);
-		redirectAttributes.addAttribute("slug", simpleArticleInfo.getSlug());
-		return "redirect:/admin/article/edit";
+		try {
+			SimpleArticleInfo simpleArticleInfo = articleService.edit(formBean);
+			redirectAttributes.addAttribute("slug", simpleArticleInfo.getSlug());
+			return "redirect:/admin/article/edit";
+		} catch(Throwable t){
+			logger.info(t.getMessage(), t);
+			model.addAttribute("articleInfo", formBean);
+			return "admin/article/article_edit";
+		}
 	}
 
 	@RequestMapping(value = "/ajax/article/edit", method = RequestMethod.POST)

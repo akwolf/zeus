@@ -1,5 +1,7 @@
 package org.zunpeng.web.controller.admin.article;
 
+import org.springframework.web.multipart.MultipartFile;
+
 /**
  * Created by dapeng on 16/8/7.
  */
@@ -13,9 +15,11 @@ public class ArticleFormBean {
 
 	private String content;
 
-	private boolean disabled = false;
+	private boolean published = false;
 
 	private boolean deleted = false;
+
+	private MultipartFile upload;
 
 	public String getSlug() {
 		return slug;
@@ -49,19 +53,27 @@ public class ArticleFormBean {
 		this.content = content;
 	}
 
-	public boolean isDisabled() {
-		return disabled;
-	}
-
-	public void setDisabled(boolean disabled) {
-		this.disabled = disabled;
-	}
-
 	public boolean isDeleted() {
 		return deleted;
 	}
 
 	public void setDeleted(boolean deleted) {
 		this.deleted = deleted;
+	}
+
+	public boolean isPublished() {
+		return published;
+	}
+
+	public void setPublished(boolean published) {
+		this.published = published;
+	}
+
+	public MultipartFile getUpload() {
+		return upload;
+	}
+
+	public void setUpload(MultipartFile upload) {
+		this.upload = upload;
 	}
 }

@@ -5,6 +5,7 @@ import org.zunpeng.core.page.PageWrapper;
 import org.zunpeng.web.controller.admin.product.ProductFormBean;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by dapeng on 2016/10/12.
@@ -18,4 +19,6 @@ public interface ProductService {
 	SimpleProductInfo add(ProductFormBean formBean) throws IOException;
 
 	SimpleProductInfo edit(ProductFormBean formBean) throws IOException;
+
+	List<SimpleProductInfo> getAllRecommend();
 }
