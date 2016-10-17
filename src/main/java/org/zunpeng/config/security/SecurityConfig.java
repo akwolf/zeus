@@ -15,19 +15,17 @@ import org.apache.shiro.web.mgt.DefaultWebSessionStorageEvaluator;
 import org.apache.shiro.web.mgt.WebSecurityManager;
 import org.apache.shiro.web.servlet.SimpleCookie;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
-import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.MethodInvokingFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.zunpeng.core.shiro.ZeusShiroFilterFactoryBean;
 import org.zunpeng.core.shiro.config.CustomSecurityRealm;
 import org.zunpeng.core.shiro.other.AnyOfRolesAuthorizationFilter;
-import org.zunpeng.core.shiro.session.redis.RedisSessionDAO;
 import org.zunpeng.core.shiro.redis.RedisTemplateBean;
+import org.zunpeng.core.shiro.session.redis.RedisSessionDAO;
 
 import javax.servlet.Filter;
 import java.util.LinkedHashMap;
@@ -41,19 +39,6 @@ public class SecurityConfig {
 	@Bean
 	public LifecycleBeanPostProcessor lifecycleBeanPostProcessor(){
 		return new LifecycleBeanPostProcessor();
-	}
-
-	@Bean
-	@DependsOn("lifecycleBeanPostProcessor")
-	public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator(){
-		DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator = new DefaultAdvisorAutoProxyCreator();
-		defaultAdvisorAutoProxyCreator.setProxyTargetClass(true);
-		return defaultAdvisorAutoProxyCreator;
-	}
-
-	@Bean
-	public CustomSecurityRealm customSecurityRealm(){
-		return new CustomSecurityRealm();
 	}
 
 	@Bean

@@ -33,7 +33,7 @@ public class RedisCachingAspect {
 	@Autowired
 	private StringRedisTemplate stringRedisTemplate;
 	
-	private String redisDbPrefix = "redis_database:";
+	private String redisDbPrefix = "zeus:redis_database:";
 
 	private String nullFlag = "5a8a151bff5e4964b55aa6d4f9108335";
 

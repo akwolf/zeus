@@ -40,6 +40,15 @@ create table account_permission (
 	last_modify_time datetime
 );
 
+create table role_permission (
+	id bigint(20) primary key auto_increment,
+	role_id bigint(20),
+	permission_id bigint(20),
+	disabled tinyint(4) default 0,
+	create_time datetime,
+	last_modify_time datetime
+);
+
 create table permission_info (
 	id bigint(20) primary key auto_increment,
 	permission varchar(200),

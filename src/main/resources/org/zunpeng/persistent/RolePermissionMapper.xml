@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.zunpeng.mapper.RolePermissionMapper">
+	<resultMap id="baseResultMap" type="org.zunpeng.domain.RolePermission">
+		<id property="id" column="id" jdbcType="BIGINT"/>
+		<result property="roleId" column="role_id" jdbcType="BIGINT"/>
+		<result property="permissionId" column="permission_id" jdbcType="BIGINT"/>
+		<result property="disabled" column="disabled" jdbcType="INTEGER"/>
+
+		<result property="createTime" column="create_time"/>
+		<result property="lastModifyTime" column="last_modify_time"/>
+	</resultMap>
+
+	<resultMap id="accountPermissionBean" type="org.zunpeng.mapper.result.AccountPermissionBean">
+		<result property="id" column="id" jdbcType="BIGINT"/>
+		<result property="permissionId" column="permission_id" jdbcType="BIGINT"/>
+		<result property="permission" column="permission" jdbcType="VARCHAR"/>
+		<result property="roleId" column="role_id" jdbcType="BIGINT"/>
+		<result property="role" column="role" jdbcType="VARCHAR"/>
+		<result property="deleted" column="deleted" jdbcType="INTEGER"/>
+		<result property="createTime" column="create_time"/>
+	</resultMap>
+
+	<insert id="save" useGeneratedKeys="true" keyProperty="id">
+		insert into role_permission (role_id, permission_id, disabled, create_time, last_modify_time)
+		values(#{roleId}, #{permissionId}, #{disabled}, #{createTime}, #{lastModifyTime})
+	</insert>
+
+	<update id="update">
+		update role_permission
+		set disabled = #{disabled}, last_modify_time = #{lastModifyTime}
+		where id = #{id}
+	</update>
+
+	<select id="getById" resultMap="baseResultMap">
+		select * from role_permission where id = #{id}
+	</select>
+
+	<select id="getAllByAccountId" resultMap="accountPermissionBean">
+		select ap.id as id, ap.permission_id as permission_id, ap.deleted as deleted,
+		ap.create_time as create_time, pi.permission as permission from account_permission ap
+		inner join permission_info pi = ap.permission_id = pi.id
+		where ap.account_id = #{accountId}
+	</select>
+</mapper>
