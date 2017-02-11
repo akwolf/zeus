@@ -16,7 +16,7 @@ import org.zunpeng.core.utils.SlugGenerateUtils;
  */
 public class QiniuTest {
 
-	Auth auth = Auth.create("HLSXTk-f9pJDJhDFX-a6gcVcxuKDKvqaUmmhkQwE", "Gs9_cC96ttqseb50gpqe0sHNE34PCoKmvHzjy2pW");
+	Auth auth = Auth.create("4WsVSiezxXxOqI8YYK4TyooB5KK3eWP336ni_1Kw", "xYrSs87KsqbtNW0U6UItCPEBrbhC_FJAxAKr-Jr6");
 	String fops = "avthumb/m3u8/noDomain/1/segtime/10/ab/64k/ar/44100/acodec/libfaac/r/25/vcodec/libx264/stripmeta/0";
 	String key = "achaijing.mp4";
 	String bucket = "zeus-video";
@@ -66,5 +66,12 @@ public class QiniuTest {
 	public void demo5(){
 		System.out.println(UuidUtils.generate());
 		System.out.println(SlugGenerateUtils.generate(16));
+	}
+
+	@Test
+	public void demo16() throws Throwable {
+		BucketManager bucketManager = new BucketManager(auth);
+//		System.out.println(JSONObject.toJSONString(bucketManager.stat(bucket, key)));
+		bucketManager.stat(bucket, "hlsf");
 	}
 }

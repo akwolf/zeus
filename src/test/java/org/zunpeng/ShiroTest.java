@@ -10,9 +10,9 @@ public class ShiroTest {
 
 	@Test
 	public void demo(){
-		System.out.println(BCrypt.hashpw("hello", BCrypt.gensalt()));
+		System.out.println(BCrypt.hashpw("123456", BCrypt.gensalt()));
 	}
 	/*
-	insert into account_info (username, passwd) values ("13260091590", "$2a$10$JA5HGWu46xOq5uMphenUce1B/DBQIiYstGpU2eKempixHXwtcpH0u");
+	insert into account_info (username, passwd) values ("13260091590", "$2a$10$kX.LqZDu7gzLC5pPVawgmO2tZaOvhS5se5QogcJ6TFp4BzuwfGD7i");
 	 */
 }

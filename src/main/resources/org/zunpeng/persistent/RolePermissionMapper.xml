@@ -39,7 +39,7 @@
 	<select id="getAllByAccountId" resultMap="accountPermissionBean">
 		select ap.id as id, ap.permission_id as permission_id, ap.deleted as deleted,
 		ap.create_time as create_time, pi.permission as permission from account_permission ap
-		inner join permission_info pi = ap.permission_id = pi.id
+		inner join permission_info pi on ap.permission_id = pi.id
 		where ap.account_id = #{accountId}
 	</select>
 </mapper>

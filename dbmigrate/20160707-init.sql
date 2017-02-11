@@ -37,6 +37,7 @@ create table account_permission (
 	permission_id bigint(20),
 	disabled tinyint(4) default 0,
 	create_time datetime,
+	deleted tinyint(4) default 0,
 	last_modify_time datetime
 );
 
@@ -46,6 +47,7 @@ create table role_permission (
 	permission_id bigint(20),
 	disabled tinyint(4) default 0,
 	create_time datetime,
+	deleted tinyint(4) default 0,
 	last_modify_time datetime
 );
 
@@ -61,6 +63,7 @@ create table account_role (
 	role_id bigint(20),
 	disabled tinyint(4) default 0,
 	create_time datetime,
+	deleted tinyint(4) default 0,
 	last_modify_time datetime
 );
 

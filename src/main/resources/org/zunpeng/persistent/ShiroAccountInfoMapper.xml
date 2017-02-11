@@ -24,7 +24,10 @@
 	</resultMap>
 
 	<resultMap id="accountPermissionBean" type="org.zunpeng.mapper.result.AccountPermissionBean">
-		<result property="id" column="id" jdbcType="BIGINT"/>
+		<result property="accountPermissionId" column="id" jdbcType="BIGINT"/>
+		<result property="rolePermissionId" column="role_permission_id" jdbcType="BIGINT"/>
+		<result property="role" column="role" jdbcType="VARCHAR"/>
+		<result property="roleId" column="role_id" jdbcType="BIGINT"/>
 		<result property="permissionId" column="permission_id" jdbcType="BIGINT"/>
 		<result property="permission" column="permission" jdbcType="VARCHAR"/>
 		<result property="deleted" column="deleted" jdbcType="INTEGER"/>
@@ -55,14 +58,23 @@
 		select ar.id as id, ar.role_id as role_id, ar.deleted as deleted,
 		ar.create_time as create_time, ri.role as role from account_role ar
 		inner join role_info ri where ar.role_id = ri.id
-		where ar.account_id = #{accountId}
+		where ar.account_id = #{accountId} and ar.deleted = false
 	</select>
 
 	<select id="getAllPermissionByAccountId" resultMap="accountPermissionBean">
 		select ap.id as id, ap.permission_id as permission_id, ap.deleted as deleted,
 		ap.create_time as create_time, pi.permission as permission from account_permission ap
-		inner join permission_info pi = ap.permission_id = pi.id
-		where ap.account_id = #{accountId}
+		inner join permission_info pi on ap.permission_id = pi.id
+		where ap.account_id = #{accountId} and ap.deleted = false
+	</select>
+
+	<select id="getAllRolePermissionByAccountId" resultMap="accountPermissionBean">
+		select pi.id as permission_id, pi.permission as permission, ri.id as role_id,
+		ri.role as role from account_role ar
+		inner join role_info ri on ri.id = ar.role_id
+		inner join role_permission rp on ri.id = rp.role_id
+		inner join permission_info pi on pi.id = rp.permission_id
+		where ar.account_id = #{accountId} and ar.deleted = false and rp.deleted = false
 	</select>
 
 </mapper>

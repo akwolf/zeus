@@ -16,7 +16,7 @@ import org.zunpeng.core.utils.SlugGenerateUtils;
  */
 public class QiniuJHTest {
 
-	Auth auth = Auth.create("HLSXTk-f9pJDJhDFX-a6gcVcxuKDKvqaUmmhkQwE", "Gs9_cC96ttqseb50gpqe0sHNE34PCoKmvHzjy2pW");
+	Auth auth = Auth.create("4WsVSiezxXxOqI8YYK4TyooB5KK3eWP336ni_1Kw", "xYrSs87KsqbtNW0U6UItCPEBrbhC_FJAxAKr-Jr6");
 	String fops = "avthumb/m3u8/noDomain/1/segtime/10/ab/64k/ar/44100/acodec/libfaac/r/25/vcodec/libx264/stripmeta/0";
 	String key = "新婚快乐.wmv";
 	String bucket = "zeus-video";

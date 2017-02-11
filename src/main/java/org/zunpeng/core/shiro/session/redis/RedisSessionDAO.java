@@ -18,9 +18,9 @@ public class RedisSessionDAO extends CachingSessionDAO {
 
 	private static Logger logger = LoggerFactory.getLogger(RedisSessionDAO.class);
 
-	private String keyPrefix = "shiro_redis_session:";
+	private String keyPrefix = "zeus_shiro_redis_session:";
 
-	private String deleteChannel = "shiro_redis_session:delete";
+	private String deleteChannel = "zeus_shiro_redis_session:delete";
 
 	private int timeToLiveSeconds = 1800; // Expiration of Jedis's key, unit: second
 

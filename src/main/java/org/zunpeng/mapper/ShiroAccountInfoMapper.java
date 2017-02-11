@@ -20,4 +20,6 @@ public interface ShiroAccountInfoMapper {
 	List<AccountRoleBean> getAllRoleByAccountId(Long accountId);
 
 	List<AccountPermissionBean> getAllPermissionByAccountId(Long accountId);
+
+	List<AccountPermissionBean> getAllRolePermissionByAccountId(Long accountId);
 }

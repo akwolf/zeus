@@ -71,6 +71,7 @@ dependencies {
 	compile("commons-lang:commons-lang:2.6")
 	compile("org.jsoup:jsoup:1.8.3")
 	compile("redis.clients:jedis:2.6.3")
+	compile("org.apache.commons:commons-math3:3.6.1")
 
 	compile("com.alibaba:druid:1.0.26")
 

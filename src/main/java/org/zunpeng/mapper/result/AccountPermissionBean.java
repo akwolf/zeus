@@ -7,11 +7,13 @@ import java.util.Date;
  */
 public class AccountPermissionBean {
 
-	private Long id;
+	private Long accountPermissionId;
 
 	private String roleId;
 
 	private String role;
+
+	private Long rolePermissionId;
 
 	private Long permissionId;
 
@@ -20,14 +22,6 @@ public class AccountPermissionBean {
 	private Date createTime;
 
 	private boolean deleted;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	public Long getPermissionId() {
 		return permissionId;
@@ -75,5 +69,21 @@ public class AccountPermissionBean {
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+
+	public Long getAccountPermissionId() {
+		return accountPermissionId;
+	}
+
+	public void setAccountPermissionId(Long accountPermissionId) {
+		this.accountPermissionId = accountPermissionId;
+	}
+
+	public Long getRolePermissionId() {
+		return rolePermissionId;
+	}
+
+	public void setRolePermissionId(Long rolePermissionId) {
+		this.rolePermissionId = rolePermissionId;
 	}
 }

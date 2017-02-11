@@ -58,19 +58,20 @@
 	<!--</logger>-->
 
 	<!-- TODO 输出mapper日志 -->
-	<logger name="org.zunpeng.mapper" level="debug" additivity="false">
+	<logger name="org.zunpeng.mapper" level="info,debug" additivity="false">
 		<appender-ref ref="console"/>
 		<appender-ref ref="rollingFile"/>
 	</logger>
 
-	<logger name="com.oldpeng.core" level="ERROR,DEBUG" additivity="false">
+	<logger name="com.oldpeng.core" level="ERROR,INFO,DEBUG" additivity="false">
 		<appender-ref ref="console"/>
 		<appender-ref ref="rollingFile"/>
 	</logger>
 
-	<logger name="org.zunpeng.core.shiro.session.redis" level="ERROR,DEBUG" additivity="false">
+	<!--
+	<logger name="org.zunpeng.core.shiro.session.redis" level="ERROR,INFO,DEBUG" additivity="false">
 		<appender-ref ref="console"/>
 		<appender-ref ref="rollingFile"/>
 	</logger>
-
+-->
 </configuration>

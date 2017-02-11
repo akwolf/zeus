@@ -36,10 +36,13 @@ public class CustomSecurityRealm extends AuthorizingRealm {
 		EnhanceUser enhanceUser = (EnhanceUser) principals.fromRealm(getName()).iterator().next();
 		SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
 
-		AccountInfo accountInfo = shiroAccountService.getById(enhanceUser.getAccountId());
-		if(accountInfo == null){
+		Long accountId = enhanceUser.getAccountId();
+		if(accountId < 0){
 			return null;
 		}
+
+		simpleAuthorizationInfo.addRoles(shiroAccountService.getAllRolesByAccountId(accountId));
+		simpleAuthorizationInfo.addStringPermissions(shiroAccountService.getAllPermissionsByAccountId(accountId));
 
 		return simpleAuthorizationInfo;
 	}

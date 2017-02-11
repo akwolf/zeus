@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Maps;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
@@ -27,6 +28,7 @@ public class SolutionController {
 
 	private static Logger logger = LoggerFactory.getLogger(SolutionController.class);
 
+	@Autowired
 	private SolutionService solutionService;
 
 	@RequestMapping("/solution")
