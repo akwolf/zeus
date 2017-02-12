@@ -13,6 +13,7 @@
 		<result property="published" column="published" jdbcType="INTEGER"/>
 		<result property="createTime" column="create_time"/>
 		<result property="lastModifyTime" column="last_modify_time"/>
+		<result property="sequence" column="sequence" jdbcType="INTEGER"/>
 	</resultMap>
 
 	<sql id="baseSql">

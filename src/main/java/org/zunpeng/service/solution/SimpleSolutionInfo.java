@@ -23,6 +23,8 @@ public class SimpleSolutionInfo {
 
 	private String technology;
 
+	private int sequence = 0;
+
 	public String getSlug() {
 		return slug;
 	}
@@ -85,5 +87,13 @@ public class SimpleSolutionInfo {
 
 	public void setTechnology(String technology) {
 		this.technology = technology;
+	}
+
+	public int getSequence() {
+		return sequence;
+	}
+
+	public void setSequence(int sequence) {
+		this.sequence = sequence;
 	}
 }

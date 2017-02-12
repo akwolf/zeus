@@ -28,6 +28,8 @@ public class SolutionInfo extends AbstractEntity {
 
 	private String coverImg;
 
+	private int sequence = 0;
+
 	public String getSlug() {
 		return slug;
 	}
@@ -98,5 +100,13 @@ public class SolutionInfo extends AbstractEntity {
 
 	public void setDeleted(boolean deleted) {
 		this.deleted = deleted;
+	}
+
+	public int getSequence() {
+		return sequence;
+	}
+
+	public void setSequence(int sequence) {
+		this.sequence = sequence;
 	}
 }

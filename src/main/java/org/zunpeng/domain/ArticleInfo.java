@@ -26,6 +26,8 @@ public class ArticleInfo extends AbstractEntity {
 
 	private String coverImg;
 
+	private int sequence = 0;
+
 	public String getSlug() {
 		return slug;
 	}
@@ -88,5 +90,13 @@ public class ArticleInfo extends AbstractEntity {
 
 	public void setCoverImg(String coverImg) {
 		this.coverImg = coverImg;
+	}
+
+	public int getSequence() {
+		return sequence;
+	}
+
+	public void setSequence(int sequence) {
+		this.sequence = sequence;
 	}
 }

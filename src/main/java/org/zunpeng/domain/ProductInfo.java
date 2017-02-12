@@ -28,6 +28,8 @@ public class ProductInfo extends AbstractEntity {
 
 	private boolean published = false;
 
+	private int sequence = 0;
+
 	public String getName() {
 		return name;
 	}
@@ -98,5 +100,13 @@ public class ProductInfo extends AbstractEntity {
 
 	public void setPublished(boolean published) {
 		this.published = published;
+	}
+
+	public int getSequence() {
+		return sequence;
+	}
+
+	public void setSequence(int sequence) {
+		this.sequence = sequence;
 	}
 }

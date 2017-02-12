@@ -5,8 +5,10 @@ import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Lists;
 import com.oldpeng.core.utils.RequestUtils;
 import com.oldpeng.core.utils.UuidUtils;
+import com.qiniu.common.Zone;
 import com.qiniu.processing.OperationManager;
 import com.qiniu.storage.BucketManager;
+import com.qiniu.storage.Configuration;
 import com.qiniu.util.Auth;
 import com.qiniu.util.StringMap;
 import com.qiniu.util.UrlSafeBase64;
@@ -88,8 +90,10 @@ public class QiniuServiceImpl implements QiniuService {
 	@PostConstruct
 	public void init(){
 		auth = Auth.create(accessToken, secretKey);
-		operationManager = new OperationManager(auth);
-		bucketManager = new BucketManager(auth);
+		Zone zone = Zone.zone0();
+		Configuration configuration = new Configuration(zone);
+		operationManager = new OperationManager(auth, configuration);
+		bucketManager = new BucketManager(auth, configuration);
 	}
 
 	@Override

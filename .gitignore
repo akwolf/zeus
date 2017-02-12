@@ -21,7 +21,7 @@ src/main/product
 .springBeans
 .mtj
 .tmp
-src/main
+src/test
 
 fe/dist/
 fe/node_modules/

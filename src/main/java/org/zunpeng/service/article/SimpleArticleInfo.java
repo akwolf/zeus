@@ -23,6 +23,8 @@ public class SimpleArticleInfo {
 
 	private Date createTime;
 
+	private int sequence = 0;
+
 	public String getSlug() {
 		return slug;
 	}
@@ -85,5 +87,13 @@ public class SimpleArticleInfo {
 
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
+	}
+
+	public int getSequence() {
+		return sequence;
+	}
+
+	public void setSequence(int sequence) {
+		this.sequence = sequence;
 	}
 }

@@ -8,7 +8,8 @@ create table article_info (
 	create_time datetime,
 	last_modify_time datetime,
 	published tinyint(4) default 0,
-	deleted tinyint(4) default 0
+	deleted tinyint(4) default 0,
+	sequence tinyint(4) default 0
 );
 
 
@@ -108,6 +109,7 @@ create table product_info (
 	amount bigint(20) default 0,
 	deleted tinyint(4) default 0,
 	published tinyint(4) default 0,
+	sequence tinyint(4) default 0,
 	create_time datetime,
 	last_modify_time datetime
 );
@@ -137,6 +139,7 @@ create table solution_info (
 	technology longtext,
 	deleted tinyint(4) default 0,
 	published tinyint(4) default 0,
+	sequence tinyint(4) default 0,
 	create_time datetime,
 	last_modify_time datetime
 );

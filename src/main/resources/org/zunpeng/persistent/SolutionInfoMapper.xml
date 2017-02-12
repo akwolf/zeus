@@ -14,6 +14,7 @@
 		<result property="technology" column="technology" jdbcType="VARCHAR"/>
 		<result property="createTime" column="create_time"/>
 		<result property="lastModifyTime" column="last_modify_time"/>
+		<result property="sequence" column="sequence" jdbcType="INTEGER"/>
 	</resultMap>
 
 	<sql id="baseSql">
