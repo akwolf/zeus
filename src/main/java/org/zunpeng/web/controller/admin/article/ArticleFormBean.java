@@ -23,6 +23,8 @@ public class ArticleFormBean {
 
 	private int sequence = 0;
 
+	private String coverUrl;
+
 	public String getSlug() {
 		return slug;
 	}
@@ -85,5 +87,13 @@ public class ArticleFormBean {
 
 	public void setSequence(int sequence) {
 		this.sequence = sequence;
+	}
+
+	public String getCoverUrl() {
+		return coverUrl;
+	}
+
+	public void setCoverUrl(String coverUrl) {
+		this.coverUrl = coverUrl;
 	}
 }

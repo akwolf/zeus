@@ -68,6 +68,7 @@ public class ArticleServiceImpl implements ArticleService {
 		articleInfo.setDeleted(formBean.isDeleted());
 		articleInfo.setPublished(formBean.isPublished());
 		articleInfo.setCreateTime(new Date());
+		articleInfo.setSequence(formBean.getSequence());
 		articleInfo.setLastModifyTime(new Date());
 
 		MultipartFile uploadFile = formBean.getUpload();
@@ -100,6 +101,7 @@ public class ArticleServiceImpl implements ArticleService {
 		articleInfo.setDescription(CleanContentUtils.cleanHtml(formBean.getDescription()));
 		articleInfo.setDeleted(formBean.isDeleted());
 		articleInfo.setPublished(formBean.isPublished());
+		articleInfo.setSequence(formBean.getSequence());
 		articleInfo.setLastModifyTime(new Date());
 
 		MultipartFile uploadFile = formBean.getUpload();
@@ -132,6 +134,8 @@ public class ArticleServiceImpl implements ArticleService {
 			return null;
 		}
 
-		return BeanCopyUtils.copy(articleInfo, SimpleArticleInfo.class);
+		SimpleArticleInfo simpleArticleInfo = BeanCopyUtils.copy(articleInfo, SimpleArticleInfo.class);
+		simpleArticleInfo.setCoverUrl(imageService.buildUrl(articleInfo.getCoverImg()));
+		return simpleArticleInfo;
 	}
 }

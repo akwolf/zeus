@@ -37,13 +37,16 @@ public class ArticleController {
 	@RequestMapping("/article")
 	public String index(@PageableDefault(size = 20) Pageable pageable, Model model){
 		PageWrapper<SimpleArticleInfo> page = articleService.page(pageable);
-		model.addAttribute("page", page);
+		model.addAttribute("page", page)
+				.addAttribute("type", 1);
 		return "admin/article/article_list";
 	}
 
 	@RequestMapping(value = "/article/add", method = RequestMethod.GET)
-	public String editNew(){
-
+	public String editNew(Model model){
+		SimpleArticleInfo simpleArticleInfo = new SimpleArticleInfo();
+		model.addAttribute("articleInfo", simpleArticleInfo)
+				.addAttribute("type", 1);
 		return "admin/article/article_edit";
 	}
 
@@ -51,7 +54,8 @@ public class ArticleController {
 	public String add(@ModelAttribute @Valid ArticleFormBean formBean, BindingResult result, RedirectAttributes redirectAttributes, Model model){
 		if(result.hasErrors()){
 			logger.info(JSONObject.toJSONString(result.getAllErrors()));
-			model.addAttribute("articleInfo", formBean);
+			model.addAttribute("articleInfo", formBean)
+					.addAttribute("type", 1);
 			return "admin/article/article_edit";
 		}
 
@@ -62,7 +66,8 @@ public class ArticleController {
 			return "redirect:/admin/article/edit";
 		} catch(Throwable t){
 			logger.info(t.getMessage(), t);
-			model.addAttribute("articleInfo", formBean);
+			model.addAttribute("articleInfo", formBean)
+					.addAttribute("type", 1);
 			return "admin/article/article_edit";
 		}
 	}
@@ -70,7 +75,8 @@ public class ArticleController {
 	@RequestMapping(value = "/article/edit", method = RequestMethod.GET)
 	public String edit(@RequestParam String slug, Model model){
 		SimpleArticleInfo simpleArticleInfo = articleService.getBySlug(slug);
-		model.addAttribute("article", simpleArticleInfo);
+		model.addAttribute("articleInfo", simpleArticleInfo)
+				.addAttribute("type", 2);
 		return "admin/article/article_edit";
 	}
 
@@ -78,7 +84,8 @@ public class ArticleController {
 	public String update(@ModelAttribute @Valid ArticleFormBean formBean, BindingResult result, RedirectAttributes redirectAttributes, Model model){
 		if(result.hasErrors()){
 			logger.info(JSONObject.toJSONString(result.getAllErrors()));
-			model.addAttribute("articleInfo", formBean);
+			model.addAttribute("articleInfo", formBean)
+					.addAttribute("type", 2);
 			return "admin/article/article_edit";
 		}
 
@@ -88,7 +95,8 @@ public class ArticleController {
 			return "redirect:/admin/article/edit";
 		} catch(Throwable t){
 			logger.info(t.getMessage(), t);
-			model.addAttribute("articleInfo", formBean);
+			model.addAttribute("articleInfo", formBean)
+					.addAttribute("type", 2);
 			return "admin/article/article_edit";
 		}
 	}

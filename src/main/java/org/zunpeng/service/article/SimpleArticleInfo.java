@@ -17,13 +17,15 @@ public class SimpleArticleInfo {
 
 	private Date lastModifyTime;
 
-	private boolean disabled = false;
+	private boolean published = false;
 
 	private boolean deleted = false;
 
 	private Date createTime;
 
 	private int sequence = 0;
+
+	private String coverUrl;
 
 	public String getSlug() {
 		return slug;
@@ -65,14 +67,6 @@ public class SimpleArticleInfo {
 		this.lastModifyTime = lastModifyTime;
 	}
 
-	public boolean isDisabled() {
-		return disabled;
-	}
-
-	public void setDisabled(boolean disabled) {
-		this.disabled = disabled;
-	}
-
 	public boolean isDeleted() {
 		return deleted;
 	}
@@ -95,5 +89,21 @@ public class SimpleArticleInfo {
 
 	public void setSequence(int sequence) {
 		this.sequence = sequence;
+	}
+
+	public String getCoverUrl() {
+		return coverUrl;
+	}
+
+	public void setCoverUrl(String coverUrl) {
+		this.coverUrl = coverUrl;
+	}
+
+	public boolean isPublished() {
+		return published;
+	}
+
+	public void setPublished(boolean published) {
+		this.published = published;
 	}
 }

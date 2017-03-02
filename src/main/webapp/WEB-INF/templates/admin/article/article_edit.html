@@ -7,9 +7,65 @@
 <body th:replace="admin/include/layout :: common_body (3, ~{::div}, ~{::script})">
 <div class="main_content">
 	<div class="container">
-
+		<form class="form-horizontal" method="post" enctype="multipart/form-data" th:action="${type == 1} ? @{/admin/article/add} : (${type == 2} ? @{/admin/article/edit} : @{/})">
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<h2 th:if="${type == 1}" class="text-info">添加新闻</h2>
+					<h2 th:if="${type == 2}" class="text-danger">更新新闻</h2>
+					<input type="hidden" name="slug" th:value="${articleInfo.slug}" th:if="${type == 2}">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">标题</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control input-sm" placeholder="标题" name="title" th:value="${articleInfo.title}">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">序号</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control input-sm" placeholder="序号" name="sequence" th:value="${articleInfo.sequence}">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">封面</label>
+				<div class="col-sm-10">
+					<input type="file" class="form-control input-sm" name="upload"/>
+					<br th:if="${!#strings.isEmpty(articleInfo.coverUrl)}" />
+					<img th:if="${!#strings.isEmpty(articleInfo.coverUrl)}" th:src="${articleInfo.coverUrl}" width="100"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">上架</label>
+				<div class="col-sm-10">
+					<input type="checkbox" name="published" th:checked="${articleInfo.published}">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">描述</label>
+				<div class="col-sm-10">
+					<textarea id="description" class="form-control" placeholder="描述" rows="3"  name="description" th:text="${articleInfo.description}"></textarea>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">内容</label>
+				<div class="col-sm-10">
+					<textarea id="content" placeholder="内容" name="content" th:text="${articleInfo.content}"></textarea>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button type="submit" class="btn btn-default btn-sm" th:text="${type == 1} ? '添加' : (${type == 2} ? '更新' : '')"></button>
+					<button type="reset" class="btn btn-sm btn-default" th:if="${type == 1}">重置</button>
+				</div>
+			</div>
+		</form>
 	</div>
 </div>
-<script type="text/javascript"></script>
+<script type="text/javascript" th:src="@{/javascript/plugin/ueditor/ueditor.config.js}"></script>
+<script type="text/javascript" th:src="@{/javascript/plugin/ueditor/ueditor.all.js}"></script>
+<script type="text/javascript">
+	var ue = UE.getEditor('content');
+</script>
 </body>
 </html>
