@@ -1,7 +1,7 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head lang="zh-cn" th:replace="admin/include/layout :: common_head (~{::title}, ~{::link})">
-	<title>添加产品-鑫顺门窗</title>
+	<title>添加产品-多贝云</title>
 	<link rel="stylesheet/less" type="text/css" th:href="@{/style/admin/index.less}" />
 </head>
 <body th:replace="admin/include/layout :: common_body (1, ~{::div}, ~{::script})">
@@ -10,7 +10,8 @@
 		<form class="form-horizontal" method="post" enctype="multipart/form-data" th:action="${type == 1} ? @{/admin/product/add} : (${type == 2} ? @{/admin/product/edit} : @{/})">
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
-					<h2 th:text="${type == 1} ? '添加产品' : (${type == 2} ? '更新产品' : '')">添加产品</h2>
+					<h2 th:if="${type == 1}" class="text-info">添加产品</h2>
+					<h2 th:if="${type == 2}" class="text-danger2">更新产品</h2>
 					<input type="hidden" name="slug" th:value="${productInfo.slug}" th:if="${type == 2}">
 				</div>
 			</div>
@@ -55,7 +56,7 @@
 			<div class="form-group">
 				<label class="col-sm-2 control-label">描述</label>
 				<div class="col-sm-10">
-					<textarea id="description" placeholder="描述" name="description" th:value="${productInfo.description}"></textarea>
+					<textarea id="description" placeholder="描述" name="description" th:text="${productInfo.description}"></textarea>
 				</div>
 			</div>
 			<div class="form-group">
