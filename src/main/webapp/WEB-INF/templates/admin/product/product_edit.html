@@ -11,7 +11,7 @@
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
 					<h2 th:if="${type == 1}" class="text-info">添加产品</h2>
-					<h2 th:if="${type == 2}" class="text-danger2">更新产品</h2>
+					<h2 th:if="${type == 2}" class="text-danger">更新产品</h2>
 					<input type="hidden" name="slug" th:value="${productInfo.slug}" th:if="${type == 2}">
 				</div>
 			</div>

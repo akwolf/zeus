@@ -39,9 +39,12 @@ public class SolutionController {
 	}
 
 	@RequestMapping(value = "/solution/add", method = RequestMethod.GET)
-	public String editNew(){
+	public String editNew(Model model){
+		SimpleSolutionInfo solutionInfo = new SimpleSolutionInfo();
+		model.addAttribute("solutionInfo", solutionInfo)
+				.addAttribute("type", 1);
 
-		return "admin/solution/solution_detail";
+		return "admin/solution/solution_edit";
 	}
 
 	@RequestMapping(value = "/solution/add", method = RequestMethod.POST)
@@ -49,7 +52,7 @@ public class SolutionController {
 		if(result.hasErrors()){
 			logger.info(JSONObject.toJSONString(result.getAllErrors()));
 			model.addAttribute("solutionInfo", formBean);
-			return "admin/solution/solution_detail";
+			return "admin/solution/solution_edit";
 		}
 
 		try {
@@ -59,7 +62,7 @@ public class SolutionController {
 		} catch(Throwable t){
 			logger.info(t.getMessage(), t);
 			model.addAttribute("solutionInfo", formBean);
-			return "admin/solution/solution_detail";
+			return "admin/solution/solution_edit";
 		}
 	}
 
@@ -67,7 +70,7 @@ public class SolutionController {
 	public String edit(@RequestParam String slug, Model model){
 		SimpleSolutionInfo simpleSolutionInfo = solutionService.getBySlug(slug);
 		model.addAttribute("solutionInfo", simpleSolutionInfo);
-		return "admin/solution/solution_detail";
+		return "admin/solution/solution_edit";
 	}
 
 	@RequestMapping(value = "/solution/edit", method = RequestMethod.POST)
@@ -75,7 +78,7 @@ public class SolutionController {
 		if(result.hasErrors()){
 			logger.info(JSONObject.toJSONString(result.getAllErrors()));
 			model.addAttribute("solutionInfo", formBean);
-			return "admin/solution/solution_detail";
+			return "admin/solution/solution_edit";
 		}
 
 		try {
@@ -85,7 +88,7 @@ public class SolutionController {
 		} catch(Throwable t){
 			logger.info(t.getMessage(), t);
 			model.addAttribute("solutionInfo", formBean);
-			return "admin/solution/solution_detail";
+			return "admin/solution/solution_edit";
 		}
 	}
 

@@ -17,13 +17,15 @@ public class SimpleSolutionInfo {
 
 	private Date lastModifyTime;
 
-	private boolean disabled = false;
-
 	private boolean deleted = false;
+
+	private boolean published = false;
 
 	private String technology;
 
 	private int sequence = 0;
+
+	private String coverUrl;
 
 	public String getSlug() {
 		return slug;
@@ -65,14 +67,6 @@ public class SimpleSolutionInfo {
 		this.lastModifyTime = lastModifyTime;
 	}
 
-	public boolean isDisabled() {
-		return disabled;
-	}
-
-	public void setDisabled(boolean disabled) {
-		this.disabled = disabled;
-	}
-
 	public boolean isDeleted() {
 		return deleted;
 	}
@@ -95,5 +89,21 @@ public class SimpleSolutionInfo {
 
 	public void setSequence(int sequence) {
 		this.sequence = sequence;
+	}
+
+	public String getCoverUrl() {
+		return coverUrl;
+	}
+
+	public void setCoverUrl(String coverUrl) {
+		this.coverUrl = coverUrl;
+	}
+
+	public boolean isPublished() {
+		return published;
+	}
+
+	public void setPublished(boolean published) {
+		this.published = published;
 	}
 }
