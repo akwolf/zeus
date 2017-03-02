@@ -1,14 +1,14 @@
 #!/bin/sh
 
-if [ ! -d "node_modules" ]; then
-    npm install
-fi
+#if [ ! -d "node_modules" ]; then
+#    npm install
+#fi
 
-gulp deploy
+#gulp deploy
 
-if [ ! -x "./gradlew" ]; then
-    chmod +x ./gradlew
-fi
+#if [ ! -x "./gradlew" ]; then
+#    chmod +x ./gradlew
+#fi
 
 ./gradlew war
 

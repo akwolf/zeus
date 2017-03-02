@@ -21,6 +21,8 @@ public class ArticleFormBean {
 
 	private MultipartFile upload;
 
+	private int sequence = 0;
+
 	public String getSlug() {
 		return slug;
 	}
@@ -75,5 +77,13 @@ public class ArticleFormBean {
 
 	public void setUpload(MultipartFile upload) {
 		this.upload = upload;
+	}
+
+	public int getSequence() {
+		return sequence;
+	}
+
+	public void setSequence(int sequence) {
+		this.sequence = sequence;
 	}
 }
