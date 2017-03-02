@@ -6,15 +6,15 @@
 
 #gulp deploy
 
-#if [ ! -x "./gradlew" ]; then
-#    chmod +x ./gradlew
-#fi
+if [ ! -x "./gradlew" ]; then
+    chmod +x ./gradlew
+fi
 
 ./gradlew war
 
-/etc/init.d/zeusd stop
+#/etc/init.d/zeusd stop
 
-rm -rf /usr/local/tomcat/zeus/webapps/ROOT*
-cp ./build/libs/ROOT.war /usr/local/tomcat/zeus/webapps/ROOT.war
+#rm -rf /usr/local/tomcat/zeus/webapps/ROOT*
+#cp ./build/libs/ROOT.war /usr/local/tomcat/zeus/webapps/ROOT.war
 
-/etc/init.d/zeusd start
+#/etc/init.d/zeusd start
