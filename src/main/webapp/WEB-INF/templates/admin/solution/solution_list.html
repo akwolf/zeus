@@ -26,7 +26,7 @@
 				<tbody>
 				<tr th:each="solution,iterStat : ${page.items}">
 					<td th:text="${iterStat.count}">0</td>
-					<td th:text="${solution.name}"></td>
+					<td th:text="${solution.title}"></td>
 					<td>
 						<img th:src="${solution.coverUrl}" width="200"/>
 					</td>

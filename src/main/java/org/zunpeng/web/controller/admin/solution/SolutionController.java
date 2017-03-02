@@ -51,7 +51,8 @@ public class SolutionController {
 	public String add(@ModelAttribute @Valid SolutionFormBean formBean, BindingResult result, RedirectAttributes redirectAttributes, Model model){
 		if(result.hasErrors()){
 			logger.info(JSONObject.toJSONString(result.getAllErrors()));
-			model.addAttribute("solutionInfo", formBean);
+			model.addAttribute("solutionInfo", formBean)
+					.addAttribute("type", 1);
 			return "admin/solution/solution_edit";
 		}
 
@@ -69,7 +70,8 @@ public class SolutionController {
 	@RequestMapping(value = "/solution/edit", method = RequestMethod.GET)
 	public String edit(@RequestParam String slug, Model model){
 		SimpleSolutionInfo simpleSolutionInfo = solutionService.getBySlug(slug);
-		model.addAttribute("solutionInfo", simpleSolutionInfo);
+		model.addAttribute("solutionInfo", simpleSolutionInfo)
+				.addAttribute("type", 2);
 		return "admin/solution/solution_edit";
 	}
 
@@ -77,7 +79,8 @@ public class SolutionController {
 	public String update(@ModelAttribute @Valid SolutionFormBean formBean, BindingResult result, RedirectAttributes redirectAttributes, Model model){
 		if(result.hasErrors()){
 			logger.info(JSONObject.toJSONString(result.getAllErrors()));
-			model.addAttribute("solutionInfo", formBean);
+			model.addAttribute("solutionInfo", formBean)
+					.addAttribute("type", 2);
 			return "admin/solution/solution_edit";
 		}
 
@@ -87,7 +90,8 @@ public class SolutionController {
 			return "redirect:/admin/solution/edit";
 		} catch(Throwable t){
 			logger.info(t.getMessage(), t);
-			model.addAttribute("solutionInfo", formBean);
+			model.addAttribute("solutionInfo", formBean)
+					.addAttribute("type", 2);
 			return "admin/solution/solution_edit";
 		}
 	}

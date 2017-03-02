@@ -70,6 +70,7 @@ public class SolutionServiceImpl implements SolutionService {
 		solutionInfo.setLastModifyTime(new Date());
 		solutionInfo.setDeleted(formBean.isDeleted());
 		solutionInfo.setPublished(formBean.isPublished());
+		solutionInfo.setSequence(formBean.getSequence());
 
 		MultipartFile uploadFile = formBean.getUpload();
 		if(uploadFile != null && !uploadFile.isEmpty()){
@@ -102,6 +103,8 @@ public class SolutionServiceImpl implements SolutionService {
 		solutionInfo.setDescription(CleanContentUtils.cleanHtml(formBean.getDescription()));
 		solutionInfo.setContent(CleanContentUtils.cleanHtml(formBean.getContent()));
 		solutionInfo.setTechnology(CleanContentUtils.cleanHtml(formBean.getTechnology()));
+		solutionInfo.setSequence(formBean.getSequence());
+		solutionInfo.setPublished(formBean.isPublished());
 		solutionInfo.setLastModifyTime(new Date());
 
 		MultipartFile uploadFile = formBean.getUpload();
@@ -133,6 +136,8 @@ public class SolutionServiceImpl implements SolutionService {
 			return null;
 		}
 
-		return BeanCopyUtils.copy(solutionInfo, SimpleSolutionInfo.class);
+		SimpleSolutionInfo simpleSolutionInfo = BeanCopyUtils.copy(solutionInfo, SimpleSolutionInfo.class);
+		simpleSolutionInfo.setCoverUrl(imageService.buildUrl(solutionInfo.getCoverImg()));
+		return simpleSolutionInfo;
 	}
 }

@@ -2,8 +2,6 @@ package org.zunpeng.web.controller.admin.solution;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.Date;
-
 /**
  * Created by dapeng on 16/8/7.
  */
@@ -13,19 +11,21 @@ public class SolutionFormBean {
 
 	private String title;
 
+	private boolean published;
+
+	private boolean deleted;
+
 	private String description;
 
 	private String content;
 
-	private Date lastModifyTime;
-
-	private boolean published = false;
-
-	private boolean deleted = false;
-
 	private String technology;
 
 	private MultipartFile upload;
+
+	private int sequence = 0;
+
+	private String coverUrl;
 
 	public String getTitle() {
 		return title;
@@ -49,14 +49,6 @@ public class SolutionFormBean {
 
 	public void setContent(String content) {
 		this.content = content;
-	}
-
-	public Date getLastModifyTime() {
-		return lastModifyTime;
-	}
-
-	public void setLastModifyTime(Date lastModifyTime) {
-		this.lastModifyTime = lastModifyTime;
 	}
 
 	public boolean isDeleted() {
@@ -97,5 +89,21 @@ public class SolutionFormBean {
 
 	public void setUpload(MultipartFile upload) {
 		this.upload = upload;
+	}
+
+	public int getSequence() {
+		return sequence;
+	}
+
+	public void setSequence(int sequence) {
+		this.sequence = sequence;
+	}
+
+	public String getCoverUrl() {
+		return coverUrl;
+	}
+
+	public void setCoverUrl(String coverUrl) {
+		this.coverUrl = coverUrl;
 	}
 }

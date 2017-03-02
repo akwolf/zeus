@@ -23,15 +23,15 @@
 	</sql>
 
 	<insert id="save" useGeneratedKeys="true" keyProperty="id">
-		insert into product_info(name, brief, deleted, published, cover_img, description, create_time, last_modify_time, amount)
-		values(#{name}, #{brief}, #{deleted}, #{published}, #{coverImg}, #{description}, #{createTime}, #{lastModifyTime}, #{amount})
+		insert into product_info(name, brief, deleted, published, cover_img, description, create_time, last_modify_time, amount, sequence)
+		values(#{name}, #{brief}, #{deleted}, #{published}, #{coverImg}, #{description}, #{createTime}, #{lastModifyTime}, #{amount}, #{sequence})
 	</insert>
 
 	<update id="update">
 		update product_info
 		set slug = #{slug}, name = #{name}, brief = #{brief}, description = #{description},
 		    last_modify_time = #{lastModifyTime}, amount = #{amount}, deleted = #{deleted},
-		    published = #{published}, cover_img = #{coverImg}
+		    published = #{published}, cover_img = #{coverImg}, sequence = #{sequence}
 		where id = #{id}
 	</update>
 

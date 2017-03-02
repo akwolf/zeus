@@ -73,6 +73,7 @@ public class ProductServiceImpl implements ProductService {
 		productInfo.setCreateTime(new Date());
 		productInfo.setPublished(formBean.isPublished());
 		productInfo.setDeleted(formBean.isDeleted());
+		productInfo.setSequence(formBean.getSequence());
 
 		MultipartFile uploadFile = formBean.getUpload();
 		if(uploadFile != null && !uploadFile.isEmpty()){
@@ -104,6 +105,8 @@ public class ProductServiceImpl implements ProductService {
 		productInfo.setBrief(CleanContentUtils.clean(formBean.getBrief()));
 		productInfo.setDescription(CleanContentUtils.cleanHtml(formBean.getDescription()));
 		productInfo.setName(CleanContentUtils.clean(formBean.getName()));
+		productInfo.setSequence(formBean.getSequence());
+		productInfo.setPublished(formBean.isPublished());
 		productInfo.setLastModifyTime(new Date());
 
 		MultipartFile uploadFile = formBean.getUpload();
