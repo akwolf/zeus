@@ -80,7 +80,7 @@ public class PageWrapper<T> {
 	}
 
 	public boolean isLast(){
-		return this.page == getTotalPages();
+		return this.page == getTotalPages() || getTotalPages() == 0;
 	}
 
 	public boolean isHasPrevious(){

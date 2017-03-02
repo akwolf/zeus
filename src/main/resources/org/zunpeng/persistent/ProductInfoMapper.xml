@@ -24,7 +24,7 @@
 
 	<insert id="save" useGeneratedKeys="true" keyProperty="id">
 		insert into product_info(name, brief, deleted, published, cover_img, description, create_time, last_modify_time, amount)
-		values(#{name}, #{brief}, #{deleted}, #{published}, #{coverImg} #{description}, #{createTime}, #{lastModifyTime}, #{amount})
+		values(#{name}, #{brief}, #{deleted}, #{published}, #{coverImg}, #{description}, #{createTime}, #{lastModifyTime}, #{amount})
 	</insert>
 
 	<update id="update">

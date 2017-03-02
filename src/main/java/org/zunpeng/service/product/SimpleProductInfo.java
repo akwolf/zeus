@@ -26,6 +26,10 @@ public class SimpleProductInfo implements Serializable {
 
 	private int sequence = 0;
 
+	private boolean published;
+
+	private String coverUrl;
+
 	public String getSlug() {
 		return slug;
 	}
@@ -88,5 +92,21 @@ public class SimpleProductInfo implements Serializable {
 
 	public void setSequence(int sequence) {
 		this.sequence = sequence;
+	}
+
+	public String getCoverUrl() {
+		return coverUrl;
+	}
+
+	public void setCoverUrl(String coverUrl) {
+		this.coverUrl = coverUrl;
+	}
+
+	public boolean isPublished() {
+		return published;
+	}
+
+	public void setPublished(boolean published) {
+		this.published = published;
 	}
 }

@@ -1,0 +1,76 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head lang="zh-cn" th:replace="admin/include/layout :: common_head (~{::title}, ~{::link})">
+	<title>添加产品-鑫顺门窗</title>
+	<link rel="stylesheet/less" type="text/css" th:href="@{/style/admin/index.less}" />
+</head>
+<body th:replace="admin/include/layout :: common_body (1, ~{::div}, ~{::script})">
+<div class="main_content">
+	<div class="container">
+		<form class="form-horizontal" method="post" enctype="multipart/form-data" th:action="${type == 1} ? @{/admin/product/add} : (${type == 2} ? @{/admin/product/edit} : @{/})">
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<h2 th:text="${type == 1} ? '添加产品' : (${type == 2} ? '更新产品' : '')">添加产品</h2>
+					<input type="hidden" name="slug" th:value="${productInfo.slug}" th:if="${type == 2}">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">标题</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control input-sm" placeholder="标题" name="name" th:value="${productInfo.name}">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">简介</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control input-sm" placeholder="简介" name="brief" th:value="${productInfo.brief}">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">序号</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control input-sm" placeholder="序号" name="sequence" th:value="${productInfo.sequence}">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">价格</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control input-sm" placeholder="价格" name="price" th:value="${productInfo.price}">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">封面</label>
+				<div class="col-sm-10">
+					<input type="file" class="form-control input-sm" name="upload"/>
+					<br th:if="${!#strings.isEmpty(productInfo.coverUrl)}" />
+					<img th:if="${!#strings.isEmpty(productInfo.coverUrl)}" th:src="${productInfo.coverUrl}" width="100"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">上架</label>
+				<div class="col-sm-10">
+					<input type="checkbox" name="published" th:checked="${productInfo.published}">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">描述</label>
+				<div class="col-sm-10">
+					<textarea id="description" placeholder="描述" name="description" th:value="${productInfo.description}"></textarea>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button type="submit" class="btn btn-default btn-sm" th:text="${type == 1} ? '添加' : (${type == 2} ? '更新' : '')"></button>
+					<button type="reset" class="btn btn-sm btn-default" th:if="${type == 1}">重置</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+<script type="text/javascript" th:src="@{/javascript/plugin/ueditor/ueditor.config.js}"></script>
+<script type="text/javascript" th:src="@{/javascript/plugin/ueditor/ueditor.all.js}"></script>
+<script type="text/javascript">
+	var ue = UE.getEditor('description');
+</script>
+</body>
+</html>

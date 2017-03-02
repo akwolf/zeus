@@ -17,6 +17,7 @@ import org.springframework.stereotype.Component;
 import org.zunpeng.core.annotation.Caching;
 
 import java.lang.reflect.Method;
+import java.lang.reflect.Type;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -97,7 +98,7 @@ public class RedisCachingAspect {
 			return null;
 		} else {
 			//按查询逻辑处理
-			Class<?> returnType = method.getReturnType();
+			Type returnType = method.getGenericReturnType();
 
 			String methodName = method.toString();
 

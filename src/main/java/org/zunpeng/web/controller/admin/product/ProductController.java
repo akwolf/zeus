@@ -42,8 +42,10 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "/product/add", method = RequestMethod.GET)
-	public String editNew(){
-
+	public String editNew(Model model){
+		SimpleProductInfo productInfo = new SimpleProductInfo();
+		model.addAttribute("productInfo", productInfo)
+				.addAttribute("type", 1);
 		return "admin/product/product_edit";
 	}
 
@@ -51,7 +53,8 @@ public class ProductController {
 	public String add(@ModelAttribute @Valid ProductFormBean formBean, BindingResult result, RedirectAttributes redirectAttributes, Model model){
 		if(result.hasErrors()){
 			logger.info(JSONObject.toJSONString(result.getAllErrors()));
-			model.addAttribute("productInfo", formBean);
+			model.addAttribute("productInfo", formBean)
+					.addAttribute("type", 1);
 			return "admin/product/product_edit";
 		}
 
@@ -61,7 +64,8 @@ public class ProductController {
 			return "redirect:/admin/product/edit";
 		} catch (Throwable t){
 			logger.info(t.getMessage(), t);
-			model.addAttribute("productInfo", formBean);
+			model.addAttribute("productInfo", formBean)
+					.addAttribute("type", 1);
 			return "admin/product/product_edit";
 		}
 	}
@@ -69,7 +73,8 @@ public class ProductController {
 	@RequestMapping(value = "/product/edit", method = RequestMethod.GET)
 	public String edit(@RequestParam String slug, Model model){
 		SimpleProductInfo simpleProductInfo = productService.getBySlug(slug);
-		model.addAttribute("productInfo", simpleProductInfo);
+		model.addAttribute("productInfo", simpleProductInfo)
+				.addAttribute("type", 2);
 		return "admin/product/product_edit";
 	}
 
@@ -77,7 +82,8 @@ public class ProductController {
 	public String update(@ModelAttribute @Valid ProductFormBean formBean, BindingResult result, RedirectAttributes redirectAttributes, Model model){
 		if(result.hasErrors()){
 			logger.info(JSONObject.toJSONString(result.getAllErrors()));
-			model.addAttribute("productInfo", formBean);
+			model.addAttribute("productInfo", formBean)
+					.addAttribute("type", 2);
 			return "admin/product/product_edit";
 		}
 
@@ -87,7 +93,8 @@ public class ProductController {
 			return "redirect:/admin/product/edit";
 		} catch(Throwable t){
 			logger.info(t.getMessage(), t);
-			model.addAttribute("productInfo", formBean);
+			model.addAttribute("productInfo", formBean)
+					.addAttribute("type", 2);
 			return "admin/product/product_edit";
 		}
 	}

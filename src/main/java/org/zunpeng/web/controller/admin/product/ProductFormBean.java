@@ -23,6 +23,10 @@ public class ProductFormBean {
 
 	private boolean published;
 
+	private int sequence = 0;
+
+	private String coverUrl;
+
 	public String getSlug() {
 		return slug;
 	}
@@ -85,5 +89,21 @@ public class ProductFormBean {
 
 	public void setPublished(boolean published) {
 		this.published = published;
+	}
+
+	public int getSequence() {
+		return sequence;
+	}
+
+	public void setSequence(int sequence) {
+		this.sequence = sequence;
+	}
+
+	public String getCoverUrl() {
+		return coverUrl;
+	}
+
+	public void setCoverUrl(String coverUrl) {
+		this.coverUrl = coverUrl;
 	}
 }

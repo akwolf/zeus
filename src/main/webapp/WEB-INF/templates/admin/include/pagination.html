@@ -1,0 +1,17 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<body>
+		<div th:fragment="pagination (url, page)">
+			<nav>
+				<ul class="pagination pagination-sm">
+					<li th:text="${'总:' + page.totalCount}" style="display:inline-block;float:left;margin-right:9px;line-height:28px;"></li>
+					<li th:if="${not page.first}"><a th:href="@{${url}(page=0, size=${page.pageSize})}">First</a></li>
+					<li th:if="${not page.first}"><a th:href="@{${url}(page=${page.page-2}, size=${page.pageSize})}" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+					<li th:each="item : ${page.sliders}" th:class="${item.current} ? 'active' : ''"><a th:href="@{${url}(page=${item.number - 1}, size=${page.pageSize})}" th:text="${item.number}">1</a></li>
+					<li th:if="${not page.last}"><a th:href="@{${url}(page=${page.page}, size=${page.pageSize})}" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+					<li th:if="${not page.last}"><a th:href="@{${url}(page=${page.totalPages}, size=${page.pageSize})}">Last</a></li>
+				</ul>
+			</nav>
+		</div>
+	</body>
+</html>
