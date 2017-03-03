@@ -87,6 +87,11 @@ public class CompanyServiceImpl implements CompanyService {
 			return null;
 		}
 
-		return BeanCopyUtils.copy(companyInfo, SimpleCompanyInfo.class);
+		SimpleCompanyInfo simpleCompanyInfo = BeanCopyUtils.copy(companyInfo, SimpleCompanyInfo.class);
+		if(companyInfo.getLogoImg() != null){
+			simpleCompanyInfo.setLogoUrl(imageService.buildUrl(companyInfo.getLogoImg()));
+		}
+
+		return simpleCompanyInfo;
 	}
 }

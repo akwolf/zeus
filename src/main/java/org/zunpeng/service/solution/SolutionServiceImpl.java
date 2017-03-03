@@ -137,7 +137,9 @@ public class SolutionServiceImpl implements SolutionService {
 		}
 
 		SimpleSolutionInfo simpleSolutionInfo = BeanCopyUtils.copy(solutionInfo, SimpleSolutionInfo.class);
-		simpleSolutionInfo.setCoverUrl(imageService.buildUrl(solutionInfo.getCoverImg()));
+		if(solutionInfo.getCoverImg() != null){
+			simpleSolutionInfo.setCoverUrl(imageService.buildUrl(solutionInfo.getCoverImg()));
+		}
 		return simpleSolutionInfo;
 	}
 }

@@ -135,7 +135,9 @@ public class ArticleServiceImpl implements ArticleService {
 		}
 
 		SimpleArticleInfo simpleArticleInfo = BeanCopyUtils.copy(articleInfo, SimpleArticleInfo.class);
-		simpleArticleInfo.setCoverUrl(imageService.buildUrl(articleInfo.getCoverImg()));
+		if(articleInfo.getCoverImg() != null){
+			simpleArticleInfo.setCoverUrl(imageService.buildUrl(articleInfo.getCoverImg()));
+		}
 		return simpleArticleInfo;
 	}
 }

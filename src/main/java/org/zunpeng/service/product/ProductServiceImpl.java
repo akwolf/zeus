@@ -141,7 +141,9 @@ public class ProductServiceImpl implements ProductService {
 
 		SimpleProductInfo simpleProductInfo = BeanCopyUtils.copy(productInfo, SimpleProductInfo.class);
 		simpleProductInfo.setPrice(MathUtils.convert2Dollar(productInfo.getAmount()));
-		simpleProductInfo.setCoverUrl(imageService.buildUrl(productInfo.getCoverImg()));
+		if(productInfo.getCoverImg() != null){
+			simpleProductInfo.setCoverUrl(imageService.buildUrl(productInfo.getCoverImg()));
+		}
 		return simpleProductInfo;
 	}
 }
