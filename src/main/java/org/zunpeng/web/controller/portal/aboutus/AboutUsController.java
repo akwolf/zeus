@@ -18,7 +18,7 @@ public class AboutUsController {
 
 	@RequestMapping("/about_us")
 	public String index(Model model){
-		SimpleCompanyInfo simpleCompanyInfo = companyService.getInfo();
+		SimpleCompanyInfo simpleCompanyInfo = companyService.getInfo(1L);
 		model.addAttribute("companyInfo", simpleCompanyInfo);
 		return "portal/about_us/about_us";
 	}

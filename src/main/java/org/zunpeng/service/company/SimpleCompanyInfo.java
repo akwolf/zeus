@@ -7,6 +7,8 @@ import java.util.Date;
  */
 public class SimpleCompanyInfo {
 
+	private Long id;
+
 	private String title;
 
 	private String address;
@@ -20,6 +22,10 @@ public class SimpleCompanyInfo {
 	private String brief;
 
 	private String description;
+
+	private String logoUrl;
+
+	private String contact;
 
 	public String getTitle() {
 		return title;
@@ -77,14 +83,6 @@ public class SimpleCompanyInfo {
 		this.description = description;
 	}
 
-	public String getLogoImg() {
-		return logoImg;
-	}
-
-	public void setLogoImg(String logoImg) {
-		this.logoImg = logoImg;
-	}
-
 	public String getContact() {
 		return contact;
 	}
@@ -93,7 +91,19 @@ public class SimpleCompanyInfo {
 		this.contact = contact;
 	}
 
-	private String logoImg;
+	public String getLogoUrl() {
+		return logoUrl;
+	}
 
-	private String contact;
+	public void setLogoUrl(String logoUrl) {
+		this.logoUrl = logoUrl;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 }

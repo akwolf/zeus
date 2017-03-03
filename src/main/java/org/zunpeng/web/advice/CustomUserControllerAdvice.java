@@ -26,6 +26,6 @@ public class CustomUserControllerAdvice {
 
 	@ModelAttribute("companyInfo")
 	public SimpleCompanyInfo getSimpleCompanyInfo(){
-		return companyService.getInfo();
+		return companyService.getInfo(1L);
 	}
 }

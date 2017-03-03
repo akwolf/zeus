@@ -29,14 +29,39 @@ public class CompanyServiceImpl implements CompanyService {
 	private ImageService imageService;
 
 	@Override
-	public SimpleCompanyInfo getInfo() {
-		CompanyInfo companyInfo = companyInfoMapper.getById(1L);
+	public SimpleCompanyInfo getInfo(Long id) {
+		CompanyInfo companyInfo = companyInfoMapper.getById(id);
+		return trans2SimpleCompanyInfo(companyInfo);
+	}
+
+	@Override
+	public SimpleCompanyInfo add(CompanyFormBean formBean) throws IOException {
+		CompanyInfo companyInfo = new CompanyInfo();
+
+		companyInfo.setTitle(CleanContentUtils.clean(formBean.getTitle()));
+		companyInfo.setDescription(CleanContentUtils.cleanHtml(formBean.getDescription()));
+		companyInfo.setAddress(CleanContentUtils.clean(formBean.getAddress()));
+		companyInfo.setBrief(CleanContentUtils.clean(formBean.getBrief()));
+		companyInfo.setContact(CleanContentUtils.clean(formBean.getContact()));
+		companyInfo.setTelphone(CleanContentUtils.clean(formBean.getTelphone()));
+		companyInfo.setMobile(CleanContentUtils.clean(formBean.getMobile()));
+		companyInfo.setLastModifyTime(new Date());
+		companyInfo.setCreateTime(new Date());
+
+		MultipartFile uploadFile = formBean.getUpload();
+		if(uploadFile != null && !uploadFile.isEmpty()){
+			SimpleUploadFileInfo simpleUploadFileInfo = imageService.upload(uploadFile);
+			companyInfo.setLogoImg(simpleUploadFileInfo.getFileName());
+		}
+
+		companyInfoMapper.save(companyInfo);
+
 		return trans2SimpleCompanyInfo(companyInfo);
 	}
 
 	@Override
 	public SimpleCompanyInfo updateInfo(CompanyFormBean formBean) throws IOException {
-		CompanyInfo companyInfo = companyInfoMapper.getById(1L);
+		CompanyInfo companyInfo = companyInfoMapper.getById(formBean.getId());
 		companyInfo.setTitle(CleanContentUtils.clean(formBean.getTitle()));
 		companyInfo.setDescription(CleanContentUtils.cleanHtml(formBean.getDescription()));
 		companyInfo.setAddress(CleanContentUtils.clean(formBean.getAddress()));

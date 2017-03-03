@@ -9,7 +9,9 @@ import java.io.IOException;
  */
 public interface CompanyService {
 
-	SimpleCompanyInfo getInfo();
+	SimpleCompanyInfo getInfo(Long id);
+
+	SimpleCompanyInfo add(CompanyFormBean formBean) throws IOException;
 
 	SimpleCompanyInfo updateInfo(CompanyFormBean formBean) throws IOException;
 }

@@ -27,6 +27,10 @@ public class CompanyFormBean {
 
 	private String contact;
 
+	private Long id;
+
+	private String logoUrl;
+
 	public String getTitle() {
 		return title;
 	}
@@ -97,5 +101,21 @@ public class CompanyFormBean {
 
 	public void setContact(String contact) {
 		this.contact = contact;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getLogoUrl() {
+		return logoUrl;
+	}
+
+	public void setLogoUrl(String logoUrl) {
+		this.logoUrl = logoUrl;
 	}
 }
