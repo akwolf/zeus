@@ -58,7 +58,8 @@ public class PaymentServiceImpl implements PaymentService {
 		paymentInfo.setAccountId(accountId);
 		paymentInfo.setOutTradeNo(UuidUtils.generate());
 		paymentInfo.setStatus(0);
-		paymentInfo.setTotalFee(0.01);
+//		paymentInfo.setTotalFee(0.01);
+		paymentInfo.setTotalFee(599);
 		paymentInfo.setLastModifyTime(new Date());
 		paymentInfoMapper.save(paymentInfo);
 
