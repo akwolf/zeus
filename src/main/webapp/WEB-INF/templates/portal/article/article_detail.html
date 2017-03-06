@@ -13,7 +13,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 article_wrapper">
-					<div class="article_title" th:text="${articleInfo.name}"></div>
+					<div class="article_title" th:text="${articleInfo.title}"></div>
 					<div class="article_brief" th:text="${articleInfo.description}"></div>
 					<div class="article_cover_wrapper">
 						<img th:src="@{/image/20160724-city-2048-1365.jpg}" class="img_cover_article" th:if="${articleInfo.coverUrl == null}"/>
