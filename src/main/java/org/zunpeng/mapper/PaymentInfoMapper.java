@@ -9,7 +9,7 @@ import org.zunpeng.domain.PaymentInfo;
 public interface PaymentInfoMapper {
 
 	@Caching(operator = Caching.OperatorType.GET_SINGLE)
-	PaymentInfo getByOutTradeNo(String slug);
+	PaymentInfo getByOutTradeNo(String outTradeNo);
 
 	@Caching(operator = Caching.OperatorType.SAVE)
 	void save(PaymentInfo paymentInfo);

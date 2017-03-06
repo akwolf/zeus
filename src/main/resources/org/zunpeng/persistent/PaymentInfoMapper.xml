@@ -17,7 +17,7 @@
 	</insert>
 
 	<select id="getByOutTradeNo" resultMap="baseResultMap">
-		select * from payment_info where outTradeNo = #{outTradeNo}
+		select * from payment_info where out_trade_no = #{outTradeNo}
 	</select>
 
 	<update id="update">
