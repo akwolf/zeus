@@ -1,4 +1,7 @@
 @import "include/layout";
+@import "article_list";
+@import "product_list";
+@import "solution_list";
 
 @media (min-width: 320px) {
 	.my-slider {
@@ -67,6 +70,28 @@
 
 		.thumbnail {
 			height: 300px;
+		}
+	}
+}
+
+//网站推荐
+.recommend_wrapper {
+	padding-top: 5px;
+	padding-bottom: 10px;
+
+	.title {
+		font-size: 24px;
+		font-weight: bold;
+		padding-bottom: 10px;
+
+		a {
+			font-size: 12px;
+
+			&, &:hover, &:visited {
+				color: #337ab7;
+				font-style: normal;
+				text-decoration: none;
+			}
 		}
 	}
 }

@@ -131,6 +131,21 @@ public class SolutionServiceImpl implements SolutionService {
 		return productInfoList.stream().map(this::trans2SimpleSolutionInfo).collect(Collectors.toList());
 	}
 
+	@Override
+	public PageWrapper<SimpleSolutionInfo> pageByPublished(Pageable pageable) {
+		List<Criterion> criterionList = Lists.newArrayList();
+		criterionList.add(new Criterion("deleted", "eq", false));
+		criterionList.add(new Criterion("published", "eq", true));
+
+		Criteria criteria = new Criteria(pageable, criterionList);
+		List<SolutionInfo> solutionInfoList = solutionInfoMapper.getAllLimit(criteria);
+		long count = solutionInfoMapper.count(criteria);
+
+		List<SimpleSolutionInfo> simpleSolutionInfoList = solutionInfoList.stream().map(this::trans2SimpleSolutionInfo).collect(Collectors.toList());
+
+		return new PageWrapper<>(pageable, simpleSolutionInfoList, count);
+	}
+
 	private SimpleSolutionInfo trans2SimpleSolutionInfo(SolutionInfo solutionInfo) {
 		if(solutionInfo == null){
 			return null;

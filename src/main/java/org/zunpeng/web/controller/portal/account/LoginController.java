@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.zunpeng.core.shiro.utils.ShiroUtils;
 
 import javax.validation.Valid;
 
@@ -41,7 +42,12 @@ public class LoginController {
 			UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(formBean.getMobile(), formBean.getPassword());
 			usernamePasswordToken.setRememberMe(true);
 			SecurityUtils.getSubject().login(usernamePasswordToken);
-			return "redirect:/admin";
+
+			if("13260091590".equals(formBean.getMobile())){
+				return "redirect:/admin";
+			}
+
+			return "redirect:" + ShiroUtils.getRequestURI();
 		} catch(Throwable t){
 			logger.info(t.getMessage(), t);
 			model.addAttribute("account", formBean);

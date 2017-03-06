@@ -39,24 +39,15 @@
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
 						<li th:classappend="${index == 1} ? 'active' : ''"><a th:href="@{/}">首页</a></li>
-						<li th:classappend="${index == 2} ? 'active' : ''"><a th:href="@{/product}">产品中心</a></li>
+						<li th:classappend="${index == 2} ? 'active' : ''"><a th:href="@{/product}">国内</a></li>
 						<li th:classappend="${index == 3} ? 'active' : ''"><a th:href="@{/solution}">解决方案</a></li>
-						<li th:classappend="${index == 4} ? 'active' : ''"><a th:href="@{/article}">新闻中心</a></li>
-						<li th:classappend="${index == 5} ? 'active' : ''" class="dropdown">
-							<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">关于我们<span class="caret"></span></a>
-							<ul class="dropdown-menu">
-								<li><a th:href="@{/about_us}">公司概况</a></li>
-								<li><a th:href="@{/about_us}">公司理念</a></li>
-								<li><a th:href="@{/about_us}">合作伙伴</a></li>
-							</ul>
-						</li>
-						<li th:classappend="${index == 6} ? 'am-active' : ''"><a th:href="@{/about_us}">联系我们</a></li>
+						<li th:classappend="${index == 4} ? 'active' : ''"><a th:href="@{/article}">行业资讯<span style="color: red; font-size: 12px">&nbsp;只对收费会员开放</span></a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right" shiro:user="">
 						<li class="dropdown">
 							<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">张三三 <span class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a th:href="@{/profile}">个人中心</a></li>
+								<!--<li><a th:href="@{/profile}">个人中心</a></li>-->
 								<li><a th:href="@{logout}">退出</a></li>
 								<li role="separator" class="divider" shiro:hasAnyRoles="SUPER_ADMIN"></li>
 								<li><a th:href="@{/admin}" shiro:hasAnyRoles="SUPER_ADMIN">进入管理后台</a></li>
@@ -65,7 +56,7 @@
 					</ul>
 					<ul class="nav navbar-nav navbar-right" shiro:guest="">
 						<li><a th:href="@{/login}">登录</a></li>
-						<li><a th:href="@{/login}">注册</a></li>
+						<li><a th:href="@{/register}">注册</a></li>
 					</ul>
 				</div>
 			</div>

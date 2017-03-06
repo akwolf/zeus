@@ -38,3 +38,30 @@
 	text-decoration:none;
 	background-color:#999
 }
+
+.fl {
+	float:left;
+	display:inline;
+}
+
+.fr {
+	float:right;
+	display:inline;
+}
+
+.cf {
+	display:block;
+	zoom:1;
+}
+
+* html .cf {
+	height:1%;
+}// Hides from IE-mac
+
+.cf:after {
+	content:" ";
+	display:block;
+	height:0;
+	clear:both;
+	visibility:hidden;
+}

@@ -22,7 +22,7 @@ public class SolutionController {
 
 	@RequestMapping("/solution")
 	public String index(@PageableDefault(size = 20) Pageable pageable, Model model){
-		PageWrapper<SimpleSolutionInfo> page = solutionService.page(pageable);
+		PageWrapper<SimpleSolutionInfo> page = solutionService.pageByPublished(pageable);
 		model.addAttribute("page", page);
 		return "portal/solution/solution_list";
 	}

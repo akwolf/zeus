@@ -21,4 +21,6 @@ public interface ArticleService {
 	SimpleArticleInfo edit(ArticleFormBean formBean) throws IOException;
 
 	List<SimpleArticleInfo> getAllRecommend();
+
+	PageWrapper<SimpleArticleInfo> pageByPublished(Pageable pageable);
 }

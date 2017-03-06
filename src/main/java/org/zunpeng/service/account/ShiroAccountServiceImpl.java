@@ -94,10 +94,15 @@ public class ShiroAccountServiceImpl implements ShiroAccountService {
 	}
 
 	private <T> T saveToRedis(String key, T t){
+		//TODO 空账号不能记录到缓存中
+		if(t == null){
+			return null;
+		}
+
 		String value = (t == null ? "null" : JSONObject.toJSONString(t));
 		BoundValueOperations<String, String> boundValueOperations = stringRedisTemplate.boundValueOps(key);
 		boundValueOperations.set(value);
-		boundValueOperations.expireAt(new DateTime().plusMinutes(10).toDate());
+		boundValueOperations.expireAt(new DateTime().plusMinutes(5).toDate());
 		return t;
 	}
 

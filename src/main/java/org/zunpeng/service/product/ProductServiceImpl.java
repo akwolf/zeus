@@ -134,6 +134,23 @@ public class ProductServiceImpl implements ProductService {
 		return productInfoList.stream().map(this::trans2SimpleProductInfo).collect(Collectors.toList());
 	}
 
+	@Override
+	public PageWrapper<SimpleProductInfo> pageByPublished(Pageable pageable) {
+		List<Criterion> criterionList = Lists.newArrayList();
+		criterionList.add(new Criterion("deleted", "eq", false));
+		criterionList.add(new Criterion("published", "eq", true));
+
+		Criteria criteria = new Criteria(pageable, criterionList);
+		List<ProductInfo> productInfoList = productInfoMapper.getAllLimit(criteria);
+
+		long count = productInfoMapper.count(criteria);
+
+		List<SimpleProductInfo> simpleProductInfoList = Lists.newArrayList();
+		simpleProductInfoList.addAll(productInfoList.stream().map(this::trans2SimpleProductInfo).collect(Collectors.toList()));
+
+		return new PageWrapper<>(pageable, simpleProductInfoList, count);
+	}
+
 	private SimpleProductInfo trans2SimpleProductInfo(ProductInfo productInfo) {
 		if(productInfo == null){
 			return null;

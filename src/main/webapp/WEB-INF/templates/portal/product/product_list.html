@@ -12,69 +12,22 @@
 	<div class="main_content">
 		<div class="container">
 			<div class="product_list_wrapper">
-				<div class="row">
-					<div class="col-sm-6 col-md-4 col-lg-3 ">
-						<div class="thumbnail">
-							<img th:src="@{/image/20160724-city-2048-1365.jpg}" class="img_cover_product"/>
+				<div class="row product_wrapper" th:each="product,iterStat : ${page.items}">
+					<a th:href="@{'/product/' + ${product.slug}}" class="a_wrapper">
+						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 product_cover_info">
+							<img th:src="@{/image/20160724-city-2048-1365.jpg}" class="img_cover_product" th:if="${product.coverUrl == null}"/>
+							<img th:src="${product.coverUrl}" class="img_cover_product" th:if="${product.coverUrl != null}"/>
 						</div>
-					</div>
-					<div class="col-sm-6 col-md-4 col-lg-3 ">
-						<div class="thumbnail">
-							<img th:src="@{/image/20160724-country-2048-1367.jpg}" class="img_cover_product"/>
+						<div class="col-xs-8 col-sm-8 col-md-6 col-lg-6 product_detail_info">
+							<div class="product_title" th:text="${product.name}"></div>
+							<div class="product_brief" th:text="${product.brief}"></div>
+							<div class="product_last_modify_time" th:text="${#calendars.format(product.createTime,'yyyy-MM-dd') + '&nbsp;更新'}">hello</div>
 						</div>
-					</div>
-					<div class="col-sm-6 col-md-4 col-lg-3 ">
-						<div class="thumbnail">
-							<img th:src="@{/image/20160724-flower-605-400.jpg}" class="img_cover_product"/>
-						</div>
-					</div>
-					<div class="col-sm-6 col-md-4 col-lg-3 ">
-						<div class="thumbnail">
-							<img th:src="@{/image/20160724-happy-2048-1365.jpg}" class="img_cover_product"/>
-						</div>
-					</div>
-					<div class="col-sm-6 col-md-4 col-lg-3 ">
-						<div class="thumbnail">
-							<img th:src="@{/image/20160724-city-2048-1365.jpg}" class="img_cover_product"/>
-						</div>
-					</div>
-					<div class="col-sm-6 col-md-4 col-lg-3 ">
-						<div class="thumbnail">
-							<img th:src="@{/image/20160724-country-2048-1367.jpg}" class="img_cover_product"/>
-						</div>
-					</div>
-					<div class="col-sm-6 col-md-4 col-lg-3 ">
-						<div class="thumbnail">
-							<img th:src="@{/image/20160724-flower-605-400.jpg}" class="img_cover_product"/>
-						</div>
-					</div>
-					<div class="col-sm-6 col-md-4 col-lg-3 ">
-						<div class="thumbnail">
-							<img th:src="@{/image/20160724-happy-2048-1365.jpg}" class="img_cover_product"/>
-						</div>
-					</div>
-					<div class="col-sm-6 col-md-4 col-lg-3 ">
-						<div class="thumbnail">
-							<img th:src="@{/image/20160724-city-2048-1365.jpg}" class="img_cover_product"/>
-						</div>
-					</div>
-					<div class="col-sm-6 col-md-4 col-lg-3 ">
-						<div class="thumbnail">
-							<img th:src="@{/image/20160724-country-2048-1367.jpg}" class="img_cover_product"/>
-						</div>
-					</div>
-					<div class="col-sm-6 col-md-4 col-lg-3 ">
-						<div class="thumbnail">
-							<img th:src="@{/image/20160724-flower-605-400.jpg}" class="img_cover_product"/>
-						</div>
-					</div>
-					<div class="col-sm-6 col-md-4 col-lg-3 ">
-						<div class="thumbnail">
-							<img th:src="@{/image/20160724-happy-2048-1365.jpg}" class="img_cover_product"/>
-						</div>
-					</div>
+					</a>
 				</div>
 			</div>
+
+			<div th:replace="admin/include/pagination :: pagination('/product', ${page})"></div>
 		</div>
 	</div>
 

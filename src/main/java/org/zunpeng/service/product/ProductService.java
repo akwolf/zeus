@@ -21,4 +21,6 @@ public interface ProductService {
 	SimpleProductInfo edit(ProductFormBean formBean) throws IOException;
 
 	List<SimpleProductInfo> getAllRecommend();
+
+	PageWrapper<SimpleProductInfo> pageByPublished(Pageable pageable);
 }

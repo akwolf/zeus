@@ -1,0 +1,122 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head lang="zh-cn" th:replace="portal/include/layout :: common_head (~{::title}, ~{::meta}, ~{::link})">
+	<meta name="keywords" content="首页">
+	<meta name="description" content="北京多贝兄弟信息技术有限公司">
+	<title>首页 - 多贝云</title>
+	<link rel="stylesheet/less" type="text/css" th:href="@{/style/portal/index.less}" />
+	<link type="text/css" rel="stylesheet" th:href="@{/javascript/plugin/unslider/css/unslider.css}"/>
+	<link type="text/css" rel="stylesheet" th:href="@{/javascript/plugin/unslider/css/unslider-dots.css}"/>
+</head>
+<body th:replace="portal/include/layout :: common_body (1, ~{::div}, ~{::script})">
+	<div class="main_content">
+		<div class="container">
+			<div class="my-slider">
+				<ul>
+					<li><img th:src="@{/image/20160724-tower-sea-2048-1365.jpg}"/></li>
+					<li><img th:src="@{/image/20160724-faces-2048-1363.jpg}"/></li>
+					<li><img th:src="@{/image/20160724-wind-2048-1367.jpg}"/></li>
+				</ul>
+			</div>
+			<h1>多贝云</h1>
+			<h2>介绍</h2>
+			<p>我们为您提供最稳定顺畅的教育直播技术和服务</p>
+			<div class="parallax-container" data-parallax="scroll" data-bleed="10" th:attrappend="data-image-src=@{/image/20160724-handsome-2000-1333.jpg}" data-natural-width="2000" data-natural-height="1333"></div>
+			<h2>使用方法</h2>
+			<div class="parallax-container" data-parallax="scroll" data-bleed="10" th:attrappend="data-image-src=@{/image/20160724-road-2048-1638.jpg}" data-natural-width="2048" data-natural-height="1638"></div>
+			<h2>联系方式</h2>
+			<div class="parallax-container" data-parallax="scroll" data-bleed="10" th:attrappend="data-image-src=@{/image/20160724-river-big-2048-1052.jpg}" data-natural-width="2048" data-natural-height="1052"></div>
+			<h2>关于我们</h2>
+			<div class="parallax-container" data-parallax="scroll" data-bleed="10" th:attrappend="data-image-src=@{/image/20160724-watershed-2048-1020.jpg}" data-natural-width="2048" data-natural-height="1020"></div>
+			<h2>结尾</h2>
+			<div class="parallax-container" data-parallax="scroll" data-bleed="10" th:attrappend="data-image-src=@{/image/20160724-dogs-2048-1394.jpg}" data-natural-width="2048" data-natural-height="1394"></div>
+			<h2>哈哈</h2>
+			<div class="product_list_wrapper">
+				<div class="row">
+					<div class="col-sm-6 col-md-4 col-lg-3 ">
+						<div class="thumbnail">
+							<img th:src="@{/image/20160724-city-2048-1365.jpg}" class="img_cover_product"/>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-4 col-lg-3 ">
+						<div class="thumbnail">
+							<img th:src="@{/image/20160724-country-2048-1367.jpg}" class="img_cover_product"/>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-4 col-lg-3 ">
+						<div class="thumbnail">
+							<img th:src="@{/image/20160724-flower-605-400.jpg}" class="img_cover_product"/>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-4 col-lg-3 ">
+						<div class="thumbnail">
+							<img th:src="@{/image/20160724-happy-2048-1365.jpg}" class="img_cover_product"/>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-4 col-lg-3 ">
+						<div class="thumbnail">
+							<img th:src="@{/image/20160724-city-2048-1365.jpg}" class="img_cover_product"/>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-4 col-lg-3 ">
+						<div class="thumbnail">
+							<img th:src="@{/image/20160724-country-2048-1367.jpg}" class="img_cover_product"/>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-4 col-lg-3 ">
+						<div class="thumbnail">
+							<img th:src="@{/image/20160724-flower-605-400.jpg}" class="img_cover_product"/>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-4 col-lg-3 ">
+						<div class="thumbnail">
+							<img th:src="@{/image/20160724-happy-2048-1365.jpg}" class="img_cover_product"/>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-4 col-lg-3 ">
+						<div class="thumbnail">
+							<img th:src="@{/image/20160724-city-2048-1365.jpg}" class="img_cover_product"/>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-4 col-lg-3 ">
+						<div class="thumbnail">
+							<img th:src="@{/image/20160724-country-2048-1367.jpg}" class="img_cover_product"/>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-4 col-lg-3 ">
+						<div class="thumbnail">
+							<img th:src="@{/image/20160724-flower-605-400.jpg}" class="img_cover_product"/>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-4 col-lg-3 ">
+						<div class="thumbnail">
+							<img th:src="@{/image/20160724-happy-2048-1365.jpg}" class="img_cover_product"/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript" th:src="@{/javascript/plugin/parallax.min.js}"></script>
+	<script type="text/javascript" th:src="@{/javascript/plugin/unslider/js/unslider-min.js}"></script>
+	<script type="text/javascript">
+		$(function(){
+			if (navigator.userAgent.match(/(iPod|iPhone|iPad|Android)/)) {
+				$('#ios-notice').removeClass('hidden');
+				$('.parallax-container').height( $(window).height() * 0.5 | 0 );
+			} else {
+				$(window).resize(function(){
+					var parallaxHeight = Math.max($(window).height() * 0.7, 200) | 0;
+					$('.parallax-container').height(parallaxHeight);
+				}).trigger('resize');
+			}
+
+			$('.my-slider').unslider({
+				autoplay: true,
+				arrows: true
+			});
+		});
+	</script>
+</body>
+</html>

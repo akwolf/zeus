@@ -4,53 +4,30 @@
 	<meta name="keywords" content="新闻中心">
 	<meta name="description" content="北京多贝兄弟信息技术有限公司">
 	<title>新闻中心-多贝云</title>
-	<link rel="stylesheet/less" type="text/css" th:href="@{/style/portal/error.less}" />
+	<link rel="stylesheet/less" type="text/css" th:href="@{/style/portal/article_list.less}" />
 	<link type="text/css" rel="stylesheet" th:href="@{/javascript/plugin/unslider/css/unslider.css}"/>
 	<link type="text/css" rel="stylesheet" th:href="@{/javascript/plugin/unslider/css/unslider-dots.css}"/>
 </head>
 <body th:replace="portal/include/layout :: common_body (4, ~{::div}, ~{::script})">
 	<div class="main_content">
 		<div class="container">
-			<div class="article_wrapper">
-				<div class="article_title">Verizon宣布48亿美元收购雅虎核心业务</div>
-				<div class="article_brief">
-					<span class="article_original">来源:新浪科技</span>
-					<span class="article_send_time">2016年</span>
-					<span class="article_summary">摘要:北京时间7月25日晚间， Verizon宣布48.3亿美元收购雅虎核心业务...</span>
+			<div class="article_list_wrapper">
+				<div class="row article_wrapper" th:each="article,iterStat : ${page.items}">
+					<a th:href="@{'/article/' + ${article.slug}}" class="a_wrapper">
+						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 article_cover_info">
+							<img th:src="@{/image/20160724-city-2048-1365.jpg}" class="img_cover_article" th:if="${article.coverUrl == null}"/>
+							<img th:src="${article.coverUrl}" class="img_cover_article" th:if="${article.coverUrl != null}"/>
+						</div>
+						<div class="col-xs-8 col-sm-8 col-md-6 col-lg-6 article_detail_info">
+							<div class="article_title" th:text="${article.title}"></div>
+							<div class="article_brief" th:text="${article.description}"></div>
+							<div class="article_last_modify_time" th:text="${#calendars.format(article.createTime,'yyyy-MM-dd') + '&nbsp;更新'}">hello</div>
+						</div>
+					</a>
 				</div>
 			</div>
-			<div class="article_wrapper">
-				<div class="article_title">Verizon宣布48亿美元收购雅虎核心业务</div>
-				<div class="article_brief">
-					<span class="article_original">来源:新浪科技</span>
-					<span class="article_send_time">2016年</span>
-					<span class="article_summary">摘要:北京时间7月25日晚间， Verizon宣布48.3亿美元收购雅虎核心业务...</span>
-				</div>
-			</div>
-			<div class="article_wrapper">
-				<div class="article_title">Verizon宣布48亿美元收购雅虎核心业务</div>
-				<div class="article_brief">
-					<span class="article_original">来源:新浪科技</span>
-					<span class="article_send_time">2016年</span>
-					<span class="article_summary">摘要:北京时间7月25日晚间， Verizon宣布48.3亿美元收购雅虎核心业务...</span>
-				</div>
-			</div>
-			<div class="article_wrapper">
-				<div class="article_title">Verizon宣布48亿美元收购雅虎核心业务</div>
-				<div class="article_brief">
-					<span class="article_original">来源:新浪科技</span>
-					<span class="article_send_time">2016年</span>
-					<span class="article_summary">摘要:北京时间7月25日晚间， Verizon宣布48.3亿美元收购雅虎核心业务...</span>
-				</div>
-			</div>
-			<div class="article_wrapper">
-				<div class="article_title">Verizon宣布48亿美元收购雅虎核心业务</div>
-				<div class="article_brief">
-					<span class="article_original">来源:新浪科技</span>
-					<span class="article_send_time">2016年</span>
-					<span class="article_summary">摘要:北京时间7月25日晚间， Verizon宣布48.3亿美元收购雅虎核心业务...</span>
-				</div>
-			</div>
+
+			<div th:replace="admin/include/pagination :: pagination('/article', ${page})"></div>
 		</div>
 	</div>
 

@@ -27,6 +27,8 @@ public class SimpleSolutionInfo {
 
 	private String coverUrl;
 
+	private Date createTime;
+
 	public String getSlug() {
 		return slug;
 	}
@@ -105,5 +107,13 @@ public class SimpleSolutionInfo {
 
 	public void setPublished(boolean published) {
 		this.published = published;
+	}
+
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
 	}
 }

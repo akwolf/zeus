@@ -11,90 +11,74 @@
 <body th:replace="portal/include/layout :: common_body (1, ~{::div}, ~{::script})">
 	<div class="main_content">
 		<div class="container">
-			<div class="my-slider">
-				<ul>
-					<li><img th:src="@{/image/20160724-tower-sea-2048-1365.jpg}"/></li>
-					<li><img th:src="@{/image/20160724-faces-2048-1363.jpg}"/></li>
-					<li><img th:src="@{/image/20160724-wind-2048-1367.jpg}"/></li>
-				</ul>
-			</div>
-			<h1>多贝云</h1>
-			<h2>介绍</h2>
-			<p>我们为您提供最稳定顺畅的教育直播技术和服务</p>
-			<div class="parallax-container" data-parallax="scroll" data-bleed="10" th:attrappend="data-image-src=@{/image/20160724-handsome-2000-1333.jpg}" data-natural-width="2000" data-natural-height="1333"></div>
-			<h2>使用方法</h2>
-			<div class="parallax-container" data-parallax="scroll" data-bleed="10" th:attrappend="data-image-src=@{/image/20160724-road-2048-1638.jpg}" data-natural-width="2048" data-natural-height="1638"></div>
-			<h2>联系方式</h2>
-			<div class="parallax-container" data-parallax="scroll" data-bleed="10" th:attrappend="data-image-src=@{/image/20160724-river-big-2048-1052.jpg}" data-natural-width="2048" data-natural-height="1052"></div>
-			<h2>关于我们</h2>
-			<div class="parallax-container" data-parallax="scroll" data-bleed="10" th:attrappend="data-image-src=@{/image/20160724-watershed-2048-1020.jpg}" data-natural-width="2048" data-natural-height="1020"></div>
-			<h2>结尾</h2>
-			<div class="parallax-container" data-parallax="scroll" data-bleed="10" th:attrappend="data-image-src=@{/image/20160724-dogs-2048-1394.jpg}" data-natural-width="2048" data-natural-height="1394"></div>
-			<h2>哈哈</h2>
-			<div class="product_list_wrapper">
-				<div class="row">
-					<div class="col-sm-6 col-md-4 col-lg-3 ">
-						<div class="thumbnail">
-							<img th:src="@{/image/20160724-city-2048-1365.jpg}" class="img_cover_product"/>
-						</div>
-					</div>
-					<div class="col-sm-6 col-md-4 col-lg-3 ">
-						<div class="thumbnail">
-							<img th:src="@{/image/20160724-country-2048-1367.jpg}" class="img_cover_product"/>
-						</div>
-					</div>
-					<div class="col-sm-6 col-md-4 col-lg-3 ">
-						<div class="thumbnail">
-							<img th:src="@{/image/20160724-flower-605-400.jpg}" class="img_cover_product"/>
-						</div>
-					</div>
-					<div class="col-sm-6 col-md-4 col-lg-3 ">
-						<div class="thumbnail">
-							<img th:src="@{/image/20160724-happy-2048-1365.jpg}" class="img_cover_product"/>
-						</div>
-					</div>
-					<div class="col-sm-6 col-md-4 col-lg-3 ">
-						<div class="thumbnail">
-							<img th:src="@{/image/20160724-city-2048-1365.jpg}" class="img_cover_product"/>
-						</div>
-					</div>
-					<div class="col-sm-6 col-md-4 col-lg-3 ">
-						<div class="thumbnail">
-							<img th:src="@{/image/20160724-country-2048-1367.jpg}" class="img_cover_product"/>
-						</div>
-					</div>
-					<div class="col-sm-6 col-md-4 col-lg-3 ">
-						<div class="thumbnail">
-							<img th:src="@{/image/20160724-flower-605-400.jpg}" class="img_cover_product"/>
-						</div>
-					</div>
-					<div class="col-sm-6 col-md-4 col-lg-3 ">
-						<div class="thumbnail">
-							<img th:src="@{/image/20160724-happy-2048-1365.jpg}" class="img_cover_product"/>
-						</div>
-					</div>
-					<div class="col-sm-6 col-md-4 col-lg-3 ">
-						<div class="thumbnail">
-							<img th:src="@{/image/20160724-city-2048-1365.jpg}" class="img_cover_product"/>
-						</div>
-					</div>
-					<div class="col-sm-6 col-md-4 col-lg-3 ">
-						<div class="thumbnail">
-							<img th:src="@{/image/20160724-country-2048-1367.jpg}" class="img_cover_product"/>
-						</div>
-					</div>
-					<div class="col-sm-6 col-md-4 col-lg-3 ">
-						<div class="thumbnail">
-							<img th:src="@{/image/20160724-flower-605-400.jpg}" class="img_cover_product"/>
-						</div>
-					</div>
-					<div class="col-sm-6 col-md-4 col-lg-3 ">
-						<div class="thumbnail">
-							<img th:src="@{/image/20160724-happy-2048-1365.jpg}" class="img_cover_product"/>
-						</div>
+			<!--<div class="my-slider">-->
+				<!--<ul>-->
+					<!--<li><img th:src="@{/image/20160724-tower-sea-2048-1365.jpg}"/></li>-->
+					<!--<li><img th:src="@{/image/20160724-faces-2048-1363.jpg}"/></li>-->
+					<!--<li><img th:src="@{/image/20160724-wind-2048-1367.jpg}"/></li>-->
+				<!--</ul>-->
+			<!--</div>-->
+
+			<div class="recommend_wrapper">
+				<div class="title">国内 <a th:href="@{/product}">&nbsp;查看更多>></a></div>
+
+				<div class="product_list_wrapper">
+					<div class="row product_wrapper" th:each="product,iterStat : ${productInfoList}">
+						<a th:href="@{'/product/' + ${product.slug}}" class="a_wrapper">
+							<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 product_cover_info">
+								<img th:src="@{/image/20160724-city-2048-1365.jpg}" class="img_cover_product" th:if="${product.coverUrl == null}"/>
+								<img th:src="${product.coverUrl}" class="img_cover_product" th:if="${product.coverUrl != null}"/>
+							</div>
+							<div class="col-xs-8 col-sm-8 col-md-6 col-lg-6 product_detail_info">
+								<div class="product_title" th:text="${product.name}"></div>
+								<div class="product_brief" th:text="${product.brief}"></div>
+								<div class="product_last_modify_time" th:text="${#calendars.format(product.createTime,'yyyy-MM-dd') + '&nbsp;更新'}">hello</div>
+							</div>
+						</a>
 					</div>
 				</div>
 			</div>
+
+			<div class="recommend_wrapper">
+				<div class="title">解决方案 <a th:href="@{/solution}">&nbsp;查看更多>></a></div>
+
+				<div class="solution_list_wrapper">
+					<div class="row solution_wrapper" th:each="solution,iterStat : ${solutionInfoList}">
+						<a th:href="@{'/solution/' + ${solution.slug}}" class="a_wrapper">
+							<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 solution_cover_info">
+								<img th:src="@{/image/20160724-city-2048-1365.jpg}" class="img_cover_solution" th:if="${solution.coverUrl == null}"/>
+								<img th:src="${solution.coverUrl}" class="img_cover_solution" th:if="${solution.coverUrl != null}"/>
+							</div>
+							<div class="col-xs-8 col-sm-8 col-md-6 col-lg-6 solution_detail_info">
+								<div class="solution_title" th:text="${solution.title}"></div>
+								<div class="solution_brief" th:text="${solution.description}"></div>
+								<div class="solution_last_modify_time" th:text="${#calendars.format(solution.createTime,'yyyy-MM-dd') + '&nbsp;更新'}">hello</div>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="recommend_wrapper">
+				<div class="title">行业资讯 <a th:href="@{/article}">&nbsp;查看更多>></a></div>
+
+				<div class="article_list_wrapper">
+					<div class="row article_wrapper" th:each="article,iterStat : ${articleInfoList}">
+						<a th:href="@{'/article/' + ${article.slug}}" class="a_wrapper">
+							<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 article_cover_info">
+								<img th:src="@{/image/20160724-city-2048-1365.jpg}" class="img_cover_article" th:if="${article.coverUrl == null}"/>
+								<img th:src="${article.coverUrl}" class="img_cover_article" th:if="${article.coverUrl != null}"/>
+							</div>
+							<div class="col-xs-8 col-sm-8 col-md-6 col-lg-6 article_detail_info">
+								<div class="article_title" th:text="${article.title}"></div>
+								<div class="article_brief" th:text="${article.description}"></div>
+								<div class="article_last_modify_time" th:text="${#calendars.format(article.createTime,'yyyy-MM-dd') + '&nbsp;更新'}">hello</div>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+
 		</div>
 	</div>
 

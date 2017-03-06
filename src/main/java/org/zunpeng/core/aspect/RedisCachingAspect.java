@@ -134,8 +134,9 @@ public class RedisCachingAspect {
 					boundValueOperations.set(JSONObject.toJSONString(returnObject));
 					boundValueOperations.expire(1, TimeUnit.DAYS);
 				} else {
-					boundValueOperations.set(nullFlag);
-					boundValueOperations.expire(1, TimeUnit.DAYS);
+					//TODO 注册时会存在bug
+//					boundValueOperations.set(nullFlag);
+//					boundValueOperations.expire(1, TimeUnit.DAYS);
 				}
 
 				return returnObject;

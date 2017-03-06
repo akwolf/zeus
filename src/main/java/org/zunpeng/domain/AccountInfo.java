@@ -38,6 +38,8 @@ public class AccountInfo extends AbstractEntity {
 
 	private Date subscribeTime;
 
+	private Date lastModifyTime;
+
 	public String getSlug() {
 		return slug;
 	}
@@ -148,6 +150,14 @@ public class AccountInfo extends AbstractEntity {
 
 	public void setSubscribeTime(Date subscribeTime) {
 		this.subscribeTime = subscribeTime;
+	}
+
+	public Date getLastModifyTime() {
+		return lastModifyTime;
+	}
+
+	public void setLastModifyTime(Date lastModifyTime) {
+		this.lastModifyTime = lastModifyTime;
 	}
 
 	public enum Gender {

@@ -22,7 +22,7 @@ public class ProductController {
 
 	@RequestMapping("/product")
 	public String index(@PageableDefault(size = 20) Pageable pageable, Model model){
-		PageWrapper<SimpleProductInfo> page = productService.page(pageable);
+		PageWrapper<SimpleProductInfo> page = productService.pageByPublished(pageable);
 		model.addAttribute("page", page);
 		return "portal/product/product_list";
 	}

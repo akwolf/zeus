@@ -4,14 +4,29 @@
 	<meta name="keywords" content="解决方案">
 	<meta name="description" content="北京多贝兄弟信息技术有限公司">
 	<title>解决方案-多贝云</title>
-	<link rel="stylesheet/less" type="text/css" th:href="@{/style/portal/error.less}" />
+	<link rel="stylesheet/less" type="text/css" th:href="@{/style/portal/solution_list.less}" />
 	<link type="text/css" rel="stylesheet" th:href="@{/javascript/plugin/unslider/css/unslider.css}"/>
 	<link type="text/css" rel="stylesheet" th:href="@{/javascript/plugin/unslider/css/unslider-dots.css}"/>
 </head>
 <body th:replace="portal/include/layout :: common_body (3, ~{::div}, ~{::script})">
 	<div class="main_content">
 		<div class="container">
-
+			<div class="solution_list_wrapper">
+				<div class="row solution_wrapper" th:each="solution,iterStat : ${page.items}">
+					<a th:href="@{'/solution/' + ${solution.slug}}" class="a_wrapper">
+						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 solution_cover_info">
+							<img th:src="@{/image/20160724-city-2048-1365.jpg}" class="img_cover_solution" th:if="${solution.coverUrl == null}"/>
+							<img th:src="${solution.coverUrl}" class="img_cover_solution" th:if="${solution.coverUrl != null}"/>
+						</div>
+						<div class="col-xs-8 col-sm-8 col-md-6 col-lg-6 solution_detail_info">
+							<div class="solution_title" th:text="${solution.title}"></div>
+							<div class="solution_brief" th:text="${solution.description}"></div>
+							<div class="solution_last_modify_time" th:text="${#calendars.format(solution.createTime,'yyyy-MM-dd') + '&nbsp;更新'}">hello</div>
+						</div>
+					</a>
+				</div>
+			</div>
+			<div th:replace="admin/include/pagination :: pagination('/solution', ${page})"></div>
 		</div>
 	</div>
 

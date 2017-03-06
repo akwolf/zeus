@@ -21,4 +21,6 @@ public interface SolutionService {
 	SimpleSolutionInfo edit(SolutionFormBean formBean) throws IOException;
 
 	List<SimpleSolutionInfo> getAllRecommend();
+
+	PageWrapper<SimpleSolutionInfo> pageByPublished(Pageable pageable);
 }

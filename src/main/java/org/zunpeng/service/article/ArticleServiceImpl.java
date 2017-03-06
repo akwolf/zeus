@@ -129,6 +129,21 @@ public class ArticleServiceImpl implements ArticleService {
 		return articleInfoList.stream().map(this::trans2SimpleArticle).collect(Collectors.toList());
 	}
 
+	@Override
+	public PageWrapper<SimpleArticleInfo> pageByPublished(Pageable pageable) {
+		List<Criterion> criterionList = Lists.newArrayList();
+		criterionList.add(new Criterion("deleted", "eq", false));
+		criterionList.add(new Criterion("published", "eq", true));
+
+		Criteria criteria = new Criteria(pageable, criterionList);
+		List<ArticleInfo> articleInfoList = articleInfoMapper.getAllLimit(criteria);
+		long count = articleInfoMapper.count(criteria);
+
+		List<SimpleArticleInfo> simpleArticleInfoList = articleInfoList.stream().map(this::trans2SimpleArticle).collect(Collectors.toList());
+
+		return new PageWrapper<>(pageable, simpleArticleInfoList, count);
+	}
+
 	private SimpleArticleInfo trans2SimpleArticle(ArticleInfo articleInfo){
 		if(articleInfo == null){
 			return null;

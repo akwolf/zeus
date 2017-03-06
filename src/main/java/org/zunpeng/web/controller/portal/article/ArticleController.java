@@ -1,5 +1,6 @@
 package org.zunpeng.web.controller.portal.article;
 
+import org.apache.shiro.authz.annotation.RequiresUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +26,9 @@ public class ArticleController {
 	private ArticleService articleService;
 
 	@RequestMapping("/article")
+	@RequiresUser
 	public String index(@PageableDefault(size = 20) Pageable pageable, Model model){
-		PageWrapper<SimpleArticleInfo> page = articleService.page(pageable);
+		PageWrapper<SimpleArticleInfo> page = articleService.pageByPublished(pageable);
 		model.addAttribute("page", page);
 		return "portal/article/article_list";
 	}
