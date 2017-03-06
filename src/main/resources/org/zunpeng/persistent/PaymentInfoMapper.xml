@@ -21,7 +21,7 @@
 	</select>
 
 	<update id="update">
-		update article_info
+		update payment_info
 		set status = #{status}, total_fee = #{totalFee}, last_modify_time = #{lastModifyTime}
 		where id = #{id}
 	</update>
