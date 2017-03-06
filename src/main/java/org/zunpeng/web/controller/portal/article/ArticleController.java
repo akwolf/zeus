@@ -1,5 +1,6 @@
 package org.zunpeng.web.controller.portal.article;
 
+import com.oldpeng.core.alipay.AlipayPaymentBean;
 import org.apache.shiro.authz.annotation.RequiresUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +17,7 @@ import org.zunpeng.service.account.AccountService;
 import org.zunpeng.service.account.SimpleAccountInfo;
 import org.zunpeng.service.article.ArticleService;
 import org.zunpeng.service.article.SimpleArticleInfo;
+import org.zunpeng.service.payment.PaymentService;
 
 /**
  * Created by dapeng on 16/7/24.
@@ -31,6 +33,9 @@ public class ArticleController {
 	@Autowired
 	private AccountService accountService;
 
+	@Autowired
+	private PaymentService paymentService;
+
 	@RequestMapping("/article")
 	@RequiresUser
 	public String index(@PageableDefault(size = 20) Pageable pageable, Model model){
@@ -39,6 +44,9 @@ public class ArticleController {
 		SimpleAccountInfo accountInfo = accountService.getById(accountId);
 		if(!"hello".equalsIgnoreCase(accountInfo.getBrief())){
 			//跳转到购买页面
+			AlipayPaymentBean alipayPaymentBean = paymentService.getPaymentUrl(accountId);
+			model.addAttribute("paymentBean", alipayPaymentBean);
+			return "zhifubao";
 		}
 
 		PageWrapper<SimpleArticleInfo> page = articleService.pageByPublished(pageable);

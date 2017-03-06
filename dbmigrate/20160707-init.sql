@@ -149,17 +149,12 @@ create table slug_info (
 	slug varchar(20)
 );
 
-create table solution_info (
+create table payment_info (
 	id bigint(20) primary key auto_increment,
 	account_id bigint(20),
 	out_trade_no varchar(255),
 	status int default 0,
 	total_fee double default 0,
-	create_time datetime,
-	technology longtext,
-	deleted tinyint(4) default 0,
-	published tinyint(4) default 0,
-	sequence tinyint(4) default 0,
 	create_time datetime,
 	last_modify_time datetime
 );

@@ -50,7 +50,7 @@ public class PaymentServiceImpl implements PaymentService {
 	private AccountInfoMapper accountInfoMapper;
 
 	@Override
-	public AlipayPaymentBean getPaymentUrl(Long accountId) throws UnsupportedEncodingException {
+	public AlipayPaymentBean getPaymentUrl(Long accountId){
 		AlipayPaymentBean alipayPaymentBean = new AlipayPaymentBean();
 
 		PaymentInfo paymentInfo = new PaymentInfo();
@@ -75,7 +75,13 @@ public class PaymentServiceImpl implements PaymentService {
 
 		logger.info("payment bean: " + JSONObject.toJSONString(alipayPaymentBean));
 
-		String preSign = ApiUtils.buildParamStr(alipayPaymentBean.retrieveStringProp(), false, true) + key;
+		String preSign = null;
+		try {
+			preSign = ApiUtils.buildParamStr(alipayPaymentBean.retrieveStringProp(), false, true) + key;
+		} catch (UnsupportedEncodingException e) {
+			logger.info(e.getMessage(), e);
+			return null;
+		}
 		logger.info("pre sign: " + preSign);
 
 		alipayPaymentBean.setSign(Md5Utils.md5(preSign));
