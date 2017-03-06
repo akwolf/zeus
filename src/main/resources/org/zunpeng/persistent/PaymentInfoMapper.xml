@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.zunpeng.mapper.PaymentInfoMapper">
+	<resultMap id="baseResultMap" type="org.zunpeng.domain.PaymentInfo">
+		<id property="id" column="id" jdbcType="BIGINT"/>
+		<result property="accountId" column="account_id" jdbcType="BIGINT"/>
+		<result property="outTradeNo" column="out_trade_no" jdbcType="VARCHAR"/>
+		<result property="status" column="status" jdbcType="INTEGER"/>
+		<result property="totalFee" column="total_fee" jdbcType="DOUBLE"/>
+		<result property="createTime" column="create_time"/>
+		<result property="lastModifyTime" column="last_modify_time"/>
+	</resultMap>
+
+	<insert id="save" useGeneratedKeys="true" keyProperty="id">
+		insert into payment_info (account_id, out_trade_no, status, total_fee, create_time, last_modify_time)
+		values(#{accountId}, #{outTradeNo}, #{status}, #{totalFee}, #{createTime}, #{lastModifyTime})
+	</insert>
+
+	<select id="getByOutTradeNo" resultMap="baseResultMap">
+		select * from payment_info where outTradeNo = #{outTradeNo}
+	</select>
+
+	<update id="update">
+		update article_info
+		set status = #{status}, total_fee = #{totalFee}, last_modify_time = #{lastModifyTime}
+		where id = #{id}
+	</update>
+
+</mapper>

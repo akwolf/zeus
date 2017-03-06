@@ -11,6 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.zunpeng.core.page.PageWrapper;
+import org.zunpeng.core.shiro.config.EnhanceSecurityUtils;
+import org.zunpeng.service.account.AccountService;
+import org.zunpeng.service.account.SimpleAccountInfo;
 import org.zunpeng.service.article.ArticleService;
 import org.zunpeng.service.article.SimpleArticleInfo;
 
@@ -25,9 +28,19 @@ public class ArticleController {
 	@Autowired
 	private ArticleService articleService;
 
+	@Autowired
+	private AccountService accountService;
+
 	@RequestMapping("/article")
 	@RequiresUser
 	public String index(@PageableDefault(size = 20) Pageable pageable, Model model){
+		Long accountId = EnhanceSecurityUtils.retrieveEnhanceUser().getAccountId();
+
+		SimpleAccountInfo accountInfo = accountService.getById(accountId);
+		if(!"hello".equalsIgnoreCase(accountInfo.getBrief())){
+			//跳转到购买页面
+		}
+
 		PageWrapper<SimpleArticleInfo> page = articleService.pageByPublished(pageable);
 		model.addAttribute("page", page);
 		return "portal/article/article_list";
