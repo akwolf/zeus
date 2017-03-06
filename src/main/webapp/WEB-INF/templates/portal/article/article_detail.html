@@ -4,14 +4,24 @@
 	<meta name="keywords" content="新闻中心">
 	<meta name="description" content="北京多贝兄弟信息技术有限公司">
 	<title>新闻中心-多贝云</title>
-	<link rel="stylesheet/less" type="text/css" th:href="@{/style/portal/error.less}" />
+	<link rel="stylesheet/less" type="text/css" th:href="@{/style/portal/article_detail.less}" />
 	<link type="text/css" rel="stylesheet" th:href="@{/javascript/plugin/unslider/css/unslider.css}"/>
 	<link type="text/css" rel="stylesheet" th:href="@{/javascript/plugin/unslider/css/unslider-dots.css}"/>
 </head>
 <body th:replace="portal/include/layout :: common_body (4, ~{::div}, ~{::script})">
 	<div class="main_content">
 		<div class="container">
-
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 article_wrapper">
+					<div class="article_title" th:text="${articleInfo.name}"></div>
+					<div class="article_brief" th:text="${articleInfo.description}"></div>
+					<div class="article_cover_wrapper">
+						<img th:src="@{/image/20160724-city-2048-1365.jpg}" class="img_cover_article" th:if="${articleInfo.coverUrl == null}"/>
+						<img th:src="${articleInfo.coverUrl}" class="img_cover_article" th:if="${articleInfo.coverUrl != null}"/>
+					</div>
+					<div class="article_content" th:utext="${articleInfo.content}"></div>
+				</div>
+			</div>
 		</div>
 	</div>
 

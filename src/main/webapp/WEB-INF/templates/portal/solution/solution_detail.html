@@ -4,14 +4,24 @@
 	<meta name="keywords" content="解决方案">
 	<meta name="description" content="北京多贝兄弟信息技术有限公司">
 	<title>解决方案-多贝云</title>
-	<link rel="stylesheet/less" type="text/css" th:href="@{/style/portal/error.less}" />
+	<link rel="stylesheet/less" type="text/css" th:href="@{/style/portal/solution_detail.less}" />
 	<link type="text/css" rel="stylesheet" th:href="@{/javascript/plugin/unslider/css/unslider.css}"/>
 	<link type="text/css" rel="stylesheet" th:href="@{/javascript/plugin/unslider/css/unslider-dots.css}"/>
 </head>
 <body th:replace="portal/include/layout :: common_body (3, ~{::div}, ~{::script})">
 	<div class="main_content">
 		<div class="container">
-			
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 solution_wrapper">
+					<div class="solution_title" th:text="${solutionInfo.title}"></div>
+					<div class="solution_brief" th:text="${solutionInfo.description}"></div>
+					<div class="solution_cover_wrapper">
+						<img th:src="@{/image/20160724-city-2048-1365.jpg}" class="img_cover_solution" th:if="${solutionInfo.coverUrl == null}"/>
+						<img th:src="${solutionInfo.coverUrl}" class="img_cover_solution" th:if="${solutionInfo.coverUrl != null}"/>
+					</div>
+					<div class="solution_content" th:utext="${solutionInfo.content}"></div>
+				</div>
+			</div>
 		</div>
 	</div>
 

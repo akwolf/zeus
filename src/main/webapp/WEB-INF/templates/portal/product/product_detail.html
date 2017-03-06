@@ -4,14 +4,24 @@
 	<meta name="keywords" content="产品中心">
 	<meta name="description" content="北京多贝兄弟信息技术有限公司">
 	<title>产品中心-多贝云</title>
-	<link rel="stylesheet/less" type="text/css" th:href="@{/style/portal/product_list.less}" />
+	<link rel="stylesheet/less" type="text/css" th:href="@{/style/portal/product_detail.less}" />
 	<link type="text/css" rel="stylesheet" th:href="@{/javascript/plugin/unslider/css/unslider.css}"/>
 	<link type="text/css" rel="stylesheet" th:href="@{/javascript/plugin/unslider/css/unslider-dots.css}"/>
 </head>
 <body th:replace="portal/include/layout :: common_body (2, ~{::div}, ~{::script})">
 	<div class="main_content">
 		<div class="container">
-
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 product_wrapper">
+					<div class="product_title" th:text="${productInfo.name}"></div>
+					<div class="product_brief" th:text="${productInfo.brief}"></div>
+					<div class="product_cover_wrapper">
+						<img th:src="@{/image/20160724-city-2048-1365.jpg}" class="img_cover_product" th:if="${productInfo.coverUrl == null}"/>
+						<img th:src="${productInfo.coverUrl}" class="img_cover_product" th:if="${productInfo.coverUrl != null}"/>
+					</div>
+					<div class="product_content" th:utext="${productInfo.description}"></div>
+				</div>
+			</div>
 		</div>
 	</div>
 
