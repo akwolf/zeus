@@ -1,4 +1,4 @@
-package org.zunpeng.core.shiro.utils;
+package org.zunpeng.core.shiro;
 
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.mgt.SessionContext;
