@@ -145,6 +145,17 @@ public class SecurityConfig {
 		return sessionManager;
 	}
 
+//	@Bean
+//	public RestSessionManager sessionManager(){
+//		RestSessionManager sessionManager = new RestSessionManager();
+//		sessionManager.setSessionIdKey("token");
+//		sessionManager.setGlobalSessionTimeout(1000 * 60 * 60 * 24 * 70);
+//		sessionManager.setDeleteInvalidSessions(true);
+//		sessionManager.setSessionValidationSchedulerEnabled(true);
+//		sessionManager.setSessionDAO(redisSessionDAO());
+//		return sessionManager;
+//	}
+
 	@Bean
 	public SimpleCookie rememberMeCookie(){
 		SimpleCookie simpleCookie = new SimpleCookie();
