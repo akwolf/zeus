@@ -19,9 +19,9 @@
 							<img th:src="${article.coverUrl}" class="img_cover_article" th:if="${article.coverUrl != null}"/>
 						</div>
 						<div class="col-xs-8 col-sm-8 col-md-6 col-lg-6 article_detail_info">
-							<div class="article_title" th:text="${article.title}"></div>
+							<div class="article_title" th:text="${'[付费] ' + article.title}"></div>
 							<div class="article_brief" th:text="${article.description}"></div>
-							<div class="article_last_modify_time" th:text="${#calendars.format(article.createTime,'yyyy-MM-dd') + '&nbsp;更新'}">hello</div>
+							<div class="article_last_modify_time" th:text="${#calendars.format(article.createTime,'yyyy-MM-dd') + '&nbsp;更新'}"></div>
 						</div>
 					</a>
 				</div>

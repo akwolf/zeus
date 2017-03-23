@@ -2,6 +2,7 @@ package org.zunpeng.service.article;
 
 import com.google.common.collect.Lists;
 import com.oldpeng.core.utils.BeanCopyUtils;
+import com.oldpeng.core.utils.UuidUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -79,7 +80,8 @@ public class ArticleServiceImpl implements ArticleService {
 
 		articleInfoMapper.save(articleInfo);
 
-		articleInfo.setSlug(slugInfoMapper.getById(articleInfo.getId()).getSlug());
+		//articleInfo.setSlug(slugInfoMapper.getById(articleInfo.getId()).getSlug());
+		articleInfo.setSlug(UuidUtils.generate());
 		articleInfoMapper.update(articleInfo);
 
 		return trans2SimpleArticle(articleInfo);

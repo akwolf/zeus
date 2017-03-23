@@ -1,5 +1,6 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	  xmlns:shiro="http://www.w3.org/1999/xhtml">
 <head lang="zh-cn" th:replace="portal/include/layout :: common_head (~{::title}, ~{::meta}, ~{::link})">
 	<meta name="keywords" content="新闻中心">
 	<meta name="description" content="北京多贝兄弟信息技术有限公司">
@@ -13,13 +14,23 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 article_wrapper">
-					<div class="article_title" th:text="${articleInfo.title}"></div>
+					<div class="article_title" th:text="${'[付费] ' + articleInfo.title}"></div>
 					<div class="article_brief" th:text="${articleInfo.description}"></div>
 					<div class="article_cover_wrapper">
 						<img th:src="@{/image/20160724-city-2048-1365.jpg}" class="img_cover_article" th:if="${articleInfo.coverUrl == null}"/>
 						<img th:src="${articleInfo.coverUrl}" class="img_cover_article" th:if="${articleInfo.coverUrl != null}"/>
 					</div>
 					<div class="article_content" th:utext="${articleInfo.content}"></div>
+					<div class="payment" shiro:user="">
+						<a th:href="@{'/article/' + ${articleInfo.slug} + '/payment' }" class="a_wrapper">
+							查看全部 (此为收费项目，费用为人民币5元)
+						</a>
+					</div>
+					<div class="guest_payment" shiro:guest="">
+						<a th:href="@{'/login'}" class="a_wrapper" onclick="return confirm('注册并登录后，才可查看或购更多内容！')">
+							查看全部 (此为收费项目，费用为人民币5元)
+						</a>
+					</div>
 				</div>
 			</div>
 		</div>

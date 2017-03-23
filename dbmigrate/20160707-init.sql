@@ -1,6 +1,6 @@
 create table article_info (
 	id bigint(20) primary key auto_increment,
-	slug varchar(20),
+	slug varchar(100),
 	title varchar(500),
 	description varchar(1000),
 	cover_img varchar(200),
@@ -10,7 +10,7 @@ create table article_info (
 	published tinyint(4) default 0,
 	deleted tinyint(4) default 0,
 	sequence tinyint(4) default 0
-);
+) DEFAULT CHARACTER SET=utf8 ;
 
 
 create table account_info (
@@ -30,7 +30,7 @@ create table account_info (
 	language varchar(200),
 	create_time datetime,
 	subscribe_time datetime
-);
+) DEFAULT CHARACTER SET=utf8;
 
 create table account_permission (
 	id bigint(20) primary key auto_increment,
@@ -40,7 +40,7 @@ create table account_permission (
 	create_time datetime,
 	deleted tinyint(4) default 0,
 	last_modify_time datetime
-);
+) DEFAULT CHARACTER SET=utf8;
 
 create table role_permission (
 	id bigint(20) primary key auto_increment,
@@ -50,13 +50,13 @@ create table role_permission (
 	create_time datetime,
 	deleted tinyint(4) default 0,
 	last_modify_time datetime
-);
+) DEFAULT CHARACTER SET=utf8;
 
 create table permission_info (
 	id bigint(20) primary key auto_increment,
 	permission varchar(200),
 	create_time datetime
-);
+) DEFAULT CHARACTER SET=utf8;
 
 create table account_role (
 	id bigint(20) primary key auto_increment,
@@ -66,13 +66,13 @@ create table account_role (
 	create_time datetime,
 	deleted tinyint(4) default 0,
 	last_modify_time datetime
-);
+) DEFAULT CHARACTER SET=utf8;
 
 create table role_info (
 	id bigint(20) primary key auto_increment,
 	role varchar(200),
 	create_time datetime
-);
+) DEFAULT CHARACTER SET=utf8;
 
 
 create table banner_info (
@@ -83,7 +83,7 @@ create table banner_info (
 	disabled tinyint(4) default 0,
 	recommend_url varchar(500),
 	create_time datetime
-);
+) DEFAULT CHARACTER SET=utf8;
 
 create table company_info (
 	id bigint(20) primary key auto_increment,
@@ -97,7 +97,7 @@ create table company_info (
 	contact varchar(200),
 	create_time datetime,
 	last_modify_time datetime
-);
+) DEFAULT CHARACTER SET=utf8;
 
 create table product_info (
 	id bigint(20) primary key auto_increment,
@@ -112,7 +112,7 @@ create table product_info (
 	sequence tinyint(4) default 0,
 	create_time datetime,
 	last_modify_time datetime
-);
+) DEFAULT CHARACTER SET=utf8;
 
 create table lesson_video_info (
 	id bigint(20) primary key auto_increment,
@@ -127,7 +127,7 @@ create table lesson_video_info (
 	mobile_m3u8_key varchar(200),
 	create_time datetime,
 	last_modify_time datetime
-);
+) DEFAULT CHARACTER SET=utf8;
 
 create table solution_info (
 	id bigint(20) primary key auto_increment,
@@ -142,12 +142,12 @@ create table solution_info (
 	sequence tinyint(4) default 0,
 	create_time datetime,
 	last_modify_time datetime
-);
+) DEFAULT CHARACTER SET=utf8;
 
 create table slug_info (
 	id bigint(20) primary key auto_increment,
 	slug varchar(20)
-);
+) DEFAULT CHARACTER SET=utf8;
 
 create table payment_info (
 	id bigint(20) primary key auto_increment,
@@ -157,5 +157,5 @@ create table payment_info (
 	total_fee double default 0,
 	create_time datetime,
 	last_modify_time datetime
-);
+) DEFAULT CHARACTER SET=utf8;
 

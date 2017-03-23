@@ -1,7 +1,7 @@
 package org.zunpeng.web.controller.portal.article;
 
 import com.oldpeng.core.alipay.AlipayPaymentBean;
-import org.apache.shiro.authz.annotation.RequiresUser;
+import org.jsoup.Jsoup;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,39 +25,43 @@ import org.zunpeng.service.payment.PaymentService;
 @Controller
 public class ArticleController {
 
-	private static Logger logger = LoggerFactory.getLogger(ArticleController.class);
+    private static Logger logger = LoggerFactory.getLogger(ArticleController.class);
 
-	@Autowired
-	private ArticleService articleService;
+    @Autowired
+    private ArticleService articleService;
 
-	@Autowired
-	private AccountService accountService;
+    @Autowired
+    private AccountService accountService;
 
-	@Autowired
-	private PaymentService paymentService;
+    @Autowired
+    private PaymentService paymentService;
 
-	@RequestMapping("/article")
-	@RequiresUser
-	public String index(@PageableDefault(size = 20) Pageable pageable, Model model){
-		Long accountId = EnhanceSecurityUtils.retrieveEnhanceUser().getAccountId();
+    @RequestMapping("/article")
+    //@RequiresUser
+    public String index(@PageableDefault(size = 20) Pageable pageable, Model model) {
+        PageWrapper<SimpleArticleInfo> page = articleService.pageByPublished(pageable);
+        model.addAttribute("page", page);
+        return "portal/article/article_list";
+    }
 
-		SimpleAccountInfo accountInfo = accountService.getById(accountId);
-		if(!"hello".equalsIgnoreCase(accountInfo.getBrief())){
-			//跳转到购买页面
-			AlipayPaymentBean alipayPaymentBean = paymentService.getPaymentUrl(accountId);
-			model.addAttribute("paymentBean", alipayPaymentBean);
-			return "zhifubao";
-		}
+    @RequestMapping("/article/{slug}/payment")
+    public String payment(Model model) {
+        Long accountId = EnhanceSecurityUtils.retrieveEnhanceUser().getAccountId();
 
-		PageWrapper<SimpleArticleInfo> page = articleService.pageByPublished(pageable);
-		model.addAttribute("page", page);
-		return "portal/article/article_list";
-	}
+        SimpleAccountInfo accountInfo = accountService.getById(accountId);
+        //跳转到购买页面
+        AlipayPaymentBean alipayPaymentBean = paymentService.getPaymentUrl(accountId);
+        model.addAttribute("paymentBean", alipayPaymentBean);
+        return "zhifubao";
+    }
 
-	@RequestMapping("/article/{slug}")
-	public String detail(@PathVariable String slug, Model model){
-		SimpleArticleInfo simpleArticleInfo = articleService.getBySlug(slug);
-		model.addAttribute("articleInfo", simpleArticleInfo);
-		return "portal/article/article_detail";
-	}
+    @RequestMapping("/article/{slug}")
+    public String detail(@PathVariable String slug, Model model) {
+        SimpleArticleInfo simpleArticleInfo = articleService.getBySlug(slug);
+        String content = simpleArticleInfo.getContent();
+        content = Jsoup.parse(content).body().text();
+        simpleArticleInfo.setContent(content.substring(0, content.length() > 210 ? 210 : content.length()) + " ...");
+        model.addAttribute("articleInfo", simpleArticleInfo);
+        return "portal/article/article_detail";
+    }
 }
