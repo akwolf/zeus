@@ -111,7 +111,7 @@ public class SecurityConfig {
 		filterChainDefinitionMap.put("/admin/**", "authc");
 
 		//文章页面需要权限才能登陆
-		filterChainDefinitionMap.put("/article", "authc");
+//		filterChainDefinitionMap.put("/article", "authc");
 
 		//druid监控
 		filterChainDefinitionMap.put("/druid", "anon");

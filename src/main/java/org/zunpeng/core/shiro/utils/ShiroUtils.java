@@ -2,6 +2,8 @@ package org.zunpeng.core.shiro.utils;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.web.util.SavedRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.zunpeng.core.shiro.config.EnhanceSecurityUtils;
 
 /**
@@ -9,10 +11,14 @@ import org.zunpeng.core.shiro.config.EnhanceSecurityUtils;
  */
 public class ShiroUtils {
 
+	private static Logger logger = LoggerFactory.getLogger(ShiroUtils.class);
+
 	private static String getRequestURI(SavedRequest shiroSavedRequest) {
 		SavedRequest savedRequest = shiroSavedRequest;
 		String requestURI = savedRequest.getRequestURI();
 		String queryString = savedRequest.getQueryString();
+
+		logger.info("login request uri: " + requestURI + "\t" + queryString);
 
 		if(StringUtils.isBlank(requestURI)){
 			return "/";
@@ -29,6 +35,7 @@ public class ShiroUtils {
 		Object shiroSavedRequest = EnhanceSecurityUtils.getSubject().getSession().getAttribute("shiroSavedRequest");
 
 		if(shiroSavedRequest == null){
+			logger.info("shiroSavedRequest is null");
 			return "/";
 		}
 
